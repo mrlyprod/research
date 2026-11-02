@@ -1,0 +1,4 @@
+# Boolean complexity
+
+- 2026-08-28 [Verified] Geometry under-determines Boolean complexity at `dim = 4`: `bang dim 4, code 27` and `bang dim 4, code 281` share genus, `GF(2)` degree, popcount and the fill polynomial `4k^4 - 4k^3 + k^2` and split six of seven complexity measures; across the 424 classes (`22 + 402`) 92 groups hold two or more classes and 279 measure splits occur. Witness: ../lab/py/boolean-measures, mrly_math::bang::baseq::sequence.
+- 2026-08-28 [Verified] Sensitivity and block sensitivity separate exactly once in the `dim <= 4` catalog: `s = bs` on all 22 classes at `dim = 3` and on 401 of 402 at `dim = 4`, the exception `bang dim 4, code 7128` with `s = 2`, `bs = 3`, orbit 24; `C = bs` on all 424 classes; exactly two classes meet `deg = s^2`, `bang dim 4, code 855` and `bang dim 4, code 1911`, the second the AND-of-ORs that Huang 2019 names tight for `s(f) >= sqrt(deg(f))`. Witness: ../lab/py/boolean-measures.

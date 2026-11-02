@@ -1,0 +1,10 @@
+[package]
+name = "block-exact"
+edition = "2021"
+
+[dependencies]
+
+[workspace]
+
+[profile.release]
+opt-level = 3

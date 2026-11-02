@@ -1,0 +1,12 @@
+[package]
+name = "hexagon-moire"
+edition = "2021"
+
+[dependencies]
+mrly-math = "0.2.0"
+mrly-num = "0.2.0"
+mrly-tile = "0.2.0"
+num-bigint = "0.4"
+num-rational = "0.4"
+
+[workspace]

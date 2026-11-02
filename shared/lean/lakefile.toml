@@ -1,0 +1,25 @@
+name = "mrly"
+defaultTargets = ["Core", "Method", "Slices", "Dimers"]
+packagesDir = "../../data/shared/lean/packages"
+buildDir = "../../data/shared/lean/build"
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+rev = "v4.35.0"
+
+[[lean_lib]]
+name = "Core"
+srcDir = "../../core/lean"
+
+[[lean_lib]]
+name = "Method"
+srcDir = "../../method/lean"
+
+[[lean_lib]]
+name = "Slices"
+srcDir = "../../slices/lean"
+
+[[lean_lib]]
+name = "Dimers"
+srcDir = "../../dimers/lean"

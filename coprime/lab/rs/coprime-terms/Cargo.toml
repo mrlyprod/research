@@ -1,0 +1,8 @@
+[package]
+name = "coprime-terms"
+edition = "2021"
+license = "MIT"
+
+[dependencies]
+
+[workspace]

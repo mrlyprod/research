@@ -1,0 +1,14 @@
+[package]
+name = "ledger"
+edition = "2021"
+license = "MIT"
+publish = false
+
+[dependencies]
+mrly-core = "0.2.0"
+mrly-life = "0.2.0"
+mrly-math = "0.2.0"
+mrly-num = "0.2.0"
+mrly-sequences = "0.2.0"
+
+[workspace]

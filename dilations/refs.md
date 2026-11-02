@@ -1,0 +1,11 @@
+# REFS
+
+## PAPERS AND BOOKS
+
+| ref | title | url |
+|---|---|---|
+| Lagarias and Wang 1997 | Integral self-affine tiles in R^n II. Lattice tilings, J. Fourier Anal. Appl. 3, 83-102 - review only, the statement read in the verbatim restatement of Steiner and Thuswaldner, Rational self-affine tiles, arXiv:1203.0758, citing LW97 Corollary 6.2 and Lemma 2.1: for an expanding integer matrix A with irreducible characteristic polynomial and D a complete set of coset representatives of Z^n / A Z^n, the tile T(A, D) induces a lattice tiling of R^n with respect to the smallest A-invariant sublattice containing D - D; the irreducibility hypothesis excludes a rational integer base | https://doi.org/10.1007/BF02649100 |
+| Luo et al. 2016 | Understanding the Effective Receptive Field in Deep Convolutional Neural Networks, NeurIPS 2016, abstract and section 2.2 read at source in arXiv v2: the effective receptive field is Gaussian and occupies a fraction of the theoretical receptive field, and for zero-mean random weights of variance C the gradient variance is C to the depth times the uniform-weight path count | https://arxiv.org/abs/1701.04128 |
+| Protasov 2000 | Refinement equations with nonnegative coefficients, J. Fourier Anal. Appl. 6, 55-78, abstract read through a search index, full text unread: a sharp criterion for absolutely continuous solutions of bounded variation of n-scale refinement equations with nonnegative coefficients, and a complete classification of the positive-coefficient case by existence of continuous or integrable compactly supported solutions | https://doi.org/10.1007/BF02510118 |
+| Lagarias and Wang 1996 | Integral self-affine tiles in R^n I. Standard and nonstandard digit sets, J. London Math. Soc. 54, 161-179, bibliographic record read at source, content unread | https://doi.org/10.1112/jlms/54.1.161 |
+| Baake and Coons 2018 | A natural probability measure derived from Stern's diatomic sequence, Acta Arith. 183, 87-99, abstract read at source: a probability measure on the unit interval built from Stern's sequence between consecutive powers of 2 is purely singular continuous with a strictly increasing Holder continuous distribution function | https://arxiv.org/abs/1706.00187 |

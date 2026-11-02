@@ -1,0 +1,7 @@
+[package]
+name = "apollonian"
+edition = "2021"
+
+[dependencies]
+
+[workspace]

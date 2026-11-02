@@ -1,0 +1,76 @@
+---
+title: Information
+lead: A render as data: the rearranged SVD reads a design's code out of noise and peels a magic word, while the fractal codebook loses to deflate.
+figure: research-information
+slug: information
+---
+
+A render is a matrix of bits, so a design can be asked the two questions any bit image is asked: what can be read back out of it, and what can be written down more cheaply because it is a design at all. The two halves answer in opposite directions, and that asymmetry is the page. Identification works exactly and holds far into noise: one rearranged singular value decomposition reads a design's code out of a render and peels a five-letter magic word letter by letter. Compression does not: a catalog of 667 fractal atoms scored by minimum description length loses to raw deflate on the tree's own render, on text and on a halftone at catalog level 2, edges it by a few bits only on random bytes where deflate itself expands the stream, and crosses it on the render only from catalog level 3. The negative is printed here in full, because it is the more useful of the two.
+
+One generator prints every number below, `lab/py/codebook`, which runs in about thirty seconds and writes nothing; a number it does not print is not on this page.
+
+## The object
+
+A render is an `N x N` matrix `A` over `{0, 1}` with `N = base^level`, one entry per cell of the grid at that level, `1` where the design is filled. Cut it into `p x p` blocks of side `N/p`. The **rearrangement** `R` of [Van Loan and Pitsianis 1993](../refs.md) lays each block out flat as one row: `R(A)` is `p^2` by `(N/p)^2`, its row indexed by the block position and its column by the position inside a block. The identity that makes the operator useful is `R(B (x) C) = vec(B) vec(C)^T`, so the nearest [Kronecker product](https://en.wikipedia.org/wiki/Kronecker_product) `min ||A - B (x) C||_F` is the rank-one truncated SVD of `R(A)`, and the singular values of `R(A)` are the data's **Kronecker spectrum**. The same operator is the real-valued shadow of the 0/1 block reading [magic](../../magic/notes/magic.md) factors tiles with, cited there to the same place.
+
+**A design's render is exactly rank one under `R`, and its own tile is the factor. Proved.** By associativity of the Kronecker product a render at level `level` is `A = B (x) C` with `B` the render at level `k` and `C` the render at level `level - k`, for every `k` in `1..level-1`; at the split `p = base^k` the rearrangement is therefore `vec(B) vec(C)^T`, of rank exactly one since neither factor is the zero tile. Two consequences are free: `sigma_2 = 0`, and `sigma_1 = ||A||_F = sqrt(fill)`, since the outer product of two vectors has one singular value equal to the product of their norms. The figure draws that identity at base 3, level 4, `k = 2`: the level-4 [carpet](https://en.wikipedia.org/wiki/Sierpi%C5%84ski_carpet) on the left and its rearrangement at the `9 x 9` split on the right, both `81 x 81` and both carrying 4096 filled cells, the right-hand panel being the outer product of the level-2 carpet's own vectorisation with itself, asserted entry by entry in exact integers.
+
+## Identification
+
+**The code is recovered exactly at every split. Verified.** On the level-5 carpet, side 243 and 32768 filled cells, the rearrangement at splits `3, 9, 27, 81` reads `sigma_1 = 181.0193` at all four - the Frobenius norm `sqrt(32768)` the paragraph above predicts - with `sigma_2/sigma_1` of `9.938e-16, 3.215e-15, 1.387e-16, 6.608e-16`, so at most `3.3e-15` in floating point. Thresholding the rank-one factors returns the carpet at levels `1, 2, 3, 4` on the outside and `4, 3, 2, 1` on the inside, cell for cell, and the code read off the `3 x 3` split is `495`. A code is the cell bitmask of [core](../../core/notes/core.md), bit `base*(i mod base) + (j mod base)`, so the base-2 carpet rendered at side 3 carries the base-3 code `495`: what the split returns is the design's own rule, in the alphabet the render is written in.
+
+**The same rearrangement peels a magic word letter by letter. Verified.** The word `carpet(3), void(3), net(3), htree(3), vtree(3)` of [magic](../../magic/notes/magic.md) renders at side 243, and four successive rank-one factorisations return base-3 codes `495, 341, 186, 455, 365`, the word's own letters in order, with `sigma_2/sigma_1` of `5.1e-16, 7.1e-16, 1.6e-16, 7.9e-17`. The order comes back with the letters, since each factorisation names the outermost letter before the next one is peeled off what remains.
+
+**The code survives a 30 percent bit-flip rate and then fails in two grid steps. Verified.** Flip a fraction `p` of the render's 59049 bits, 40 seeds per `p`, on the grid `0.00` to `0.50` in steps of `0.01`. Every seed recovers code `495` up to `p = 0.30`, 12 of 40 do at `p = 0.31`, and none from `p = 0.32`. The cliff is two grid steps wide and the recovery below it is exact, not approximate.
+
+**The naive baseline fails where its closed form says it should. Proved; Verified.** A block-mean detector runs beside the SVD as an independent control, and its failure point is arithmetic rather than measurement. A filled corner block of the level-5 carpet is a level-4 carpet, of density `f = (8/9)^4 = 0.624295`, and a void block has density 0; under flip rate `p` their means are `f + p(1 - 2f)` and `p`, so a threshold set at half the largest mean misreads the void block exactly when `2p > f + p(1 - 2f)`, that is when `p > f/(1 + 2f) = 0.277638`. That number is read off the fill law `fill(A (x) B) = fill(A) fill(B)` of [core](../../core/notes/core.md) and not off any sweep. The sweep then keeps 40 of 40 seeds at `p = 0.26`, 39 at `0.27`, 25 at `0.28` and none from `0.29`, one grid step above the closed form because the threshold divides the largest of eight noisy filled corners rather than their mean. The rank-one factor holds `0.02` further on the same grid.
+
+**The Kronecker spectrum is not the detector. Verified.** Under the same noise `sigma_2/sigma_1` climbs smoothly through `0.0000, 0.1524, 0.2205, 0.2738, 0.3087, 0.3242` at `p = 0.00, 0.10, 0.20, 0.30, 0.40, 0.50` and names no threshold anywhere, while the thresholded rank-one factor is exact at the first four of those and returns the full tile `511` at the last two. What identifies a design is the factor, not the gap; a page that read the gap alone would report a smooth decay and miss the cliff entirely.
+
+## The codebook
+
+The other half asks whether a catalog of designs is worth its name as a dictionary. It is not, and the shape of the failure is exact.
+
+The catalog has three classes, de-duplicated as one before anything is counted. **Class K**, Kronecker tiles: all 16 base-2 plane designs at level 1 and their Kronecker squares, so `2 x 2` and `4 x 4`, and the 101 nonempty square-group orbits of the 511 nonempty base-3 plane codes at levels 1 and 2, so `3 x 3` and `9 x 9` ([core](../../core/notes/core.md), [spin](../../spin/notes/spin.md)). **Class M**, magic designs: the two-letter words over the tile-source letters `carpet 7, net 14, htree 3, vtree 5, void 9` at side pairs `(3,5), (5,3), (3,7), (7,3)`, so `15 x 15` and `21 x 21` ([magic](../../magic/notes/magic.md)); the three-letter words have side 105, past the `32 x 32` atom window, and are out by the size rule. **Class L**, life frames: eight named rules of [automata](../../automata/notes/automata.md) on a wrapped `16 x 16` grid, from one centre cell and seven seeded random grids, generations 1 to 6. 718 atoms are built, 25 duplicates and 26 dead frames dropped, 667 kept: `15, 101, 15, 101` in class K, `50, 50` in class M, `335` in class L.
+
+The score is in bits. A placement of an atom of `n` cells with `d` mismatches costs `log2(A) + log2(P) + log2(n+1) + log2(C(n,d))` and replaces the `n` raw bits of its window, `A` being the catalog size and `P` the legal positions for that atom. The uncovered plane is coded raw or enumeratively, `log2(U+1) + log2(C(U,u))`, whichever is shorter, plus a flag bit; the placement count costs `log2(N+1)`; and a mode bit chooses between the pursuit and the placement-free description. The code is decodable as written and its counts are real-valued, an idealised arithmetic code, so printed bit totals round.
+
+**An atom pays only above a cell floor, and most of the catalog sits below it. Proved.** A placement buys at most `n - log2(A) - log2(P) - log2(n+1)` bits, so at `A = 667` and `P <= 59049`, where `log2(667) = 9.3815` and `log2(59049) = 15.8496`, no atom of fewer than 31 cells can ever be placed. 131 of the 667 atoms are `2 x 2`, `3 x 3` or `4 x 4` and are dead by arithmetic while still charging every other atom their share of `log2(667)`. This is the catalog-size obstruction in exact form: naming is the tax, and a dictionary of small pretty things pays it for nothing.
+
+**At the level-2 catalog the codebook loses to `zlib` on every corpus. Verified.** Four corpora of `243 x 243 = 59049` bits, against `zlib` at raw deflate level 9.
+
+| corpus | ones | raw | `zlib` | codebook | vs raw | vs `zlib` |
+|---|---:|---:|---:|---:|---:|---:|
+| tree render | 32768 | 59049 | 9256 | 26468 | 32581 | -17212 |
+| text | 26434 | 59049 | 27232 | 58607 | 442 | -31375 |
+| random | 29658 | 59049 | 59096 | 59067 | -18 | 29 |
+| halftone | 15330 | 59049 | 6304 | 37521 | 21528 | -31217 |
+
+The corpora are the tree's own render `bang dim 2, code 7` at level 5; the first 7382 bytes of `research/README.md` unpacked MSB first and reshaped square; uniform bits from a printed seed, `default_rng(8128)`; and a bilevel natural-image proxy, the radial gradient `1 - r` ordered-dithered by the `4 x 4` Bayer matrix. The text row's bit counts follow whatever bytes that file currently holds; its verdict, that nothing is placed, does not. Every corpus asserts its reconstruction - atoms, mismatch masks and uncovered bits rebuild it cell for cell - the correlation mismatch count is checked against a direct window comparison on 800 sampled placements with no failures, and the saving decomposes exactly as atom bits minus header plus residual credit.
+
+**The one positive column is not a win. Verified.** On uniform bits no atom of any class earns a placement at any catalog depth from 2 to 5, and the description costs 18 bits more than raw; the `+29` against `zlib` is there only because deflate expands an incompressible stream by 47 bits, and neither method compresses it. A positive saving on that column would be an under-charged name, and this is the control that says there is none.
+
+**On text the codebook places nothing that survives. Verified.** At depth 2 no candidate scores positive at all, so the 442-bit saving is the enumerative code on the uncovered plane and not an atom. From depth 3 the pursuit finds 3 then 4 placements worth under two bits each, and each one lowers the corpus total by taking cells away from a better residual code, so the encoder drops them and emits the placement-free mode. Greedy myopia is real, and the mode bit is what contains it.
+
+**On the tree's own render the Kronecker class dominates and the other two do not compete. Verified.** The pursuit takes 569 placements, covers 51864 of 59049 cells and describes the corpus in 26468 bits against a placement-free 58559. Of 32292 atom bits class K takes 26536 from 3 distinct atoms, class M takes 0, and class L takes 5755 from a single frame; the totals are real-valued and printed rounded. The workhorse is the level-2 square of `bang dim 2, base 3, code 495`, the carpet's own tile, placed 432 times for 21387 bits, with `bang dim 2, base 3, code 7` at 72 placements for 3565 bits and `bang dim 2, base 3, code 511` at 32 for 1584. What class L buys there is void and not life: its one placed atom is `rule birth [1 3 5 7], survive [1 3 5 7], wrap` at seed 0 generation 1, density `8/256 = 0.0312`, used 33 times, and it reaches the render's empty squares only because the catalog holds no large blank atom, the base-3 orbits being the nonempty ones. The same effect carries class L's 16246 bits on the halftone across five frames of density `0.0312` to `0.0977`.
+
+**The greedy key changes the answer and the classes with it. Verified.** Taking candidates in descending saving per cell gives 569 placements for 32581 bits of saving with `K/M/L = 26536, 0, 5755`; taking them in descending saving per placement gives 137 for 16435 with `K/M/L = 1980, 5994, 5755`. Under the second key class M appears to beat class K on the tree's own render, which is an artefact of spending the plane on large loose atoms; the table above uses the first key throughout, and the comparison is printed rather than suppressed.
+
+**The whole result turns on catalog depth, and the crossover against `zlib` is depth 3. Verified.** Extending class K to Kronecker levels 3, 4 and 5 while `log2(A)` moves only from `9.3815` to `9.9218`:
+
+| depth | atoms | `log2 A` | codebook | vs raw | vs `zlib` | placements |
+|---:|---:|---:|---:|---:|---:|---:|
+| 2 | 667 | 9.3815 | 26468 | 32581 | -17212 | 569 |
+| 3 | 768 | 9.5850 | 7418 | 51631 | 1838 | 125 |
+| 4 | 869 | 9.7632 | 2305 | 56744 | 6951 | 33 |
+| 5 | 970 | 9.9218 | 44 | 59005 | 9212 | 1 |
+
+The last row is one placement of one atom, because at depth 5 the corpus is itself in the catalog. That is recognition and not compression, and it is the honest reading of the whole ladder: the codebook's win on tree renders is exactly the question of whether the catalog reaches the render's own scale, and a catalog that reaches it has stopped being a dictionary. The random control takes zero placements at every depth from 2 to 5, so depth never manufactures a saving where there is none.
+
+## What it is not
+
+The ancestor of the second half is fractal image compression, which stores an image as the contractive maps whose attractor approximates it, and its warning is the one the tables above print: a fractal dictionary buys nothing on an image that is not already a fractal, and everything on one that is already in the book. Nothing here claims novelty for the first half either: no literature search on reading a design's code out of a render was run, so the page states what the rearrangement does on this family and stops, the operator itself being cited to [Van Loan and Pitsianis 1993](../refs.md) rather than claimed, exactly as [magic](../../magic/notes/magic.md) cites the 0/1 block reading to its own source.
+
+## Where the numbers live
+
+`lab/py/codebook` prints every number above in one run of about thirty seconds: 667 atoms at catalog depth 2 and 970 at depth 5, four corpora of 59049 bits, up to 3453145 candidate placements scoring positive on one corpus, 51 noise levels at 40 seeds each, the rearranged SVD at four splits, and the five-letter peel. Every stochastic input is a fixed stream named in the study's source - the uniform-bit corpus from `default_rng(8128)`, the life seeds, the sampled FFT check and the noise dial each from their own - so every row above reproduces from that source alone. The designs the atoms are built from are [core](../../core/notes/core.md), the words are [magic](../../magic/notes/magic.md), the life frames are [automata](../../automata/notes/automata.md), and the exact 0/1 factorisation the rearrangement shadows is [magic](../../magic/notes/magic.md) again.

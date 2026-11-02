@@ -1,0 +1,10 @@
+[package]
+name = "mixing"
+edition = "2021"
+
+[dependencies]
+
+[profile.release]
+opt-level = 3
+
+[workspace]

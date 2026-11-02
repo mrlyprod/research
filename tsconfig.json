@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "preserve",
+    "moduleResolution": "bundler",
+    "lib": ["esnext", "dom", "dom.iterable"],
+    "types": ["bun"],
+    "strict": true,
+    "noEmit": true,
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "allowImportingTsExtensions": true,
+    "skipLibCheck": false,
+    "paths": {
+      "@mrlyprod/draw": ["../draw/index.ts"],
+      "@mrlyprod/draw/*": ["../draw/*"],
+      "@mrlyprod/core": ["../core/js/index"],
+      "@mrlyprod/font": ["../font/js/index"],
+      "@mrlyprod/life": ["../life/js/index"],
+      "@mrlyprod/math": ["../math/js/index"],
+      "@mrlyprod/num": ["../num/js/index"],
+      "@mrlyprod/tile": ["../tile/js/index"]
+    }
+  },
+  "include": ["*/figures/*.ts", "shared/figures/*.ts", "test/*.ts"],
+  "exclude": ["**/node_modules/**", "**/data/**", "**/target/**"]
+}

@@ -1,0 +1,4 @@
+# Flake band gap
+
+- 2026-08-28 [Verified] The base-2 flake's Laplacian has an interior band gap whose upper edge is exactly 4: on the `bang dim 3, code 23` flake (`4^level` nodes, `4^level - 1` edges, connected), exact rational elimination of `Lap - 4I` has a single zero pivot, `3 * 4^(level-1)` eigenvalues lie below 2 and none in `[2, 4)`, the lower edge climbs `1.000000, 1.827520, 1.975680, 1.996862, 1.999605, 1.999950` at `level = 1..6`, and the top eigenvalue is `3 + sqrt(5) = 5.2360679775` at `level = 2` climbing to `5.7090316570` at `level = 6`. Witness: ../lab/py/flake-band-gap.
+- 2026-08-28 [Conjecture] The lower edge closes at a fitted `c * 8^(-level)` with `c` near 12.9868 over ten levels, `(2 - lo) * 8^level` reaching `12.984807` and `12.986289` at `level = 7, 8`, a fit with no mechanism. Witness: ../lab/py/flake-band-gap.

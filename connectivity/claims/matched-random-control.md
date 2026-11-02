@@ -1,0 +1,3 @@
+# Matched random control
+
+- 2026-08-28 [Conjecture] A self-similar slab is not a better acoustic barrier than an equally sparse random one: at levels 2 and 3 the matched random mask blocks more in every comparison, four filled-cell counts per level, 96 of 96 at 12 seeds per cell with margins of 4 to 31 sd (tree `L3` fractal `0.3720` against a random mean `0.1446`, sd `0.0074`), every fractal value reproducing exactly (carpet `L2 0.3120 / L3 0.2548`, net `0.2999 / 0.2619`, tree `0.3023 / 0.3720`, void `0.3122 / 0.3642`), so the suppression is carried by fineness and sparsity rather than by self-similarity; the repeat reused the same simulator and so tests seed-fragility rather than the physics.

@@ -1,0 +1,4 @@
+# Transparent fraction
+
+- 2026-08-28 [Conjecture] The common-box transparent fraction does not grow to `24.5%`: `GRID(n) = (n-1)/(4n)` for odd `n` reproduces `1/6, 2/9, 13/54, 27/110` at `n = 3, 9, 27, 55`, reads `0.2495463` at `n = 551` and `0.2499504` at `n = 5041`, and its limit is `1/4`; `24.5%` is the `n = 55` value, and at `n = 0` the normalization is undefined.
+- 2026-09-21 [Conjecture] The transparent-fraction rows agree with each other and with their closed form: `GRID(n) = (n-1)/(4n)` evaluates in exact rationals to `0, 1/6, 2/9, 13/54, 27/110, 275/1102, 1260/5041` at `n = 1, 3, 9, 27, 55, 551, 5041`, which are the printed `0.000, 0.2495463, 0.2499504` and `24.5%` at `n = 55`, with limit `1/4`; no study in `lab/` and no crate function computes the transparent fraction of the common box itself, so the reading of `GRID` as that fraction has no generator and both rows stay Conjecture. Witness: the closed form `(n-1)/(4n)` in exact rationals; none in `lab/`.

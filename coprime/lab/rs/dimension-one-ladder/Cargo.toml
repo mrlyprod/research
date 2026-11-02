@@ -1,0 +1,9 @@
+[package]
+name = "dimension-one-ladder"
+edition = "2021"
+license = "MIT"
+
+[dependencies]
+mrly-num = "0.2.0"
+
+[workspace]

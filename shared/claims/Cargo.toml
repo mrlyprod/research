@@ -1,0 +1,10 @@
+[package]
+name = "claims"
+edition = "2021"
+publish = false
+
+[dependencies]
+mrly-math = "0.2.0"
+mrly-num = "0.2.0"
+
+[workspace]

@@ -1,0 +1,8 @@
+[package]
+name = "integer-census"
+edition = "2021"
+
+[dependencies]
+ledger = { path = "../../../../shared/ledger" }
+
+[workspace]

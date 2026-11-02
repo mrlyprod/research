@@ -1,0 +1,3 @@
+# Diagonal designs
+
+- 2026-08-28 [Refuted] The diagonal designs are codes 98, 140 and 266 with `Q_F(level) = 3^level - 2` - the identity fails at `level = 0` (sides `0` and `-1`) and holds for every `level >= 1`, and the list is short by one: of the `C(9,3) = 84` three-corner subsets of the `3 x 3` digit square, four are diagonal through `level = 6`, `{(0,1),(1,0),(2,2)}` (266), `{(0,1),(1,2),(2,0)}` (98), `{(0,2),(1,0),(2,1)}` (140) and `{(0,2),(1,1),(2,0)}`, code 84 (the value 148 once quoted for it names `{(0,2),(1,1),(2,1)}`, not a permutation design); the three named codes hold to `level = 11` with every pair checked for collinearity at `level = 7`. Witness: gasket-ray-machine.

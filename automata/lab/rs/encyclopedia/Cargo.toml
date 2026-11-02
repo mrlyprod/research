@@ -1,0 +1,17 @@
+[package]
+name = "encyclopedia"
+edition = "2021"
+
+[dependencies]
+mrly-core = "0.2.0"
+mrly-life = "0.2.0"
+mrly-math = "0.2.0"
+
+[profile.release]
+opt-level = 3
+codegen-units = 1
+
+[profile.test]
+opt-level = 2
+
+[workspace]

@@ -1,0 +1,3 @@
+# The arithmetic pole
+
+- 2026-09-06 [Proved] The comb zeta of base 3 digits `{0,1}` has a genuine pole at every `s_(0,k) = log_3 2 + 2 pi i k/log 3`, `k = 1..10`: the residue `lambda_(0,1)` lies in `[0.231891517689918, 0.231891517689919] + i [-0.501067414481069, -0.501067414481068]` by interval arithmetic on Burnol's Proposition 5.1 with every truncation bounded by a proved tail, and `Res = s_(0,k) c_k` ties it to the `k`-th Fourier coefficient of the log-periodic profile of `A(x)`; the profile control from exact counts and a second certified enclosure by the functional-equation route both meet the first. Witness: ../lab/py/burnol-residue, ../notes/string-to-composition.md THE ARITHMETIC POLE.

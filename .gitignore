@@ -1,0 +1,53 @@
+# SECRETS
+.env*
+*.env
+.leak
+
+# CLAUDE
+.claude/
+
+# OUTPUT
+data/
+dist/
+pkg/
+.cache/
+*.zip
+
+# RUST
+target/
+.cargo/
+*.rlib
+*.rmeta
+
+# WASM
+js/pkg/
+js/bun.lock
+site/wasm/
+net/mrly.net/wasm/
+net/mrly.net/wasm.next/
+
+# LEAN
+.lake/
+
+# NODE
+node_modules/
+.astro/
+.wrangler/
+
+# PYTHON
+.venv/
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# IDE
+.vscode/
+
+# OS
+.DS_Store
+
+# LOCAL
+/local/

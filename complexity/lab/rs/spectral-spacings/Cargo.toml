@@ -1,0 +1,10 @@
+[package]
+name = "spectral-spacings"
+edition = "2021"
+
+[dependencies]
+mrly-core = "0.2.0"
+mrly-math = "0.2.0"
+faer = "0.24"
+
+[workspace]

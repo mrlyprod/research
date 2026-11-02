@@ -1,0 +1,5 @@
+[package]
+name = "mertens-numerology"
+edition = "2021"
+
+[workspace]

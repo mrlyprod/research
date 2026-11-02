@@ -1,0 +1,8 @@
+[package]
+name = "farey-discrepancy"
+edition = "2021"
+
+[dependencies]
+mrly-num = "0.2.0"
+
+[workspace]

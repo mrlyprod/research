@@ -1,0 +1,3 @@
+# Mertens stack
+
+- 2026-08-28 [Verified] Weighting the Farey stack by `mu(n)` renders a Mertens-type sum at every node, `Sum_{k <= N/b} mu(kb)` at `a/b` and `M(N)` at `b = 1`, and the log-space power spectrum of `M(x)/sqrt(x)` shows the first eight nontrivial zeta zeros, detected at `13.94, 20.90, 24.97, 30.19, 32.52, 37.74, 40.64, 42.97` against `14.1347, 21.0220, 25.0109, 30.4249, 32.9351, 37.5862, 40.9187, 43.3271`, errors `0.04` to `0.42` inside one bin of width `0.5806`; the zeros are known to far beyond any precision a moire can reach, so this is a rendering and not a measurement. Witness: ../lab/py/mertens-meter.

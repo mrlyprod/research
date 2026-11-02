@@ -1,0 +1,15 @@
+[package]
+name = "sequences"
+edition = "2021"
+license = "MIT"
+publish = false
+
+[dependencies]
+mrly-core = "0.2.0"
+mrly-life = "0.2.0"
+mrly-math = "0.2.0"
+
+[profile.test]
+opt-level = 3
+
+[workspace]

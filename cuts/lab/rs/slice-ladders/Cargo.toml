@@ -1,0 +1,9 @@
+[package]
+license = "MIT"
+name = "slice-ladders"
+edition = "2021"
+
+[dependencies]
+mrly-math = "0.2.0"
+
+[workspace]

@@ -1,0 +1,8 @@
+[package]
+name = "node-error"
+edition = "2021"
+license = "MIT"
+
+[dependencies]
+
+[workspace]

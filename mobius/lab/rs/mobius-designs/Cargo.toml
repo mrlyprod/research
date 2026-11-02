@@ -1,0 +1,7 @@
+[package]
+name = "mobius-designs"
+edition = "2021"
+
+[dependencies]
+
+[workspace]

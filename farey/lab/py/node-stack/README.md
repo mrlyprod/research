@@ -1,0 +1,56 @@
+# node-stack
+
+- Stacks the nodes of a design instead of its ink: the EDGE set of a layer, the cell sides that separate an inked cell from a paper cell or from the outside, and the CORNER set, the vertices of its inked cells.
+- A layer at scale `n` is the design laid 1-periodically at period `1/n`; the parity carpet's cell grid at odd `n` is `n x n`, the base-3 carpet's at `level` is `3^level n` on a side. The edge stack over `n = 1..N` adds the layers' edge indicators as a measure on segments, the corner stack adds their corner indicators as a point measure, and a segment or point is lit by the number of layers containing it.
+- Parity carpet, cell `(i, j)` inked iff `i` and `j` are both odd: the edge set is the interior grid lines restricted to the odd rows and columns, `{k/n} x [j/n, (j+1)/n]` for `1 <= k <= n-1` and `j` odd, and the border of the square carries no edge at odd `n`; the corner set is the full interior vertex set `{(k/n, l/n) : 1 <= k, l <= n-1}` (`parity_edges_form`, `parity_corners_form`).
+- Base-3 carpet, cell paper iff some digit pair of `(i, j)` is `(1, 1)`: a vertical grid line of layer `n` carries an edge iff its index is not a multiple of `3^level`, so the period boundaries `k/n` are never edge lines and the removed blocks' walls are the whole edge set (`edge_residues`, `carpet_line_lit`).
+- Brightness has a closed form in both designs, at line level and at segment level, and the lit line sets are exact Farey families (`parity_line_brightness`, `carpet_line_brightness`, `carpet_lines_reach`).
+
+## RUN
+
+- `uv run python research/farey/lab/py/node-stack/node_stack.py`
+- From the repo root. One core, under two seconds.
+- Domain is the parity carpet at `N = 15` literal and `N = 31` rendered, the base-3 carpet at `N = 12, level 1` and `N = 6, level 2` literal and `N = 12, level 2` rendered, the restricted Farey sizes at `level 1` and `N = 1..30`, and the Landau discrepancy at `Q = 30, 60, 90`.
+- Every count is exact: cells and sides are integer pairs, points and segment ends are `Fraction`. The five PNGs beside this file are written; nothing else.
+
+## WHAT IT PRINTS
+
+- `check_parity_edges`, `check_parity_corners`: the literal edge and corner sets of every odd layer against the closed forms, as a mismatch count.
+- `parity_corner_stack` against `parity_corner_predicted`: the literal corner stack at `N = 15` against the Farey closed form, with the count of points missed, invented and mis-valued, and both sides' sha256 digest of the sorted `x,y:brightness` list.
+- `check_line_brightness_parity`, `check_line_brightness_carpet`: the number of lit lines and the number of form breaches, counting both wrong values on lit lines and nonzero predictions on unlit ones.
+- `parity_segment_check`, `carpet_segment_check`: the segment forms tested at the midpoint of every elementary interval of the union of all layers' grids, on every lit line, with the breach count.
+- `edge_residues`: the residue set `J_level` and, per residue, the rows in which the edge exists.
+- `carpet_lines_reach` against literal union: the lit-line set at `(N, level)` from the reach form against the union of the layers' lines.
+- `top_segments`: the top segment brightnesses with their exact `x` and `[y0, y1]`.
+- `carpet_corner_stack` against `carpet_corner_form`: lit corner count, breach count, digest and the top brightnesses at `N = 12, level 1`, beside the plain Farey pair count at `Q = 36`.
+- `farey_sizes`, `landau`: the size of the restricted family beside the plain Farey size at `Q = 3N`, `N = 1..30`, and the Landau sum `sum_i |f_i - i/m|` of each at three `Q`, summed exactly as a `Fraction` and printed to six places.
+
+## WHAT IT FINDS
+
+- The parity edge law is exact: the literal edge set equals the interior grid lines restricted to odd rows and columns at every odd `n <= 15`, `0` mismatches (`check_parity_edges`). A cell is inked iff both coordinates are odd, so crossing `x = k/n` inside an even row leaves paper on both sides, while inside an odd row it flips ink to paper for every interior `k`.
+- The parity corner set is the full interior vertex grid, `0` mismatches at every odd `n <= 15` (`check_parity_corners`): the two columns `k-1, k` contain exactly one odd index for every `1 <= k <= n-1`, and none for `k = 0` or `k = n`.
+- The parity corner stack is the Farey field with an odd restriction. A point `(a/b, c/d)` is lit iff `b` and `d` are odd and `lcm(b, d) <= N`, with brightness `(floor(N/lcm(b, d)) + 1)/2` rounded down, the count of odd multiples of `lcm(b, d)` up to `N`. At `N = 15` the literal stack has `536` lit points and the closed form has `536`, none missed, none invented, no value mismatch, both on digest `3dfbf194dcfc7dc08084acce38cfbf65b2ac63ef5a3de8f439411faeebcea9b6` (`parity_corner_stack`, `parity_corner_predicted`). The top brightness is `3`, at the four points `(1/3, 1/3), (1/3, 2/3), (2/3, 1/3), (2/3, 2/3)`.
+- The parity edge stack factors: a whole line `x = a/b` is lit by `(floor(N/b) + 1)/2` rounded down layers for odd `b` and by none for even `b`, `48` lit lines and `0` breaches at `N = 15`, and the brightness at a point `(a/b, y)` of that line is the count of odd `n <= N` with `b | n` and `floor(n y)` odd, `2352` midpoint tests and `0` breaches (`check_line_brightness_parity`, `parity_segment_check`). The edge stack is the line stack in one coordinate times the one-dimensional parity stack in the other.
+- The base-3 edge residues are every nonzero residue: `J_1 = {1, 2}` with the edge in rows `r = 1 mod 3`, and `J_2 = {1, ..., 8}` with rows `{1,4,7}` at `j = 1,2,7,8`, `{3,4,5}` at `j = 3,6` and `{1,7}` at `j = 4,5` (`edge_residues`). The residue `0` is missing because the cells either side of a period boundary have all-`2` and all-`0` digits, which never collide, so `x = k/n` is never an edge line.
+- The base-3 line criterion is exact: a reduced `a/b` is lit by layer `n` iff `b | 3^level n` and `a (3^level n / b) mod 3^level` lies in `J_level`, with `0` layer mismatches at `N = 12, level 1` and at `N = 6, level 2` (`check_carpet_lines`).
+- The criterion reduces to a denominator condition, since `J_level` misses only `0`: writing `s` for the exponent of `3` in `b`, the line is lit by some layer `n <= N` iff `s >= 1` and `b / 3^min(s, level) <= N`, and its brightness is `floor(N / (b / 3^min(s, level))) - floor(N/b)`, a telescoping count of the layers whose `3`-adic valuation lands in `[max(0, s-level), s-1]`. Lit-line sets agree exactly, `106` lines at `N = 12, level 1` and `100` at `N = 6, level 2`, with `0` brightness breaches on either (`carpet_lines_reach`, `check_line_brightness_carpet`).
+- Segment brightness is smaller than line brightness and the study prints it exactly: at `N = 12, level 1` the top is `4`, on `{1/3} x [1/3, 11/30]` and three mirror segments, against line brightness `8` at `x = 1/3`; at `N = 6, level 2` the top is `3`, on `{1/9} x [7/36, 2/9]` and seven others. The segment form, edge at `(a/b, y)` iff the column residue lies in `J_level` and `floor(3^level n y) mod 3^level` lies in that residue's row set, passes `14628` midpoint tests at `N = 12, level 1` and `10800` at `N = 6, level 2` with `0` breaches (`top_segments`, `carpet_segment_check`).
+- The base-3 corner set at `level 1` is every vertex of the `3n` grid, because the two columns `k-1, k` contain at most one index congruent to `1 mod 3`, so at most one of a vertex's four cells is paper. The corner stack's brightness at `(a/b, c/d)` is therefore `floor(N / (m / gcd(m, 3)))` with `m = lcm(b, d)`: at `N = 12` the stack has `5029` lit corners with `0` breaches, digest `66676fdc633f950b85a70783f194aa98278dd7817ff7a5438063c2b4627e0ae5`, top brightness `12` at the denominator-`3` points (`carpet_corner_stack`, `carpet_corner_form`). Against it, the plain Farey pair count at `Q = 3N = 36` is `|F_36|^2 = 157609`: the corner stack lights `5029` of those `157609` pairs, the rest being pairs whose two denominators are unreachable together.
+- At `level >= 2` the corner set is a proper subset of the vertex grid: of the `100` vertices of the level-2 tile, `96` are corners and the four points `(4/9, 4/9), (4/9, 5/9), (5/9, 4/9), (5/9, 5/9)` are not, each having all four of its cells carrying the digit pair `(1, 1)` at the first level, so they sit interior to the removed block (`carpet_corners`).
+- The lit-line family is a denominator-restricted Farey family, not a numerator-restricted one. At `level 1` it is exactly `{a/b in F_Q : 3 | b}` at `Q = 3N`; at general `level` it is `{a/b : 3 | b, b / 3^min(v_3(b), level) <= N}`, which at `level 2` is the multiples of `9` up to `Q` together with the denominators of valuation `1` up to `Q/3`. Sizes in `(0, 1)` at `level 1`, `N = 1..30`, against `|F_Q|` in `(0, 1]`: `2, 4, 10, 14, 22, 28, 40, 48, 66, 74, 94, 106, 130, 142, 166, 182, 214, 232, 268, 284, 320, 340, 384, 408, 448, 472, 526, 550, 606, 630` against `4, 12, 28, 46, 72, 102, 140, 180, 230, 278, 344, 396, 474, 542, 628, 712, 806, 900, 1000, 1102, 1228, 1328, 1470, 1588, 1736, 1856, 2020, 2166, 2328, 2480` (`farey_sizes`).
+- Its Landau sum `sum_i |f_i - i/m|` runs `0.784027, 1.557547, 1.962049` at `Q = 30, 60, 90`, against `1.298847, 1.710479, 2.153675` for the plain Farey sequence at the same `Q` (`landau`). Three points, no fit and no exponent is claimed.
+- The tree's Farey door restricts the denominator by a cutoff, `b <= Q`; this family restricts it by a divisibility, `3 | b`, and a level-dependent cutoff. They are different objects and neither is a numerator restriction.
+
+## FIGURES
+
+- `edges-parity.png`: the parity edge stack over the odd scales `n <= 31`, accumulated as hairlines on a `1024` raster and block-maximum reduced to `512`, peak raster count `10`, `25733` bytes (`edge_raster`, `save_png`).
+- `corners-parity.png`: the parity corner stack at `N = 31`, each lit point a square of half-width `1 + brightness` pixels at `1024`, peak brightness `5`, `8085` bytes (`corner_raster`). The white cross on the centre lines is the odd restriction: every point with an even denominator is dark.
+- `edges-carpet.png`, `corners-carpet.png`: the base-3 carpet at `level 2` over scales `1..12`, peaks `24` and `12`, `45760` and `22936` bytes. The corner picture is a `9 x 9` lattice of Farey fields, one per level-2 cell.
+- `nodes-sheet.png`: the four at `256`, `63607` bytes (`contact_sheet`).
+- Grey is monotone in brightness, the faintest lit value at grey `70` and the peak at black, so a picture shows which nodes are bright but reads no exact value. A raster cannot show a coincidence: every count on this page is exact rational arithmetic and the pictures are illustrations of it.
+
+## WITNESSES
+
+- `farey.md` WHERE THE LINES LAND: the line stack's `floor(N/b)` is the shadow of these two laws. The parity corner stack replaces it by `(floor(N/lcm(b,d)) + 1)/2` rounded down on pairs of odd denominators; the base-3 edge stack replaces it by a difference of two floors.
+- `farey.md` THE STACK IS AN ADDRESS: brightness stays an address at the nodes as it is on the ink. Line brightness costs one gcd, segment brightness one pass over the layers dividing the denominator.
+- `core.md`: the base-3 design here is the carpet, cell paper iff a digit pair equals `(1, 1)`, at levels `1` and `2`.

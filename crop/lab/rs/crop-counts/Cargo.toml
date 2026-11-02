@@ -1,0 +1,9 @@
+[package]
+name = "crop-counts"
+edition = "2021"
+
+[dependencies]
+mrly-core = "0.2.0"
+mrly-math = "0.2.0"
+
+[workspace]

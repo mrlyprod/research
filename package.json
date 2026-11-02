@@ -1,0 +1,33 @@
+{
+  "name": "@mrlyprod/research",
+  "version": "0.2.0",
+  "description": "MrlyProd's research; the figures, served on mrlyprod.com.",
+  "author": "MrlyProd, Inc.",
+  "license": "MIT",
+  "homepage": "https://mrly.net",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mrlyprod/research"
+  },
+  "private": true,
+  "type": "module",
+  "packageManager": "bun@1.4.4",
+  "scripts": {
+    "test": "bun test",
+    "types": "tsc -p tsconfig.json",
+    "lint": "biome ci .",
+    "fix": "biome check --write ."
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.6.3",
+    "@mrlyprod/core": "link:../core/js",
+    "@mrlyprod/draw": "link:../draw",
+    "@mrlyprod/font": "link:../font/js",
+    "@mrlyprod/life": "link:../life/js",
+    "@mrlyprod/math": "link:../math/js",
+    "@mrlyprod/num": "link:../num/js",
+    "@mrlyprod/tile": "link:../tile/js",
+    "@types/bun": "^1.4.4",
+    "typescript": "^7.0.2"
+  }
+}
