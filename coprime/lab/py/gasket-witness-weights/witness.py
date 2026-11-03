@@ -16,9 +16,6 @@ def check(name, got, want):
     print("ok   %s" % name)
 
 
-# GASKET POINTS
-
-
 def points(n):
     pts = [(0, 0)]
     for _ in range(n):
@@ -49,9 +46,6 @@ def is_shift_pair(s, t):
     while u % 3 == 0:
         u //= 3
     return u == 1
-
-
-# CARRY AUTOMATON
 
 
 def carry(s, t):
@@ -111,9 +105,6 @@ def ray_mass(z1, z2, n):
         cur = nxt
         out.append(cur[0])
     return [v - 1 for v in out]
-
-
-# FREE AUTOMATON AS A CONSTRAINED TENSOR SQUARE
 
 
 def free_automaton(s, t):
@@ -200,9 +191,6 @@ def tensor_returns(s, t, n):
     return out
 
 
-# BOX CONSTRUCTION
-
-
 def box(s, t, n):
     W = (3**n - 1) // (2 * max(s, t))
     c = 0
@@ -218,9 +206,6 @@ def fibre(s, t, n):
     return sum(
         1 for u in range(1, 3**n // t + 1) if s * u in binary and t * u in binary
     )
-
-
-# CENSUS
 
 
 def ray_census(n):
@@ -283,9 +268,6 @@ def is_three_power_ratio(a, b):
     return q == 1
 
 
-# LAW 1: THE CONSTRAINED TENSOR SQUARE
-
-
 def law_tensor():
     bad = 0
     n = 9
@@ -308,9 +290,6 @@ def law_tensor():
         sizes,
         [(729, 26931), (81, 835), (38, 393), (35, 354)],
     )
-
-
-# LAW 2: THE BOX CONSTRUCTION
 
 
 def law_box():
@@ -341,9 +320,6 @@ def law_box():
         [g[0] for g in got],
         [2, 180, 50, 172, 50, 172, 2, 12, 2, 8],
     )
-
-
-# LAW 3: WEIGHT FOUR AND THE GOLDEN CEILING
 
 
 def law_weights():
@@ -473,9 +449,6 @@ def law_weights():
     )
 
 
-# LAW 4: THE RESIDUAL TO LEVEL 17
-
-
 def law_deep():
     import numpy as np
 
@@ -520,9 +493,6 @@ def law_deep():
         (int(R[4] / 3**17 * 10**7), int(R[4] / p**17 * 10**7)),
         (2737709, 27724831),
     )
-
-
-# LAW 5: THE CEILING AS A THEOREM
 
 
 def direction_automaton(a, b):
@@ -959,9 +929,6 @@ def law_ceiling():
     )
 
 
-# LAW 6: THE PROVED CASES ON THE ADVERSARIAL FAMILIES
-
-
 def law_families():
     bin3 = [sum(((u >> i) & 1) * 3**i for i in range(8)) for u in range(1, 256)]
     nad = no_adjacent(8)
@@ -1023,9 +990,6 @@ def law_families():
         (breaches, -(-wn * 10000 // wd)),
         (0, 1516),
     )
-
-
-# LAW 7: THE GOLDEN POTENTIAL
 
 
 def qnorm(p, q, d):
@@ -1303,9 +1267,6 @@ def law_partition():
         (len(box), residue, zero, len(box) - zero),
         (13158, 6566, 12940, 218),
     )
-
-
-# LAW 8: THE DEGREE POTENTIAL
 
 
 def split3(a, b):

@@ -1,7 +1,5 @@
 import sys
 
-# BITMASK POLYNOMIALS OVER F2
-
 
 def polymul2(a, b):
     r = 0
@@ -110,9 +108,6 @@ def nullspace_right(rows, n):
     return out
 
 
-# JACOBSTHAL AND THE SLOT
-
-
 def jac(k):
     return 0 if k < 0 else (2**k - (-1) ** k) // 3
 
@@ -175,8 +170,6 @@ def reach_law(R):
         return 1 if R == 1 << (b - 2) else (3 if R == 3 else 5)
     return 3 * w + (2 if e % 2 == 0 else 0) + ((1 + p % 2) if k % 2 else 0)
 
-
-# THE MOD-4 SYMBOL AND THE KERNEL FAMILY
 
 FW = 20
 FM = (1 << FW) - 1
@@ -265,9 +258,6 @@ def obstruction(D, X, Ppack):
     return out
 
 
-# THE LAYER-2 WINDOW
-
-
 def layer2(D):
     X, K = family(D)
     cols = columns(D)
@@ -347,9 +337,6 @@ def corrector_index(cols, target):
         if spans(target, piv):
             return J
     return None
-
-
-# THE SWEEP
 
 
 def sweep(lo, hi):

@@ -17,8 +17,6 @@ const BRANCH = [4, 8, 11, 15];
 const LINE = [17, 34, 51, 68];
 const RING = [44, 88, 133, 177];
 
-// SEED
-
 function fill() {
   const mask = (1n << 64n) - 1n;
   let state = SEED;
@@ -33,8 +31,6 @@ function fill() {
   }
   return cells;
 }
-
-// STEPS
 
 const at = (i: number, j: number) => (((i % SIDE) + SIDE) % SIDE) * SIDE + (((j % SIDE) + SIDE) % SIDE);
 const slide = (p: number) => at((p >> 4) + 1, (p & 15) + 1);
@@ -105,8 +101,6 @@ function differences(step: (x: Uint8Array) => Uint8Array, flip: number, keep: nu
   }
   return out;
 }
-
-// DRAW
 
 export default function draw(pen: Pen, ink: Ink) {
   const block = (p: number) => p >> 4 < 8 && (p & 15) < 8;

@@ -2,8 +2,6 @@ use num_bigint::{BigInt, Sign};
 
 use crate::{bigpow, gcd, ratio_f64};
 
-// DIGIT SUMS
-
 fn sum_dist(digits: &[u64], r: usize) -> Vec<u128> {
     let top = *digits.iter().max().unwrap() as usize;
     let mut out = vec![1u128];
@@ -25,8 +23,6 @@ fn sum_dist(digits: &[u64], r: usize) -> Vec<u128> {
 fn digit_energy(digits: &[u64]) -> u128 {
     sum_dist(digits, 2).iter().map(|c| c * c).sum()
 }
-
-// TRANSFER
 
 pub struct Transfer {
     states: Vec<(usize, usize)>,
@@ -263,8 +259,6 @@ impl Transfer {
     }
 }
 
-// FRACTIONS
-
 #[derive(Clone)]
 pub struct Frac {
     pub num: BigInt,
@@ -380,8 +374,6 @@ pub(crate) fn band(lo: f64, hi: f64, digits: usize) -> String {
         format!("{l:.digits$}..{h:.digits$}")
     }
 }
-
-// FACTORS
 
 fn eval_big(c: &[BigInt], x: &BigInt) -> BigInt {
     let mut acc = BigInt::from(0);
@@ -634,8 +626,6 @@ pub fn locate(factors: &[(Vec<BigInt>, bool)], lo: &Frac, hi: &Frac) -> Option<u
     found
 }
 
-// IRREDUCIBILITY MOD P
-
 fn pm_trim(a: &mut Vec<u64>) {
     while a.len() > 1 && *a.last().unwrap() == 0 {
         a.pop();
@@ -808,8 +798,6 @@ pub fn irreducibility_witness(c: &[BigInt]) -> Option<u64> {
     PRIMES.iter().cloned().find(|&p| irreducible_mod(c, p))
 }
 
-// RENDER
-
 fn poly_string(c: &[BigInt]) -> String {
     let mut parts = Vec::new();
     for i in (0..c.len()).rev() {
@@ -851,8 +839,6 @@ fn poly_string(c: &[BigInt]) -> String {
     }
     parts.join(" ")
 }
-
-// STUDY
 
 pub struct Family {
     pub q: u64,
@@ -1089,8 +1075,6 @@ pub fn ratio_row(fam: &Family, m: &Moment) -> String {
     )
 }
 
-// ARCS
-
 pub(crate) fn transform_table(q: u64, digits: &[u64], l: usize) -> Vec<(f64, f64)> {
     let n = (q as usize).pow(l as u32);
     let mut g = vec![(0.0f64, 0.0f64); n];
@@ -1192,8 +1176,6 @@ pub fn arcs_row(fam: &Family, a: &Arcs) -> String {
         a.zero_l4
     )
 }
-
-// FAMILIES
 
 fn ex(q: u64, e: u64) -> Vec<u64> {
     (0..q).filter(|&f| f != e).collect()
@@ -1408,8 +1390,6 @@ pub fn run() {
         println!("{}", arcs_row(&fams[i], &a));
     }
 }
-
-// TESTS
 
 #[cfg(test)]
 mod tests {

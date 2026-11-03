@@ -11,8 +11,6 @@ sys.path.insert(
 
 import pairing
 
-# MONOID
-
 B = 32
 
 DEEP = 18
@@ -84,9 +82,6 @@ def monoid(L):
     return sorted(seen), g
 
 
-# INVERSE
-
-
 def nustar(L):
     els, g = monoid(L)
     nu = dict.fromkeys(els, 0)
@@ -128,9 +123,6 @@ def ladder(L):
     sums.append(run + power(L))
     mx.append(max(best, abs(run + power(L))))
     return mx, sums, cens, top
-
-
-# BOUND
 
 
 def qset(L, els):
@@ -186,9 +178,6 @@ def window(q):
 
 def ordwindow(tab, q):
     return max([l for l in sorted(tab) if tab[l] <= q] or [1])
-
-
-# VERBS
 
 
 def line(*a):

@@ -8,8 +8,6 @@ const SAMPLES = 1800;
 const DEPTHS = [2, 4, 8, 16, 32];
 const LATTICE = 10;
 
-// FACTS
-
 const mean = DIGITS.reduce((s, d) => s + d, 0) / FILL;
 const variance = DIGITS.reduce((s, d) => s + (d - mean) ** 2, 0) / FILL;
 
@@ -39,8 +37,6 @@ function constants() {
   if (cs.some((c) => c < 0 || c >= 1)) throw new Error("research-gelfond: a constant outside [0, 1)");
   return cs;
 }
-
-// DRAW
 
 export default function draw(pen: Pen, ink: Ink) {
   const cs = constants();

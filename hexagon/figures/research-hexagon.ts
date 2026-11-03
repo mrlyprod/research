@@ -10,8 +10,6 @@ type Sampled = { shades: Float64Array; codes: Uint16Array; starts: number[] };
 
 let memo: Sampled | undefined;
 
-// FIELD
-
 const unpack = (text: string) => new DataView(Uint8Array.from(atob(text), (c) => c.charCodeAt(0)).buffer);
 
 function sampled(): Sampled {
@@ -41,8 +39,6 @@ function sampled(): Sampled {
   memo = { shades, codes, starts };
   return memo;
 }
-
-// DRAW
 
 export default function draw(pen: Pen, ink: Ink) {
   const { mesh, background, reach } = census;

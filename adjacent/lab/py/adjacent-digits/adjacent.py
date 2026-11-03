@@ -6,8 +6,6 @@ from fractions import Fraction
 import numpy as np
 from mpmath import iv, mp, mpf
 
-# SET
-
 
 def member(n, b):
     n = np.asarray(n, dtype=np.int64)
@@ -80,9 +78,6 @@ def units(b):
     return [c for c in range(b) if math.gcd(c, b) == 1]
 
 
-# SPECTRAL
-
-
 def transform(b, L, u, w=None):
     ok, top = strings(b, L)
     n = np.nonzero(ok if w is None else ok & (w[top] != 0))[0]
@@ -123,8 +118,6 @@ def matrix(b, u):
         M[c, c] = 0
     return M
 
-
-# CERTIFICATE
 
 SI_PI = "1.85193705198246617036105337015799136334580972898115490980477"
 EULER = "0.57721566490153286060651209008240243104215933593992359880577"
@@ -243,9 +236,6 @@ def tail(B1, bar, C):
     )
     turn = max(float((1 / (2 * a) - p0 / p1).b), float((1 / a - f0 / f1).b))
     return gB, turn
-
-
-# VERBS
 
 
 def count_verb():

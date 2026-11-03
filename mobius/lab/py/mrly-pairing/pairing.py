@@ -18,8 +18,6 @@ sys.path.insert(
 
 import euler
 
-# FAMILIES
-
 
 def full(q):
     return (1 << q) - 1
@@ -68,9 +66,6 @@ def indicator(q, F, L):
     v = numpy.zeros(q**L, dtype=numpy.float64)
     v[strings(q, F, L)] = 1.0
     return v
-
-
-# MOBIUS
 
 
 def mu_upto(N):
@@ -122,8 +117,6 @@ def mu_of(vals):
 
 
 VERBS = {}
-
-# SPLIT
 
 
 def levels(q, L):
@@ -340,8 +333,6 @@ def split():
 
 VERBS["split"] = split
 
-# GLUE
-
 GLUE = [(3, 0b011, 18), (4, 0b0011, 14), (5, 0b00011, 12), (10, miss(10, 9), 7)]
 
 GLUE_CONTROLS = [(2, 0b11, 20), (3, 0b111, 12)]
@@ -457,8 +448,6 @@ def glue():
 
 
 VERBS["glue"] = glue
-
-# INVERSE
 
 SEEDS = {
     (3, 0b011): ("0.720788", "28.60568"),
@@ -711,8 +700,6 @@ def inverse():
 
 VERBS["inverse"] = inverse
 
-# BOX
-
 BOXES = [
     (10, miss(10, 9), "1.00150", "1.00168", "2.73915", "2.73925", 1),
     (3, 0b011, "0.72074", "0.72084", "28.60563", "28.60573", 1),
@@ -769,8 +756,6 @@ def box():
 
 VERBS["box"] = box
 
-
-# ONESTEP
 
 GAMMA = 0.5772156649015329
 
@@ -1380,8 +1365,6 @@ def onestep():
 
 
 VERBS["onestep"] = onestep
-
-# PERDEN
 
 PERDEN_FAMILIES = [(3, [2], 12), (10, [9], 6), (101, [0], 3), (1499, [749], 2)]
 

@@ -6,8 +6,6 @@ from math import comb, e, gcd, isqrt, log, pi
 
 getcontext().prec = 80
 
-# THE OBJECT
-
 Q = 3
 D = 2
 CELLS = ((0, 0), (2, 0), (0, 2))
@@ -121,9 +119,6 @@ def check(tag, got, want):
     return got
 
 
-# THE ARITHMETIC CLASS, EXACT
-
-
 def factor(n):
     out, p = {}, 2
     while p * p <= n:
@@ -184,9 +179,6 @@ def arithmetic_class(w):
     for p, ex in zip(primes, unit):
         span *= Fraction(p) ** (ex * mult)
     return "lattice", (1 / span if span < 1 else span)
-
-
-# THE MASS SIDE
 
 
 def classes(w):
@@ -255,9 +247,6 @@ def oscillation(ws, cum, delta, window, points=3000):
                 vals.append(log(cum[k - 1]) - delta * x)
         out.append(max(vals) - min(vals))
     return out
-
-
-# THE LENGTH SIDE
 
 
 def integer_weights(w):
@@ -331,9 +320,6 @@ def ripple(w):
     return alpha, f, max(f) - min(f), drift, shared, period, decade, exact
 
 
-# SAFE ROOTS
-
-
 def floor_root(num, den, n, digits=7):
     scale = 10**digits
     lo = int(e ** ((log(num) - log(den)) / n) * scale) - 4
@@ -353,8 +339,6 @@ def ceil_root(num, den, n, digits=7):
         hi += 1
     return "%d.%0*d" % (hi // scale, digits, hi % scale)
 
-
-# EXACT ARITHMETIC IN Q(sqrt ROOT)
 
 SQRT_PREC = 10**20
 SQRT_CACHE = {}
@@ -509,9 +493,6 @@ def restrict(T, root):
     return tuple(C), ok
 
 
-# THE MULTIFRACTAL SPECTRUM
-
-
 def partition(w, s):
     return sum(float(x) ** s for x in w)
 
@@ -572,8 +553,6 @@ def stirling_count(level, ks, cls):
         v += -lnfac(k) + k * log(g)
     return v
 
-
-# THE RUN
 
 print("WEIGHTED DESIGNS")
 print()

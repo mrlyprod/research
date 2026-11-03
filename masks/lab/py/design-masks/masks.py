@@ -33,8 +33,6 @@ LAGS = [1, 2, 3, 5, 8, 13, 21, 34, 55]
 VOCAB, WIDTH, HEADS, LAYERS = 32, 64, 4, 2
 PAIRS_KV, QUERY = 20, 40
 
-# MASKS
-
 
 def mrly(fn, *args):
     out = subprocess.run(
@@ -124,8 +122,6 @@ def masks():
         d["kept"] = LOW <= d["density"] <= HIGH
     return rows
 
-
-# STRUCTURE
 
 EYE = np.eye(S, dtype=bool)
 LOWER = np.tril(np.ones((S, S), dtype=bool))
@@ -222,9 +218,6 @@ def census(args):
             )
 
 
-# TASKS
-
-
 def copy_batch(g, batch):
     lag = torch.randint(0, len(LAGS), (batch,), generator=g)
     x = torch.randint(0, VOCAB - len(LAGS), (batch, S), generator=g)
@@ -247,8 +240,6 @@ def recall_batch(g, batch):
 
 
 TASKS = {"copy": copy_batch, "recall": recall_batch}
-
-# MODEL
 
 
 def init(seed, vocab=VOCAB):
@@ -410,9 +401,6 @@ def train(task, conditions, args):
         }
         for i in range(len(seeds))
     ]
-
-
-# SWEEP
 
 
 def conditions():
@@ -775,8 +763,6 @@ def figure(args):
     )
 
 
-# OFFSETS
-
 BASES = [2, 3, 4, 5, 9]
 DRAWS = 200
 
@@ -1040,9 +1026,6 @@ def basis(args):
             },
             f,
         )
-
-
-# LANGUAGE
 
 
 def corpus():
@@ -1419,9 +1402,6 @@ def offsets_table(args):
         print(
             f"  {b} - {a}: {tstat(seed_vals(runs, b, common) - seed_vals(runs, a, common))}"
         )
-
-
-# MAIN
 
 
 def main():

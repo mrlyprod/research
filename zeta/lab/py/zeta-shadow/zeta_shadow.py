@@ -9,8 +9,6 @@ sys.path.insert(0, os.path.join(HERE, "..", "design-zeta"))
 
 from design_zeta import Design
 
-# THE LADDER
-
 LADDER = [
     (5, (0, 1)),
     (4, (0, 1)),
@@ -64,9 +62,6 @@ def words(q, F, L):
     for _ in range(L):
         cur = [q * m + a for m in cur for a in F]
     return cur
-
-
-# THE PRINCIPAL FIBRE
 
 
 def fibre(q, F, L):
@@ -153,9 +148,6 @@ def mass(which):
                 mp.nstr(a / fibre(q, F, L), 8),
             ]
         line("  ", *row)
-
-
-# THE FIRST-ORDER SHADOW
 
 
 def deriv(d, s):
@@ -341,8 +333,6 @@ def predict(which, nz):
             )
     return out
 
-
-# THE RUNGS
 
 ZZ = None
 
@@ -533,9 +523,6 @@ def rungs(which, nz):
             "largest abs ratio - 1",
             mp.nstr(max(abs(x[1] - 1) for x in b), 6),
         )
-
-
-# STUDY
 
 
 def main():

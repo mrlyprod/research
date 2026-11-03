@@ -2,8 +2,6 @@ use mrly_math::memory::{allowed_windows, kappa, perron, transfer, Rule};
 use std::collections::BTreeSet;
 use std::time::Instant;
 
-// THE STEP
-
 fn free(n: u64) -> u64 {
     n ^ (n << 1) ^ 1
 }
@@ -39,8 +37,6 @@ fn t_free(n: u64) -> u64 {
         free(n) / 2
     }
 }
-
-// THE GENERAL MULTIPLIER
 
 fn support(q: u64) -> Vec<usize> {
     (0..64).filter(|j| (q >> j) & 1 == 1).collect()
@@ -89,8 +85,6 @@ fn word(n: u64, length: usize) -> Vec<usize> {
     (0..length).rev().map(|i| ((n >> i) & 1) as usize).collect()
 }
 
-// THE STATISTICS
-
 fn longest_run(n: u64) -> u32 {
     let mut best = 0;
     let mut run = 0;
@@ -118,8 +112,6 @@ fn v2(n: u64) -> u32 {
 fn digits(n: u64) -> u32 {
     64 - n.leading_zeros()
 }
-
-// THE DEPTH
 
 fn depth_of(bits: &[u8]) -> usize {
     let mut q = 1u8;
@@ -155,8 +147,6 @@ fn splitmix(state: &mut u64) -> u64 {
     z = (z ^ (z >> 27)).wrapping_mul(0x94d0_49bb_1331_11eb);
     z ^ (z >> 31)
 }
-
-// THE REPORTS
 
 fn report_identity() {
     let start = Instant::now();
@@ -425,8 +415,6 @@ fn main() {
     report_depth();
     println!("run seconds {:.2}", whole.elapsed().as_secs_f64());
 }
-
-// THE TESTS
 
 #[cfg(test)]
 mod tests {

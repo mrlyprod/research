@@ -6,8 +6,6 @@ use mrly_math::bang::factory::create;
 use mrly_math::bang::Code;
 use mrly_math::shape::{census, named, Frac, Shape};
 
-// ROOTS
-
 fn ceil_sqrt(value: u64) -> u64 {
     if value == 0 {
         return 0;
@@ -26,16 +24,12 @@ fn bucket(quad: u64) -> u64 {
     ceil_sqrt(quad).div_ceil(2)
 }
 
-// DESIGNS
-
 fn design(dimension: usize, level: usize) -> Tensor {
     match dimension {
         2 => create(Code::from(7u128), 3, 2, 2, level).unwrap(),
         _ => create(Code::from(23u128), 3, 3, 2, level).unwrap(),
     }
 }
-
-// SWEEP
 
 struct Sweep {
     r_max: u64,
@@ -132,8 +126,6 @@ impl Sweep {
     }
 }
 
-// ORACLE
-
 fn ball(dimension: usize, shift: i64, radius: Frac) -> Shape {
     if shift == 0 {
         Shape::Ball {
@@ -166,8 +158,6 @@ fn oracle(label: &str, types: &Tensor, shift: i64, side: usize, table: &Sweep, r
         );
     }
 }
-
-// TREND
 
 fn trend(label: &str, name: &str, running: &[f64], from: u64, to: u64) {
     if to < from * 3 {
@@ -221,8 +211,6 @@ fn trend(label: &str, name: &str, running: &[f64], from: u64, to: u64) {
     );
 }
 
-// WINDOWS
-
 fn windows(label: &str, series: &[(&str, Vec<f64>, u64)]) {
     for (name, values, limit) in series {
         let mut lows: Vec<(u64, f64, u64)> = Vec::new();
@@ -260,8 +248,6 @@ fn windows(label: &str, series: &[(&str, Vec<f64>, u64)]) {
         }
     }
 }
-
-// MEANS
 
 fn cap(dimension: usize, r: u64) -> f64 {
     match dimension {
@@ -352,8 +338,6 @@ fn means(label: &str, table: &Sweep, fill: u64, dimension: usize) {
         power *= 3;
     }
 }
-
-// DIGITS
 
 fn root_floor(value: u64) -> u64 {
     if value == 0 {
@@ -645,8 +629,6 @@ fn digit_census(label: &str, table: &Sweep, fill: u64, dimension: usize) {
     );
 }
 
-// CORNER
-
 fn corner(tag: &str, dimension: usize, levels: &[usize], fill: u64) -> (u64, u64) {
     let mut prior: Option<Sweep> = None;
     let mut tally = (0u64, 0u64);
@@ -862,8 +844,6 @@ impl Triadic for u64 {
     }
 }
 
-// CENTRE
-
 fn centre(tag: &str, dimension: usize, level: usize) -> u64 {
     let types = design(dimension, level);
     let side = types.shape[0];
@@ -927,8 +907,6 @@ fn centre(tag: &str, dimension: usize, level: usize) -> u64 {
     r_max
 }
 
-// GAUSS
-
 fn gauss(dimension: usize, level: usize) {
     let types = design(dimension, level);
     let side = types.shape[0];
@@ -950,8 +928,6 @@ fn gauss(dimension: usize, level: usize) {
         "circle-crop gauss D={dimension} L={level} r_max={r_max} max|Nfull-vol|/r^(D-1)={worst:.6}"
     );
 }
-
-// TRANSFORM
 
 fn digits(dimension: usize) -> Vec<Vec<f64>> {
     let types = design(dimension, 1);
@@ -1086,8 +1062,6 @@ fn transform(tag: &str, dimension: usize, point: &[f64]) {
         (br * br + bi * bi).sqrt()
     );
 }
-
-// MAIN
 
 fn main() {
     println!("circle-crop generator: cargo run --release --manifest-path research/crop/lab/rs/circle-crop/Cargo.toml");

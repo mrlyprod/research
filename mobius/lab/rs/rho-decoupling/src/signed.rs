@@ -1,7 +1,5 @@
 use crate::menergy::{bits_of, box_row, boxes, column, exps, qpow, random_column, Bits, Rng};
 
-// SIEVES
-
 pub fn spf_table(lim: usize) -> Vec<u32> {
     let mut spf = vec![0u32; lim + 1];
     let mut i = 2usize;
@@ -74,8 +72,6 @@ pub fn coefficients(lim: usize) -> (Vec<&'static str>, Vec<Vec<i8>>) {
     ];
     (names, vals)
 }
-
-// THE ROW
 
 pub struct SignedRow {
     pub m: u64,
@@ -296,8 +292,6 @@ fn round_div(num: i128, den: i128) -> i128 {
     }
 }
 
-// THE SWEEP
-
 pub struct SignedSweep {
     pub top: SignedRow,
     pub l5: Option<SignedRow>,
@@ -335,8 +329,6 @@ pub fn sweep(bits: &Bits, x: u128, g: u128, coefs: &[Vec<i8>]) -> Option<SignedS
         live,
     })
 }
-
-// STUDY
 
 pub struct Cell {
     pub q: u64,
@@ -657,8 +649,6 @@ pub fn run() {
         }
     }
 }
-
-// TESTS
 
 #[cfg(test)]
 mod tests {

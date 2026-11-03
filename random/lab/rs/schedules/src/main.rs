@@ -14,8 +14,6 @@ use std::time::Instant;
 
 const TRIES: usize = 512;
 
-// LEMMA
-
 fn lemma() {
     for m in 2..=10usize {
         let size = 1u32 << m;
@@ -43,8 +41,6 @@ fn lemma() {
         println!("  m {m}: {nonaffine} non-affine symmetric functions, {ones_structure} with the all-ones linear structure, {faults} with any other or mispredicted");
     }
 }
-
-// TRAP
 
 fn trap() {
     for n in 3..=5usize {
@@ -129,8 +125,6 @@ fn orbits_of(perm: &[usize]) -> Vec<usize> {
     }
     out
 }
-
-// CELLS
 
 struct Cell {
     name: String,
@@ -286,8 +280,6 @@ fn tabulate(cells: &[Cell]) {
     }
 }
 
-// PAIRS
-
 fn catalog(n: usize) -> Vec<u128> {
     if n == 3 {
         (1u128..511).collect()
@@ -348,8 +340,6 @@ fn pairs(n: usize, verbose: bool) -> Vec<Cell> {
     out
 }
 
-// SINGLES
-
 fn singles(only: bool) -> Vec<Cell> {
     let n = 4;
     let all = full(16);
@@ -397,8 +387,6 @@ fn singles(only: bool) -> Vec<Cell> {
     }
     out
 }
-
-// FAMILIES
 
 fn checker(n: usize) -> u128 {
     (0..n * n)
@@ -454,8 +442,6 @@ fn family() {
     }
     println!("  n 10 checkerboard carpet binary: {}, second-difference graph depths from cell 0 {hist:?}", flags(&c));
 }
-
-// FIVE
 
 fn lines() -> Vec<(String, u128)> {
     let mut out = Vec::new();

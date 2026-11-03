@@ -179,15 +179,6 @@ fn term(key: &Key, number: usize, level: u32, cells: u128) -> Result<Option<i128
     Ok(value)
 }
 
-/// Reads the first terms of a design sequence within a cell budget, and whether the budget or a u128 cut them short.
-///
-/// ```
-/// use ledger::{terms, Axis, Key, Measure, BUDGET};
-/// let carpet = Key::new(7, 2, 2, Measure::Fills, Axis::Level);
-/// assert_eq!(terms(&carpet, 3, BUDGET).unwrap(), (vec![8, 64, 512], false));
-/// let sponge = Key::new(23, 3, 2, Measure::Surface, Axis::Level);
-/// assert_eq!(terms(&sponge, 3, BUDGET).unwrap(), (vec![72, 1056, 18048], false));
-/// ```
 pub fn terms(key: &Key, count: usize, cells: u128) -> Result<(Vec<i128>, bool)> {
     code_to_corners(Code::from(key.code), key.dimension, key.base)?;
     if !key.measure.applies(key.dimension, key.base) {
@@ -228,12 +219,6 @@ fn rendered(key: &Key, count: usize, cells: u128) -> Result<(Vec<i128>, bool)> {
     Ok((out, false))
 }
 
-/// Returns the closed form of a design sequence when the ledger knows one.
-///
-/// Level fills are a power and level voids a difference of powers; base-2 side fills and voids
-/// are polynomials in `k` at side `2k - 1`; the level surface obeys the exposure recurrence, and
-/// the level vertices, edges, faces and Euler characteristic obey the placement recurrence of
-/// `counts::skeleton`, a sum of powers only when its roots are simple.
 pub fn closed(key: &Key) -> Result<Option<Closed>> {
     let Key {
         code,

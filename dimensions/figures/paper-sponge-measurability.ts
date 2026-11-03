@@ -26,8 +26,6 @@ function dist(x: number, y: number) {
   return sponge.distance(point);
 }
 
-// FACTS
-
 let memo: { cells: ArrayLike<number>; covers: Float64Array } | undefined;
 
 function facts() {
@@ -76,8 +74,6 @@ function facts() {
   return memo;
 }
 
-// BANDS
-
 function bands(pen: Pen, ink: Ink, box: Frame) {
   plot.axis(pen, box, ink.line);
   const area = box.inset(24);
@@ -95,8 +91,6 @@ function bands(pen: Pen, ink: Ink, box: Frame) {
   pen.segment([cx - 10, gapLo], [cx + 10, gapLo], 2, ink.dim);
   pen.segment([cx - 10, gapHi], [cx + 10, gapHi], 2, ink.dim);
 }
-
-// DRAW
 
 export default function draw(pen: Pen, ink: Ink) {
   const { cells, covers } = facts();

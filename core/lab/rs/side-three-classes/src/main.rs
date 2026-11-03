@@ -12,8 +12,6 @@ const BURNSIDE: usize = 6;
 const PUBLISHED: [u128; 6] = [4, 12, 80, 3984, 37333248, 25626412338274304];
 const SIDES: [usize; 6] = [2, 3, 4, 5, 6, 7];
 
-// GRID
-
 fn corner_index(cell: &[u8]) -> usize {
     cell.iter()
         .fold(0, |acc, &digit| acc * 2 + (digit & 1) as usize)
@@ -78,8 +76,6 @@ fn image(pattern: u128, motion: &[u8]) -> u128 {
     out
 }
 
-// CENSUS
-
 fn shapes(dimension: usize) -> (usize, usize) {
     let corners = corner_of_cell(dimension);
     let motions = motions(dimension);
@@ -124,8 +120,6 @@ fn shapes(dimension: usize) -> (usize, usize) {
     (raw.len(), least.len())
 }
 
-// BURNSIDE
-
 fn cycles(perm: &[usize], dimension: usize) -> u32 {
     let image =
         |corner: usize| (0..dimension).fold(0usize, |acc, i| acc | (corner >> perm[i] & 1) << i);
@@ -152,8 +146,6 @@ fn burnside(dimension: usize) -> u128 {
         .sum();
     total / perms.len() as u128
 }
-
-// FILLS
 
 fn fill(code: Code, side: usize, dimension: usize) -> u128 {
     let corners = code_to_corners(code, dimension, 2).expect("the code fits its corners");

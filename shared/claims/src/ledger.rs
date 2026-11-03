@@ -38,8 +38,6 @@ struct Draft {
     text: String,
 }
 
-// PARSE
-
 pub fn parse(text: &str) -> Result<Book, String> {
     let mut parts = 0;
     let mut untagged = 0;
@@ -101,8 +99,6 @@ fn witnesses(field: &str) -> Vec<String> {
         .filter(|token| !token.is_empty())
         .collect()
 }
-
-// KEY
 
 fn key(drafts: Vec<Draft>) -> Result<Vec<Row>, String> {
     let mut widths: Vec<usize> = drafts

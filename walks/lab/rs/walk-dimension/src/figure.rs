@@ -193,8 +193,6 @@ pub fn write(path: &Path, series: &Series) {
     std::fs::write(path, &bytes).expect("the figure writes");
 }
 
-// PNG
-
 fn table(pixels: &[[u8; 4]]) -> Option<Vec<[u8; 4]>> {
     let mut keys: Vec<u32> = Vec::with_capacity(256);
     for pixel in pixels {

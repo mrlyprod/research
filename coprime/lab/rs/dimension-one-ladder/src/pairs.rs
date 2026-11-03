@@ -44,8 +44,6 @@ impl Digits {
     }
 }
 
-// AUTOMATA
-
 fn encode(c: [u64; 4]) -> i64 {
     (c[0] | c[1] << 8 | c[2] << 16 | c[3] << 24) as i64
 }
@@ -199,8 +197,6 @@ fn closed(live: &Live, length: usize) -> u128 {
     cur[0]
 }
 
-// CERTIFICATES
-
 struct Big(Vec<u64>);
 
 impl Big {
@@ -342,8 +338,6 @@ fn cross_check(live: &Live, ps: &[u64], cert: Cert) -> Option<bool> {
             && cert.theta == theta,
     )
 }
-
-// ROWS
 
 pub struct Row {
     pub s: u64,

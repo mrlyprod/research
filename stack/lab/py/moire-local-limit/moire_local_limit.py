@@ -13,8 +13,6 @@ LEVEL2 = [201, 1001, 2001, 200, 1000, 2000]
 FINE = 1024
 FINE_PAIR = (232321, 232323)
 
-# DESIGNS
-
 
 def up(x, digits=4):
     scale = 10 ** (digits - 1 - floor(log10(x)))
@@ -46,9 +44,6 @@ def fill(code):
     return Q(code.bit_count(), 4)
 
 
-# TRIANGLE WAVE
-
-
 def dist2(x):
     r = x - 2 * (x // 2)
     return r if r <= 1 else 2 - r
@@ -67,9 +62,6 @@ def dist2_integral(t):
 
 def tri_mean(h, a, b):
     return 1 - 2 * (dist2_integral(h * b) - dist2_integral(h * a)) / (h * (b - a))
-
-
-# LEVEL ONE
 
 
 def law1(n, m, w):
@@ -285,9 +277,6 @@ def obstruction():
     )
 
 
-# OCTAGON
-
-
 def octagon():
     kappa = sqrt(2) - 1
     c = (1 - kappa) / 2
@@ -322,9 +311,6 @@ def octagon():
     print(
         f"  arc point u = {out[1][0]:.6f}: box mean {out[1][1]:.6f}, box average of H {out[1][2]:.6f}, level {c:.6f}"
     )
-
-
-# LEVEL TWO
 
 
 def law2(n, m, w):

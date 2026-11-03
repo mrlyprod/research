@@ -6,8 +6,6 @@ const CELLS = SIDE * SIDE;
 const ROUNDS = 8;
 const TILES = 4;
 
-// CONE
-
 type Spread = (i: number, j: number) => [number, number];
 
 const shift: Spread = (i, j) => [i, j + 1];
@@ -48,8 +46,6 @@ function cone(spread: Spread) {
   }
   return { fill, out };
 }
-
-// DRAW
 
 export default function draw(pen: Pen, ink: Ink) {
   const slow = cone(shift);

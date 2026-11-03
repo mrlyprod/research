@@ -13,8 +13,6 @@ type Node = [number, number];
 
 let memo: { thin: Node[]; full: Node[] } | undefined;
 
-// FACTS
-
 function nodes() {
   if (memo) return memo;
   const design = Array.from(math.design.elements(BASE, DIGITS, 5), Number).filter((n) => n <= ORDER);
@@ -37,8 +35,6 @@ function nodes() {
   return memo;
 }
 
-// MARKS
-
 function ticks(pen: Pen, area: Frame, list: Node[], thick: number, color: Color) {
   const reach = Math.log(ORDER);
   const foot = area.y + area.h;
@@ -52,8 +48,6 @@ function ticks(pen: Pen, area: Frame, list: Node[], thick: number, color: Color)
 function trace(area: Frame, list: Node[], delta: number[], span: number): Point[] {
   return list.map(([a, b], i) => [area.x + (area.w * a) / b, area.y + area.h * (0.5 - (0.5 * delta[i]) / span)]);
 }
-
-// DRAW
 
 export default function draw(pen: Pen, ink: Ink) {
   const { thin, full } = nodes();

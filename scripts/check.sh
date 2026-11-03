@@ -47,7 +47,6 @@ rust_test() {
   done
   [ -z "$slow" ] || echo "slow, not gated:$slow"
 }
-figures() { [ -f package.json ] || { echo "no package.json yet; the figures are RESEARCH-TS's"; return 0; }; bun test; }
 
 RUFF="uvx ruff@0.17.2"
 lint_py() { $RUFF format --check . && $RUFF check .; }
@@ -58,5 +57,4 @@ step leak leak
 step rust-check rust check
 step rust-test rust_test
 step ruff lint_py
-step figures figures
 echo "check passed in $((SECONDS - total))s"

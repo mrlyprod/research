@@ -9,8 +9,6 @@ use std::sync::Mutex;
 const SIEVE_LIMIT: usize = 129_140_163;
 const KEMPNER_LIMIT: u64 = 100_000_000;
 
-// READOUT
-
 fn theta(m: i64, a: u64) -> Option<f64> {
     if m == 0 || a < 2 {
         return None;
@@ -49,8 +47,6 @@ fn drift(meter: &[u64], counts: &[u64], last: usize) -> String {
     let min = values.iter().cloned().fold(f64::MAX, f64::min);
     format!("{:.4}", max - min)
 }
-
-// CONTROLS
 
 struct ControlColumn {
     q: u64,
@@ -131,8 +127,6 @@ fn controls_and_kempner(mu: &[i8]) -> Controls {
     (ctrl, kem_m, kem_a, kem_x)
 }
 
-// CROSSCHECK
-
 fn crosscheck(mu: &[i8], primes: &[u64]) {
     let lmax = 16usize;
     let digits = [1u64, 2];
@@ -151,8 +145,6 @@ fn crosscheck(mu: &[i8], primes: &[u64]) {
     }
     println!("crosscheck q=3 F=12 L=16 factorization equals sieve at every level, M(3^16)={cf}");
 }
-
-// MAIN
 
 fn main() {
     println!("mobius-designs generator: cargo run --release --manifest-path research/mobius/lab/rs/mobius-designs/Cargo.toml");
@@ -319,8 +311,6 @@ fn main() {
     println!("mobius-designs all checks pass");
 }
 
-// SCALING LAW
-
 fn verify_scalings(jobs: &[Family], outcomes: &[Outcome]) {
     for (fam, out) in jobs.iter().zip(outcomes.iter()) {
         let g = digit_gcd(&fam.digits);
@@ -355,8 +345,6 @@ fn verify_scalings(jobs: &[Family], outcomes: &[Outcome]) {
         );
     }
 }
-
-// TESTS
 
 #[cfg(test)]
 mod tests {

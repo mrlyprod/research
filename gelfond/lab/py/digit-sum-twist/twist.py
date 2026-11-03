@@ -6,8 +6,6 @@ import numpy as np
 
 GAMMA = 0.5772156649015329
 
-# DESIGNS
-
 
 def digits_of(b, e):
     return np.array([d for d in range(b) if d not in e], dtype=np.int64)
@@ -30,9 +28,6 @@ def lattice(b, alpha):
 def beta_of(b, alpha):
     x = (b - 1) * alpha
     return abs(x - round(x))
-
-
-# LEMMA
 
 
 def g_general(fill, x0):
@@ -230,9 +225,6 @@ def verb_lemma():
     )
 
 
-# SUP
-
-
 def sup_dp(b, F, alpha, kmax, W):
     fill = len(F)
     n = b**W
@@ -322,9 +314,6 @@ def verb_sup():
         print()
 
 
-# PEEL
-
-
 def grid_sum(b, F, alpha, i, s):
     a = np.arange(b**i, dtype=np.int64)
     prod = np.ones(b**i)
@@ -387,9 +376,6 @@ def verb_peel():
         print(
             f"  alpha {name}: Sigma_5(0) = {m0:.1f}, Sigma_5(0)^(1/5) = {m0**0.2:.4f}"
         )
-
-
-# METER
 
 
 def sieve(N):
@@ -523,9 +509,6 @@ def verb_gelfond():
                 f"  m {m:>2} ({tag}): counts {cnt.tolist()}  deviation from 1/m: primes {dev:.5f}, model {mdev:.5f}; primes against model {gap:.5f}"
             )
         print()
-
-
-# LATTICE
 
 
 def odd_primes(N):

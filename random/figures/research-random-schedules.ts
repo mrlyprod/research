@@ -5,8 +5,6 @@ const CELLS = SIDE * SIDE;
 const BINARY = [1, 2, 4, 8].reduce((r, v) => r | (1 << v), 0);
 const DEPTHS = [1, 4, 8, 12, 16, 18, 16, 12, 8, 4, 1];
 
-// SECOND DIFFERENCES
-
 const at = (i: number, j: number) => (((i % SIDE) + SIDE) % SIDE) * SIDE + (((j % SIDE) + SIDE) % SIDE);
 const bit = (t: number) => (BINARY >> t) & 1;
 const ones = (v: number) => {
@@ -90,8 +88,6 @@ function depths() {
     throw new Error(`research-random-schedules: depths ${count.join()}, want ${DEPTHS.join()}`);
   return { colour, depth };
 }
-
-// DRAW
 
 export default function draw(pen: Pen, ink: Ink) {
   const { colour, depth } = depths();

@@ -5,8 +5,6 @@ const SAMPLES = 720;
 
 export const units = {};
 
-// PANEL
-
 function center(ys: number[]) {
   let sum = 0;
   for (const y of ys) sum += y;
@@ -35,8 +33,6 @@ function panel(pen: Pen, ink: Ink, area: Frame, first: number[], second: number[
   trace(pen, inner, second, span, 3.4, ink.orange);
   trace(pen, inner, first, span, 2.1, ink.blue);
 }
-
-// DRAW
 
 export default function draw(pen: Pen, ink: Ink) {
   const { lattice, smooth, thin, fat } = census as Record<string, number[]>;

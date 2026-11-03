@@ -250,7 +250,6 @@ fn fill(tag: &str) -> String {
     }
 }
 
-/// Renders the sequences page: the prose with every generated table and number filled in.
 pub fn markdown() -> String {
     let mut out = String::new();
     let mut rest = PROSE;

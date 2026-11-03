@@ -17,9 +17,6 @@ def nine(x):
     )
 
 
-# CORNERS
-
-
 def corners(code, dim):
     return [i for i in range(2**dim) if code >> i & 1]
 
@@ -59,9 +56,6 @@ def shape(a):
     var = Fraction(sum(j * j * aj for j, aj in enumerate(a)), w) - mean**2
     drift = Fraction(dim, 2) - mean
     return w, drift, Fraction(dim, 8) + drift - var / 2
-
-
-# RENDER
 
 
 def tile(code, dim, side):
@@ -109,9 +103,6 @@ def section_render():
     )
 
 
-# ROOTS
-
-
 def roots(a):
     n = sp.Symbol("n")
     p = sp.Poly(coefficients(a), n)
@@ -146,9 +137,6 @@ def log_exact_formula(a, rs, level):
     return mp.re(s)
 
 
-# EXACT
-
-
 def section_exact(table):
     worst = mp.mpf(0)
     for a, rs in table:
@@ -164,9 +152,6 @@ def section_exact(table):
     print(
         f"exact: R_L = (w/2^dim)^L prod Gamma(L+2-r)/Gamma(2-r) / (Gamma(L+3/2)/Gamma(3/2))^dim on {len(table)} profiles at L = 1, 2, 3, 10, 100, 1000, worst log gap {mp.nstr(worst, 3)}"
     )
-
-
-# ASYMPTOTIC
 
 
 def direct_logs(a, top):
@@ -204,9 +189,6 @@ def section_asymptotic(table, top=10**6):
         print(
             f"  L = {m:>8}: worst residual {worst[m]:.2e}, times L^2 {worst[m] * m * m:.2f}"
         )
-
-
-# CLOSED FORMS
 
 
 def section_named(byprofile):
@@ -265,9 +247,6 @@ def section_named(byprofile):
         print(
             f"  mirror dim {f[0]} codes {f[1]} x {g[1]}: {mp.nstr(cs[f] * cs[g], 15)} against {text} gap {mp.nstr(abs(cs[f] * cs[g] - value), 3)}"
         )
-
-
-# PAIRING
 
 
 def reflect(rs):
@@ -380,9 +359,6 @@ def four_profiles():
     return out
 
 
-# PARITY
-
-
 def parity_constant(dim, sign):
     us = [
         mp.exp(2j * mp.pi * (k + (0 if sign < 0 else mp.mpf(1) / 2)) / dim)
@@ -441,9 +417,6 @@ def section_parity():
             )
 
 
-# FAMILY
-
-
 def section_family():
     print(
         "family: at most one odd coordinate, dim, code, w/2^dim, drift, C at the roots of the fill polynomial, gap to (sqrt(pi)/2)^dim (dim+1)/Gamma(1/(dim+1)), direct at L = 10^6"
@@ -462,9 +435,6 @@ def section_family():
         print(
             f"  dim {dim} code {code:<20} {Fraction(w, 2**dim)!s:>6} {drift!s:>7} {mp.nstr(c, 12):<15} {nine(c):<12} gap {mp.nstr(abs(c - form), 3):<8} direct {direct:.10f}"
         )
-
-
-# FENCE
 
 
 def section_fence(byprofile):
@@ -490,9 +460,6 @@ def section_fence(byprofile):
         print(
             f"  dim 2 code 7 along the odd primes below {top}: renormalised product {mp.nstr(s, 8)}, sum 1/p {mp.nstr(sum(mp.mpf(1) / p for p in primes), 6)}"
         )
-
-
-# STAIRCASE
 
 
 def stair_exact(a, rs, n):
@@ -564,9 +531,6 @@ def section_staircase(byprofile):
         print(f"  dim {dim} code {code}:")
         for cell in cells:
             print(f"    {cell}")
-
-
-# MAIN
 
 
 def main():

@@ -4,8 +4,6 @@ use std::sync::atomic::{AtomicBool, AtomicUsize, Ordering};
 use std::sync::Mutex;
 use std::time::Instant;
 
-// SETS
-
 fn gcd(a: u128, b: u128) -> u128 {
     if b == 0 {
         a
@@ -83,8 +81,6 @@ fn unit(r: u64) -> Vec<Vec<u64>> {
     out
 }
 
-// ELEMENTS
-
 fn elements(bases: &[u64], k: u32, cap: u128) -> Vec<u128> {
     let mut v = vec![];
     for &d in bases {
@@ -97,8 +93,6 @@ fn elements(bases: &[u64], k: u32, cap: u128) -> Vec<u128> {
     v.sort();
     v
 }
-
-// BITS
 
 struct Bits {
     w: Vec<u64>,
@@ -199,8 +193,6 @@ impl Bits {
     }
 }
 
-// CERTIFY
-
 #[derive(Debug, Clone, PartialEq)]
 enum Verdict {
     Found {
@@ -268,8 +260,6 @@ fn certify(bases: &[u64], k: u32, cap: usize) -> Verdict {
     }
     Verdict::Cap
 }
-
-// WIDE
 
 #[derive(Debug, Clone, PartialEq, Default)]
 struct Lanes {
@@ -423,8 +413,6 @@ fn wide_with(
     (Verdict::Cap, Lanes::default())
 }
 
-// CONTROL
-
 fn knapsack(bases: &[u64], k: u32, b: usize) -> Vec<bool> {
     let mut r = vec![false; b + 1];
     r[0] = true;
@@ -556,8 +544,6 @@ fn split(bases: &[u64], k: u32, x0: u128, count: u128) {
         clock.elapsed().as_secs_f64()
     );
 }
-
-// CENSUS
 
 fn show(bases: &[u64]) -> String {
     format!(
@@ -734,8 +720,6 @@ fn sets(bases: &[u64], k: u32, b: usize) {
         last
     );
 }
-
-// WINDOWS
 
 fn windows(bases: &[u64], k: u32, lo: u128, hi: u128) {
     let a = elements(bases, k, far());
@@ -1063,8 +1047,6 @@ fn windowed(bits_: u32) {
     );
 }
 
-// DEPTH
-
 fn base_of(bases: &[u64], x: u128) -> u64 {
     for &d in bases {
         let mut y = x;
@@ -1318,8 +1300,6 @@ fn jumps(r: u64, kmax: u32, bits: u32, threads: usize) {
         clock.elapsed().as_secs_f64()
     );
 }
-
-// TERNARY
 
 const WORDS: usize = 128;
 
@@ -1603,8 +1583,6 @@ fn ternary(nmax: usize, hi: usize, threads: usize) {
     }
 }
 
-// TIGHT
-
 struct Wide {
     w: usize,
     limit: usize,
@@ -1836,8 +1814,6 @@ fn tight(kmax: u32, bits: u32, holes: u32) {
     }
     println!("{:.1} s", clock.elapsed().as_secs_f64());
 }
-
-// PAIRS
 
 const EXCEPT: [u32; 16] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 14, 16, 19, 27];
 
@@ -2204,8 +2180,6 @@ fn pairs(
     );
 }
 
-// LOGS
-
 const GAP: u32 = 80;
 
 #[derive(Clone)]
@@ -2371,8 +2345,6 @@ fn near_pair(e: u64, f: u64, bits: u32) {
         p.rows.len(), top.1.unwrap_or(u128::MAX), top.2, top.3, top.0, m, ratio.0, ratio.2, ratio.3, m.div_ceil(ratio.0), exact, clock.elapsed().as_secs_f64()
     );
 }
-
-// SWEEP
 
 fn word(w: &[u64], bit: usize) -> u64 {
     let q = bit >> 6;
@@ -2890,8 +2862,6 @@ fn tally(n: usize, lo: usize, hi: usize, threads: usize, plain: bool) {
     );
 }
 
-// ROUTE
-
 fn route(r: u64, lo: u128) {
     for bases in minimal(r) {
         let a = elements(&bases, 1, far());
@@ -2914,8 +2884,6 @@ fn route(r: u64, lo: u128) {
         );
     }
 }
-
-// CANTOR
 
 const DEAD: u32 = u32::MAX;
 
@@ -3569,8 +3537,6 @@ fn classes(r: usize, d: u32, threads: usize) {
         clock.elapsed().as_secs_f64()
     );
 }
-
-// FOUR
 
 fn on(bits: &[u64], x: usize) -> bool {
     bits[x >> 6] >> (x & 63) & 1 == 1

@@ -46,8 +46,6 @@ impl Design {
     }
 }
 
-// THE INDEPENDENT COUNT
-
 pub fn card_both(q: usize, keep: &[bool], mu: &[i8]) -> u64 {
     let mut total = 0i64;
     for (d, &sign) in mu.iter().enumerate().take(q + 1).skip(1) {
@@ -72,8 +70,6 @@ pub fn card_both(q: usize, keep: &[bool], mu: &[i8]) -> u64 {
 pub fn card_den(q: usize, keep: &[bool], phi: &[u64]) -> u64 {
     (1..=q).filter(|&b| keep[b]).map(|b| phi[b]).sum()
 }
-
-// THE METER
 
 #[derive(Clone, Copy)]
 pub struct Lane {
@@ -138,8 +134,6 @@ pub fn sweep(q: usize, keep: &[bool]) -> (Lane, Lane, Lane, u64, u64, u64) {
     }
     (both, den, full, n_both, n_den, n_full)
 }
-
-// THE TABLE
 
 fn verdict(ok: bool) -> &'static str {
     if ok {

@@ -6,8 +6,6 @@ import time
 from collections import defaultdict
 from functools import cache
 
-# ARITHMETIC
-
 
 @cache
 def factor(n):
@@ -80,9 +78,6 @@ def valuation(poly, m):
         v, poly = v + 1, q
 
 
-# ZERO SETS
-
-
 def zero_set(F):
     F = [f - min(F) for f in F]
     deg, poly, out = max(F), mask(F), {}
@@ -136,9 +131,6 @@ def level_exps(Z, b, n):
             for i in range(n if e else 1):
                 out[p].add(c + e * i)
     return out
-
-
-# COVEN-MEYEROWITZ
 
 
 def t1(k, E):
@@ -248,9 +240,6 @@ def normalize(F):
     return tuple(sorted((f - m) // g for f in F))
 
 
-# CERTIFICATES
-
-
 def cm_complement(A, E):
     L = math.prod(p ** max(cs) for p, cs in E.items())
     B = [1]
@@ -313,9 +302,6 @@ def complement(A, N, cap=2_000_000):
     return rec(0, [])
 
 
-# SPECTRA
-
-
 def spectrum(A, Zl, cap=3_000_000):
     L = math.lcm(*Zl)
     D = [d for d in range(1, L) if L // math.gcd(d, L) in Zl]
@@ -370,9 +356,6 @@ def check_spectrum(A, L, S):
     return True
 
 
-# PARI
-
-
 def gp(lines):
     out = subprocess.run(
         ["gp", "-q", "-D", "parisizemax=2G"],
@@ -407,9 +390,6 @@ def pari_unimodular(polys):
             % s
         )
     return [int(x) for x in gp(cmd)]
-
-
-# VERBS
 
 
 def digit_sets(b, sizes=None):

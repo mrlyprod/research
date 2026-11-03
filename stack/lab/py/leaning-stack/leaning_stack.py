@@ -33,8 +33,6 @@ RENDER_N = 30
 PANEL = 500
 DIGITS = 50
 
-# EXACT IRRATIONAL DRIFTS
-
 
 def sqrt_fraction(k):
     scale = 10**DIGITS
@@ -47,9 +45,6 @@ def silver():
 
 def golden():
     return (sqrt_fraction(5) - 1) / 2
-
-
-# THE LEAN
 
 
 def phase_linear(n, drift):
@@ -75,9 +70,6 @@ def reduced_points(top_b):
             if math.gcd(a, b) == 1:
                 out.append((a, b))
     return out
-
-
-# THE QUADRATIC CONGRUENCE
 
 
 def valuation(m, p):
@@ -174,9 +166,6 @@ def halving_rule(b, d):
     return period // 2 if beta >= 1 and valuation(d, 2) == 2 * beta - 1 else period
 
 
-# THE SOLUTION SET READ LITERALLY
-
-
 def literal_mask(a, b, c, d):
     m = b * d
     n = np.arange(m, dtype=np.int64)
@@ -219,9 +208,6 @@ def layer_points(n, drift):
     return {(k + theta) / n for k in range(n)}
 
 
-# GAUSS SUMS
-
-
 def legendre(a, p):
     a %= p
     if a == 0:
@@ -252,9 +238,6 @@ def quadratic_sum(a_coeff, b_coeff, m):
         cmath.exp(2j * math.pi * ((a_coeff * n * n + b_coeff * n) % m) / m)
         for n in range(m)
     )
-
-
-# SECTIONS
 
 
 def linear_lean():
@@ -602,9 +585,6 @@ def irrational_lean():
             print("   ", line)
 
 
-# ADVERSARIAL PASS
-
-
 def sharing_law():
     print(
         "SHARING  layers m and n share a lit point iff lcm(m, n)(m - n) delta is an integer"
@@ -699,9 +679,6 @@ def adversarial():
                 worst[2],
             )
         )
-
-
-# RENDER
 
 
 def lean_axis(top, drift, resolution):

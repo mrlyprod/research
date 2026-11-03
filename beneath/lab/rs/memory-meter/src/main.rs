@@ -3,8 +3,6 @@ use mrly_math::memory::{allowed_windows, kappa, perron, Rule};
 use std::env;
 use std::time::Instant;
 
-// THE WINDOW PROFILE
-
 fn induced_tables() -> (Vec<u8>, Vec<u8>) {
     let mut to2 = vec![0u8; 256];
     let mut to1 = vec![0u8; 256];
@@ -62,8 +60,6 @@ fn digit_profiles(n: usize) -> ([u8; 3], [u8; 3]) {
     (plain, zeroed)
 }
 
-// THE ZETA TRANSFORM
-
 fn subset_sums_u64(source: &[u64], bits: u32) -> Vec<u64> {
     let mut out = source.to_vec();
     for b in 0..bits {
@@ -88,8 +84,6 @@ fn subset_sums_i64(source: &[i64], bits: u32) -> Vec<i64> {
     out
 }
 
-// THE PHASE GRID
-
 fn phase_grid(depth: u32, cap: usize) -> Vec<(String, usize)> {
     let steps = [
         1.0f64,
@@ -113,8 +107,6 @@ fn phase_grid(depth: u32, cap: usize) -> Vec<(String, usize)> {
     }
     out
 }
-
-// THE CLASS REPRESENTATIVES
 
 fn window_maps(width: usize) -> Vec<Vec<usize>> {
     let windows = 1usize << width;
@@ -157,8 +149,6 @@ fn representatives(width: usize) -> Vec<usize> {
     }
     rep
 }
-
-// THE SWEEP
 
 struct Reading {
     mass: Vec<Vec<u64>>,
@@ -257,8 +247,6 @@ fn sweep(mu: &[i8], profile: &[u8], phases: &[(String, usize)], anchors: &[usize
     }
 }
 
-// THE MEMORYLESS CONTROLS
-
 fn design_meter(mu: &[i8], levels: usize, digits: &[u64]) -> (i64, i64, u64) {
     let mut powers = vec![1u64; levels + 1];
     for i in 1..=levels {
@@ -289,8 +277,6 @@ fn design_meter(mu: &[i8], levels: usize, digits: &[u64]) -> (i64, i64, u64) {
     }
     (meter, peak, mass)
 }
-
-// THE DIRECT RECOUNT
 
 fn recount(limit: usize) -> ([Vec<u64>; 3], [Vec<u64>; 3]) {
     let mut plain = [vec![0u64; 4], vec![0u64; 16], vec![0u64; 256]];
@@ -338,8 +324,6 @@ fn accepts_agrees(limit: usize) {
         }
     }
 }
-
-// THE REPORT
 
 fn ratio(value: i64, mass: u64) -> String {
     if mass == 0 {

@@ -28,8 +28,6 @@ C1 = 2.0 / math.pi
 G0 = 0.9625229
 C0 = 0.97
 
-# THE CHAIN AGAINST 1/5
-
 
 def root_z(q, m=1):
     L = math.log(q)
@@ -205,9 +203,6 @@ def window():
         % lo
     )
     print("runtime %.1f s" % (time.time() - t0))
-
-
-# THE WALL AT EVERY NUMBER OF EXCLUDED DIGITS
 
 
 def cap_gap_m(q, m):
@@ -390,9 +385,6 @@ def walls():
     print("runtime %.1f s" % (time.time() - t0))
 
 
-# THE SINGULAR SERIES
-
-
 def phi(n):
     r, m, p = n, n, 2
     while p * p <= m:
@@ -467,9 +459,6 @@ def series():
             % (q, str(E), str(kappa(q, F)), float(kappa(q, F)), float(v1))
         )
     print("runtime %.1f s" % (time.time() - t0))
-
-
-# THE REGIONS FOR LAMBDA
 
 
 def vonmangoldt(N):
@@ -557,8 +546,6 @@ def regions():
     regions_one(5, 2, 9, 12)
     print("runtime %.1f s" % (time.time() - t0))
 
-
-# THE COUNT
 
 DESIGNS = [
     (10, (5,)),

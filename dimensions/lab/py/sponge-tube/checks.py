@@ -19,8 +19,6 @@ REMOVED = np.array(
 PLUS = 7 / 27
 SQRT2 = np.sqrt(2)
 
-# THE LEVEL-4 PREFRACTAL
-
 
 def prefractal():
     idx = np.arange(SIDE)
@@ -109,9 +107,6 @@ def dist_to_faces(points, oracle, faces, own):
     return best
 
 
-# THE REDUCED DISTANCE OF THE LEMMAS
-
-
 def carpet_dist(v, z, side, depth=40):
     v, z = v / side, z / side
     s = np.full(v.shape, side)
@@ -162,9 +157,6 @@ def three_sigma(hits, n, scale):
     return p * scale, 3 * np.sqrt(p * (1 - p) / n) * scale
 
 
-# THE ORACLE VERB
-
-
 def verb_oracle():
     t0 = time.time()
     rng = np.random.default_rng(7)
@@ -205,9 +197,6 @@ def verb_oracle():
         f"  dist(centre, F_4) = {centre:.17f}, sqrt(2)/6 = {SQRT2 / 6:.17f}, difference {abs(centre - SQRT2 / 6):.1e}"
     )
     print(f"  wall {time.time() - t0:.1f} s")
-
-
-# THE MONTE CARLO VERB
 
 
 def verb_montecarlo():
@@ -259,9 +248,6 @@ def verb_montecarlo():
     print(f"  wall {time.time() - t0:.1f} s")
 
 
-# THE SEEDED VERB
-
-
 def verb_seeded():
     t0 = time.time()
     rng = np.random.default_rng(20260921)
@@ -305,9 +291,6 @@ def verb_seeded():
             f"  delta = {delta}: V2 = {v2:.7f} +- {v2_err:.1e} (3 sigma), against 2 A1 - delta^2/3 + Deep = {ident:.7f}, difference {v2 - ident:.1e}"
         )
     print(f"  wall {time.time() - t0:.1f} s")
-
-
-# THE RECOMPUTE VERB, OWN CLOSED FORMS AT 60 DIGITS
 
 
 def R(x):

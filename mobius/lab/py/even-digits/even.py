@@ -9,8 +9,6 @@ import numpy as np
 GAMMA = 0.5772156649015329
 C_P = math.sqrt(2) - 4 / math.pi
 
-# CLOSED FORMS
-
 
 def lam(N):
     x0 = (N / math.pi) * (
@@ -31,9 +29,6 @@ def even(N):
 
 def classes(N):
     return f"{N % 4} mod 4, {N % 8} mod 8, {N % 3} mod 3"
-
-
-# TRANSFER
 
 
 def factor_direct(digits, th):
@@ -122,9 +117,6 @@ def transfer():
         f"identity Sigma^E_i(s) = Sigma^F_i(2s) to {worst_id:.1e}; Sigma^E_i(s) <= {worst_up + 5e-7:.6f} (3/2) lambda^i; Sigma^E_i(s) >= {worst_lo - 5e-7:.6f} base^i"
     )
     print(f"transfer in {time.time() - t0:.1f}s")
-
-
-# REGIONS
 
 
 def mu_upto(X):
@@ -401,9 +393,6 @@ def regions():
             f"    base {N} ({classes(N)}): limit {lim - 5e-7:.6f}, k_0 {k0:.4g}{tail}"
         )
     print(f"regions in {time.time() - t0:.1f}s")
-
-
-# METER
 
 
 def members(X, N, ok):

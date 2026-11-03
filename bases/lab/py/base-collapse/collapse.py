@@ -5,8 +5,6 @@ from fractions import Fraction
 from itertools import product
 from math import log
 
-# CELLS
-
 CELLS = [
     ("G", ((4, (0, 1)), (8, (0, 1, 2, 3)))),
     ("H", ((4, (0, 1)), (16, (0, 1, 4, 5)))),
@@ -19,8 +17,6 @@ HEIGHT = 10**13
 SHARP = ((2, (1,)), (4, (0, 1, 2, 3)))
 
 IRRATIONAL = ((4, (0, 1, 2)), (16, tuple(range(16))))
-
-# FRAME
 
 
 def root_of(bases):
@@ -63,9 +59,6 @@ def frame(cell):
     return r, exps, lcm(exps)
 
 
-# BLOCKS
-
-
 def block_digits(cell):
     r, exps, m = frame(cell)
     keeps = [set(a) for _, a in cell]
@@ -106,9 +99,6 @@ def bottom_block(cell):
     )
 
 
-# DIMENSION
-
-
 def log_exact(value, r):
     t, x = 0, value
     while x % r == 0:
@@ -127,9 +117,6 @@ def dim_text(count, r, m):
     if t is None:
         return "log_%d(%d) / %d" % (r, count, m), log(count) / (m * log(r))
     return str(t / m), float(t / m)
-
-
-# ENUMERATION
 
 
 def walk(base, digits, limit):
@@ -157,9 +144,6 @@ def thin_side(cell, r):
         if best is None or d < best[0]:
             best = (d, b, allowed)
     return best[1], best[2]
-
-
-# VERBS
 
 
 def verb_blocks():

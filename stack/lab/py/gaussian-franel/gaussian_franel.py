@@ -18,8 +18,6 @@ CLASSICAL_Q = 40
 CLASSICAL_QS = [125, 250, 500, 1000, 2000, 4000, 8000]
 METER_NS = [100, 250, 500, 1000, 2000, 4000, 8000, 16000, 32000, 64000]
 
-# GAUSSIAN ARITHMETIC
-
 
 def norm(z):
     return z[0] * z[0] + z[1] * z[1]
@@ -136,9 +134,6 @@ def totient_class(z):
     return v
 
 
-# RESIDUES MOD A GAUSSIAN INTEGER
-
-
 def residue_box(d):
     g = abs(gcd(d[0], d[1]))
     return g, norm(d) // g
@@ -170,9 +165,6 @@ def coprime_residues(d):
     return [u for u in residues(d) if norm(ggcd(u, d)) == 1]
 
 
-# EXACT SUMS OF ROOTS OF UNITY
-
-
 def roots_of_unity_sum(counts, n, phi):
     deg = len(phi) - 1
     c = list(counts)
@@ -184,9 +176,6 @@ def roots_of_unity_sum(counts, n, phi):
     if any(c[1:deg]):
         return None
     return c[0]
-
-
-# THEOREM 1
 
 
 def ramanujan_exact(d, lam, phi_cache):
@@ -306,9 +295,6 @@ def check_theorem_1(n_max, lam_bound):
     return len(nodes), len(lams), bad_ram, bad_sum, bad_lit, worst
 
 
-# THEOREM 2
-
-
 def gauss_weights(n_max, mob):
     out = []
     for e in classes_up_to(n_max):
@@ -367,9 +353,6 @@ def check_theorem_2(n_max, cut, mob, a_arr):
     return m, exact, rhs, lhs, rhs - lhs, tail
 
 
-# THE SIEVES
-
-
 def chi4(n):
     return 0 if n % 2 == 0 else (1 if n % 4 == 1 else -1)
 
@@ -411,9 +394,6 @@ def franel_form(n, a, mg, j2):
     return float(np.sum(j2[1 : n + 1] * hv * hv / (ns.astype(np.float64) ** 2)))
 
 
-# THE CLASSICAL CONTROL
-
-
 def farey_delta_square(q):
     nodes = sorted({Fraction(a, b) for b in range(1, q + 1) for a in range(1, b + 1)})
     m = len(nodes)
@@ -431,9 +411,6 @@ def classical_exact(q):
             g = gcd(x, y)
             tot += Fraction(g * g * mert[x] * mert[y], x * y)
     return tot
-
-
-# THE RUN
 
 
 def readout(x, a, mg):

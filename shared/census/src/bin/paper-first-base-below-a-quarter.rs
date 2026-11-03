@@ -12,8 +12,6 @@ const QUARTER: f64 = 0.25;
 const RUNGS: usize = 395;
 const GOLD: usize = 163;
 
-// LADDER
-
 fn weights(q: usize, a0: usize, nd: u32, m: usize) -> Vec<f64> {
     let w = q.pow(nd);
     let inv = 1.0 / (q as f64 - 1.0);
@@ -130,8 +128,6 @@ fn ladder() -> Vec<(usize, f64)> {
     });
     rungs.iter().zip(out).map(|((q, _), e)| (*q, e)).collect()
 }
-
-// WRITE
 
 fn main() -> Result<()> {
     let rungs = ladder();

@@ -10,8 +10,6 @@ const CENTRE: usize = 120;
 const STEPS: usize = 3000;
 const DEPTH: i32 = 40;
 
-// CROSSING
-
 struct Hole {
     level: usize,
     start: f64,
@@ -105,8 +103,6 @@ fn quadrature(radius: f64, hole: &Hole, line: f64) -> f64 {
     total
 }
 
-// RASTER
-
 fn box_low(radius: f64, hole: &Hole, line: f64) -> f64 {
     (radius * radius - hole.side * hole.side / 4.0)
         .max(0.0)
@@ -182,8 +178,6 @@ fn centre_raster(radius: f64) -> [f64; 3] {
     let cell = 8.0 * step.powi(3);
     [mid * cell, inner * cell, outer * cell]
 }
-
-// PERIOD
 
 fn periodic(radius: f64) -> f64 {
     let (mut total, mut weight, mut reach) = (20.0 / 27.0, 1.0, radius);

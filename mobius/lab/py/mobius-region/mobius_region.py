@@ -6,8 +6,6 @@ from fractions import Fraction
 import numpy as np
 from mpmath import mp
 
-# DESIGNS
-
 
 def missing(q, a0):
     return q, tuple(d for d in range(q) if d != a0)
@@ -48,8 +46,6 @@ TGRID = [
     Fraction(39, 20),
 ]
 
-# SAFE ROUNDING
-
 
 def fdown(x, n=7):
     return math.floor(x * 10**n) / 10**n
@@ -68,9 +64,6 @@ def want(cond, name):
     return cond
 
 
-# THE MASS EXPONENT
-
-
 def alpha_bracket(q, k, den=10**5):
     mp.dps = 40
     a = int(mp.floor(den * mp.log(k) / mp.log(q)))
@@ -80,9 +73,6 @@ def alpha_bracket(q, k, den=10**5):
     while q**a > kb:
         a -= 1
     return Fraction(a, den), Fraction(a + 1, den)
-
-
-# THE WINDOW FACTORS
 
 
 def differences(F):
@@ -121,9 +111,6 @@ def window_factors(q, F, nd, m, chunk=1 << 17):
     return gup, glo
 
 
-# THE TRANSFER ROOT
-
-
 def roots(G, q, nd, power=1.0, iters=400):
     S = q ** (nd - 1)
     W = (G.reshape(S, q) ** power) if power != 1.0 else G.reshape(S, q)
@@ -148,9 +135,6 @@ def exponent(mu, q):
     return math.log(mu) / math.log(q)
 
 
-# THE THRESHOLD FROM BELOW
-
-
 def beta_lower(glo, q, nd, ahi, target=0.25, tail=1.99, cap_cells=600):
     tailbound = (1.0 - ahi) / (2.0 - tail)
     work = [(1.0, tail)]
@@ -173,9 +157,6 @@ def beta_lower(glo, q, nd, ahi, target=0.25, tail=1.99, cap_cells=600):
             work.append((t0, mid))
             work.append((mid, t1))
     return min(min(r[2] for r in done), tailbound), cells, tailbound, None
-
-
-# THE THREE PARAMETERS
 
 
 def params(q, F, nd=None, m=None, tgrid=None):
@@ -224,8 +205,6 @@ def name_of(q, F):
         return "missing " + str(next(d for d in range(q) if d not in F))
     return "{" + ",".join(str(d) for d in F) + "}"
 
-
-# THE CRITERION
 
 CONDS = ["L1", "C1", "C2", "L2", "L3", "L4", "L5"]
 
@@ -283,9 +262,6 @@ def verdict(alpha, a1, beta):
     return rows, ok, binder, slack
 
 
-# VERB PARAMS
-
-
 def verb_params(argv):
     q = int(argv[0])
     F = tuple(int(c, 36) for c in argv[1])
@@ -304,9 +280,6 @@ def verb_params(argv):
     print(
         f"beta <= {fup(p['bhi'])} at t = {p['tbest']}, m_t <= {fup(p['mtbest'])}; beta >= {fdown(p['bfloor'])} by Parseval"
     )
-
-
-# VERB CRITERION
 
 
 def frac_up(x, den=10**7):
@@ -386,9 +359,6 @@ def verb_criterion(_argv):
     )
 
 
-# VERB THRESHOLD
-
-
 def verb_threshold(argv):
     target = 0.25
     if argv and len(argv) == 1:
@@ -434,9 +404,6 @@ def verb_threshold(argv):
         "A lower bound truncates down and an upper bound rounds up; the lower bound comes from the infimum window,"
     )
     print("which is a lower bound on the grid moment and so on the sup-over-shift one.")
-
-
-# VERB REGION
 
 
 def cross(alpha, lo, hi, name, target=Fraction(1, 4), steps=60):
@@ -497,9 +464,6 @@ def verb_region(argv):
     print(
         "A cap is an upper limit on beta and prints truncated down; a design also obeys alpha_1 >= 1 - alpha and beta >= 1 - alpha."
     )
-
-
-# VERB BOUNDARY
 
 
 def verb_boundary(_argv):
@@ -599,9 +563,6 @@ def verb_boundary(_argv):
     print("FAILS: " + (", ".join(FAILS) if FAILS else "none"))
     if FAILS:
         raise SystemExit(1)
-
-
-# VERB CHECK
 
 
 def verb_check(_argv):

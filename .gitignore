@@ -1,7 +1,7 @@
 # SECRETS
 .env*
 *.env
-.leak
+.dev.vars
 
 # CLAUDE
 .claude/
@@ -23,8 +23,8 @@ target/
 js/pkg/
 js/bun.lock
 site/wasm/
-net/mrly.net/wasm/
-net/mrly.net/wasm.next/
+mrly.net/wasm/
+mrly.net/wasm.next/
 
 # LEAN
 .lake/

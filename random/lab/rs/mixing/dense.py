@@ -4,8 +4,6 @@ import numpy as np
 from scipy.sparse import csr_matrix
 from scipy.sparse.csgraph import connected_components
 
-# CATALOG
-
 N = 3
 BITS = N * N
 M = 1 << BITS
@@ -73,9 +71,6 @@ def reps(spread):
     return out
 
 
-# ROUND
-
-
 def table(fill, hood, source, spread):
     offs = [(b // 3 - 1, b % 3 - 1) for b in range(9) if hood >> b & 1 and b != 4]
     void = (M - 1) & ~fill
@@ -110,9 +105,6 @@ def kernel(h):
     d = h[x[None, :]] ^ h[x[None, :] ^ x[:, None]]
     k = np.bincount((x[:, None] * M + d).ravel(), minlength=M * M).reshape(M, M)
     return k[1:, 1:] / M
-
-
-# MEASURES
 
 
 def sigma2(q):

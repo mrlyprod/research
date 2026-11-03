@@ -13,13 +13,9 @@ const TOL = 1e-12;
 const MARGIN = 0.08;
 const THIN = 1.4;
 
-// THE STEP
-
 function steps(pts: Point[]) {
   return pts.slice(1).map(([x, y], i) => Math.sqrt((x - pts[i][0]) ** 2 + (y - pts[i][1]) ** 2));
 }
-
-// THE LAYOUT
 
 function fit(pts: Point[], frame: Frame): Point[] {
   let low: Point = [Number.MAX_VALUE, Number.MAX_VALUE];
@@ -34,8 +30,6 @@ function fit(pts: Point[], frame: Frame): Point[] {
   const [cx, cy] = frame.center();
   return pts.map(([x, y]) => [cx + (x - mid[0]) * scale, cy - (y - mid[1]) * scale]);
 }
-
-// DRAW
 
 export default function draw(pen: Pen, ink: Ink) {
   const design = math.radix.koch();

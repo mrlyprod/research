@@ -2,8 +2,6 @@ use std::collections::{BTreeMap, HashSet};
 use std::env;
 use std::time::Instant;
 
-// CATALOG
-
 const NEIGHBOURHOODS: [(&str, u32); 3] = [("carpet", 495), ("net", 186), ("void", 341)];
 const SOURCES: [(&str, &[u32]); 4] = [
     ("primes", &[2, 3, 5, 7]),
@@ -53,8 +51,6 @@ fn word(k1: u32, k2: u32) -> u32 {
     mask
 }
 
-// TORUS
-
 fn symmetries(n: usize) -> Vec<Vec<usize>> {
     let mats: [[i64; 4]; 8] = [
         [1, 0, 0, 1],
@@ -95,8 +91,6 @@ fn image(perm: &[usize], mask: u32) -> u32 {
 fn commutes(a: &[usize], b: &[usize]) -> bool {
     (0..a.len()).all(|p| a[b[p]] == b[a[p]])
 }
-
-// ROUND
 
 struct Round {
     bits: usize,
@@ -248,8 +242,6 @@ fn weights(n: usize) {
     }
 }
 
-// PERMUTATIONS
-
 fn cycles(perm: &[u32]) -> Vec<usize> {
     let mut seen = vec![false; perm.len()];
     let mut out = Vec::new();
@@ -293,8 +285,6 @@ fn lone_prime(lengths: &[usize], size: usize) -> Option<usize> {
         .map(|(&l, _)| l)
         .find(|&p| lengths.iter().filter(|&&l| l % p == 0).count() == 1)
 }
-
-// SUBSPACES
 
 #[derive(Clone)]
 struct Basis {
@@ -410,8 +400,6 @@ fn is_block(gens: &[&[u32]], u: &Basis, bits: usize) -> bool {
             .all(|&g| (0..1usize << bits).all(|x| u.reduce(h[x ^ g as usize] ^ h[x]) == 0))
     })
 }
-
-// LAWS
 
 fn orbit_of(perm: &[usize], s: usize) -> u32 {
     let (mut p, mut orbit) = (s, 0u32);
@@ -547,8 +535,6 @@ fn classes(round: &Round) -> Vec<u32> {
 fn mess_module(round: &Round) -> Basis {
     module(&round.perm, &classes(round))
 }
-
-// CELLS
 
 struct Cell {
     source: usize,
@@ -761,8 +747,6 @@ fn census(n: usize, masks: &[u32], verbose: bool) -> (Vec<Cell>, usize) {
     (out, faults)
 }
 
-// EXPECTATIONS
-
 fn harmonic(m: usize) -> (f64, f64) {
     let h: f64 = (1..=m).map(|k| 1.0 / k as f64).sum();
     let h2: f64 = (1..=m).map(|k| 1.0 / (k * k) as f64).sum();
@@ -815,8 +799,6 @@ fn null() {
         1.0 / (512.0 * 511.0)
     );
 }
-
-// REPORTS
 
 fn summary(n: usize, cells: &[Cell], expected_longest: f64) {
     let size = 1usize << (n * n);

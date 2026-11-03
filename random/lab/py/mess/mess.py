@@ -33,8 +33,6 @@ WEIGHTS = {
     "star": (1, 1),
 }
 
-# SOURCES
-
 
 def primes_to(limit):
     sieve = bytearray([1]) * (limit + 1)
@@ -88,9 +86,6 @@ def indicator(terms, limit):
     return [1 if j in terms else 0 for j in range(limit + 1)]
 
 
-# ANF
-
-
 def lucas_anf(g):
     return [
         sum(g[j] for j in range(w + 1) if math.comb(w, j) % 2) % 2
@@ -100,9 +95,6 @@ def lucas_anf(g):
 
 def degree(c):
     return max((w for w, bit in enumerate(c) if bit), default=-1)
-
-
-# BRUTE FORCE
 
 
 def fwht(values):
@@ -147,9 +139,6 @@ def brute(g, k, pc):
     }
 
 
-# KRAWTCHOUK
-
-
 def krawtchouk(k):
     rows = []
     for v in range(k + 1):
@@ -187,9 +176,6 @@ def exact(g, k, kraw):
     return cells, parseval
 
 
-# DROPPED
-
-
 def ceiling(k):
     return (1 << (k - 1)) - (1 << (k // 2 - 1) if k % 2 == 0 else 1 << ((k - 1) // 2))
 
@@ -215,9 +201,6 @@ def aggregates(terms_by_name, kraw):
             if k >= 6 and row["nonlinearity"] / ceiling(k) > best[0]:
                 best = (row["nonlinearity"] / ceiling(k), names[0], k)
     return len(classes), affine, tight, total, full, cells, best
-
-
-# FRONTIER
 
 
 def frontier(k, kraw):
@@ -254,9 +237,6 @@ def frontier(k, kraw):
                 if best == rows[d][4]:
                     rows[d][5] += int((top[both] == best).sum())
     return rows
-
-
-# RUN
 
 
 def main():

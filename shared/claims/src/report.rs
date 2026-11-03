@@ -36,8 +36,6 @@ impl Sheet {
     }
 }
 
-// TALLY
-
 pub fn tally(book: &Book, runs: &[Run]) -> Sheet {
     let mut sheet = Sheet {
         rows: book.rows.len(),
@@ -71,8 +69,6 @@ pub fn tally(book: &Book, runs: &[Run]) -> Sheet {
     }
     sheet
 }
-
-// DASHBOARD
 
 pub fn print(sheet: &Sheet) {
     println!(

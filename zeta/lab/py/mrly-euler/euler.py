@@ -1,8 +1,6 @@
 import sys
 from math import gcd
 
-# DIGITS
-
 
 def dmask(n, q):
     m = 0
@@ -22,9 +20,6 @@ def repunit(q, L):
 
 def show(F, q):
     return "".join(str(d) for d in range(q) if (F >> d) & 1)
-
-
-# WALL
 
 
 def theorem_witness(q, F):
@@ -152,8 +147,6 @@ def wall(qmax=12, bound=4000):
 
 
 VERBS = {"wall": wall}
-
-# LERCH
 
 
 def lerch_table(s, terms):
@@ -291,8 +284,6 @@ def position(qmax=None):
 
 VERBS["position"] = position
 
-# PAIR
-
 
 def mobius_sieve(N):
     mu = [1] * (N + 1)
@@ -393,8 +384,6 @@ def pair(N=4000):
 
 VERBS["pair"] = pair
 
-# WORD
-
 
 def mu_int(n):
     r = 1
@@ -467,8 +456,6 @@ def word(order=17):
 
 
 VERBS["word"] = word
-
-# CHARACTERS
 
 
 def prime_factors(n):
@@ -559,9 +546,6 @@ def char_table(Q):
             tab[r] = cmath.exp(2j * cmath.pi * ph)
         chars.append(tab)
     return chars
-
-
-# FIBRE
 
 
 def fibre(N=3000):
@@ -664,8 +648,6 @@ def fibre(N=3000):
 
 
 VERBS["fibre"] = fibre
-
-# BEURLING
 
 
 def primes_to(X):
@@ -779,8 +761,6 @@ def beurling(X=10**6):
 
 
 VERBS["beurling"] = beurling
-
-# DUAL
 
 
 def dual():

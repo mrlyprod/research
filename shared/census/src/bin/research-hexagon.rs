@@ -44,8 +44,6 @@ impl Rule {
     }
 }
 
-// FIELD
-
 fn layers() -> impl Iterator<Item = i64> {
     (3..=DEEPEST).step_by(2)
 }
@@ -129,8 +127,6 @@ fn ink_law(rule: &Rule, n: i64) -> bool {
     }
     filled * 8 * n * n == inside * (4 * n * n + chi * n * n + 4 * n - chi)
 }
-
-// PACK
 
 fn base64(bytes: &[u8]) -> String {
     let mut text = String::new();

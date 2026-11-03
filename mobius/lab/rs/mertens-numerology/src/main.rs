@@ -1,7 +1,5 @@
 use std::f64::consts::PI;
 
-// SETUP
-
 const GAMMA: f64 = 0.577_215_664_901_532_9;
 const GUARD: f64 = 1e-12;
 const SCI_GUARD: f64 = 1e-10;
@@ -32,8 +30,6 @@ const COST: [u64; 7] = [
 const WALL: [u64; 2] = [3_689, 3_690];
 const SHARP_HI: u64 = 4_000_000;
 const SHARP_COST_HI: u64 = 100_000;
-
-// KERNEL CONSTANTS
 
 fn harmonic_bound(n: f64) -> f64 {
     n.ln() + GAMMA + 0.5 / n
@@ -169,8 +165,6 @@ fn gap(q: f64, m: f64) -> f64 {
     gap_b(q, 0.75, m)
 }
 
-// SAFE ROUNDING
-
 fn ceil_units(x: f64, digits: u32) -> i64 {
     let s = 10f64.powi(digits as i32);
     ((x + GUARD) * s).ceil() as i64
@@ -238,8 +232,6 @@ fn label(q: u64) -> String {
         q.to_string()
     }
 }
-
-// TABLE ROWS
 
 struct Row {
     q: u64,
@@ -313,8 +305,6 @@ fn render_coro(r: &Row) -> String {
     )
 }
 
-// CHECKS
-
 fn gap_sweep(lo: u64, hi: u64, m: u64) -> (u64, f64, f64) {
     let mf = m as f64;
     let mut prev = gap(lo as f64, mf);
@@ -362,8 +352,6 @@ fn max_excluded(q: u64) -> u64 {
     }
     m
 }
-
-// LADDER
 
 const LADDER: [(i64, i64); 10] = [
     (1, 2),
@@ -583,8 +571,6 @@ fn render_ladder_coro(a: Rat) -> String {
     )
 }
 
-// MAIN
-
 fn main() {
     println!("mertens-numerology");
     println!(
@@ -773,8 +759,6 @@ fn main() {
         println!("{}", render_ladder_coro(a));
     }
 }
-
-// TESTS
 
 #[cfg(test)]
 mod tests {

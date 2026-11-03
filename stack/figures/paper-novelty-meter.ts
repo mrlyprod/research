@@ -12,8 +12,6 @@ export const units = { num };
 
 let memo: number[] | undefined;
 
-// FACTS
-
 function wave() {
   if (memo) return memo;
   const { smooth, rough } = census;
@@ -39,8 +37,6 @@ function wave() {
   return memo;
 }
 
-// MARKS
-
 function beads(pen: Pen, area: Frame, values: number[], span: number, r: number, color: Color) {
   const last = values.length - 1;
   plot.dots(
@@ -54,8 +50,6 @@ function beads(pen: Pen, area: Frame, values: number[], span: number, r: number,
 function reach(values: number[]) {
   return values.reduce((a, v) => Math.max(a, Math.abs(v)), 0) * 1.12;
 }
-
-// DRAW
 
 export default function draw(pen: Pen, ink: Ink) {
   const { smooth, rough } = census;

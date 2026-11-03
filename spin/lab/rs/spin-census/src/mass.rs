@@ -51,7 +51,6 @@ pub fn shells(grid: &Tensor, digit: (usize, usize)) -> Mass {
     Mass { radii, cumulative }
 }
 
-/// The nearest filled cell to the fixed point of the digit, as four times its squared distance, an exact integer.
 pub fn nearest_cell(grid: &Tensor, digit: (usize, usize)) -> u64 {
     let side = grid.shape[0];
     let anchor = (side as i64 * digit.0 as i64, side as i64 * digit.1 as i64);
@@ -146,7 +145,6 @@ fn fold(points: &[(f64, f64)], dimension: f64, bins: usize) -> Vec<f64> {
     curve.iter().map(|v| v - mean).collect()
 }
 
-/// The whole powers of the base that fit between the window ends, counted by repeated multiplication so no logarithm can round a boundary the wrong way.
 pub fn periods(low: f64, high: f64) -> usize {
     let mut count = 0usize;
     let mut edge = low * BASE as f64;

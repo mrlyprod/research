@@ -8,8 +8,6 @@ const SIDE = 64;
 const CELLS = 729;
 const SEED = 20260902;
 
-// MASKS
-
 function scatter() {
   const mask = new Array<boolean>(SIDE * SIDE).fill(false);
   for (const slot of new core.Rng(SEED).sample_indices(SIDE * SIDE, CELLS)) mask[slot] = true;
@@ -26,8 +24,6 @@ function gasket() {
   if (on !== CELLS) throw new Error(`research-connectivity: gasket holds ${on} cells, want ${CELLS}`);
   return mask;
 }
-
-// DRAW
 
 function plate(pen: Pen, frame: Frame, mask: boolean[], color: Color, rule: number, ink: Ink) {
   const edge = frame.inset(-rule * 2);

@@ -15,8 +15,6 @@ pub struct Profile {
     pub immunity: usize,
 }
 
-// TABLES
-
 pub fn pascal(n: usize) -> Vec<Vec<i128>> {
     let mut rows: Vec<Vec<i128>> = vec![vec![1]];
     for i in 1..=n {
@@ -68,8 +66,6 @@ pub fn ceiling(k: usize) -> u128 {
     }
 }
 
-// ANF
-
 pub fn anf(g: &[u8]) -> Vec<u8> {
     (0..g.len())
         .map(|w| {
@@ -90,8 +86,6 @@ pub fn anf(g: &[u8]) -> Vec<u8> {
 pub fn degree(c: &[u8]) -> i32 {
     c.iter().rposition(|&bit| bit == 1).map_or(-1, |w| w as i32)
 }
-
-// SPECTRA
 
 pub fn ones(t: &Tables, g: &[u8]) -> u128 {
     (0..=t.k)
@@ -153,8 +147,6 @@ pub fn parseval(t: &Tables, g: &[u8]) -> bool {
     let total: i128 = (0..=t.k).map(|v| t.binom[t.k][v] * w[v] * w[v]).sum();
     total == 1i128 << (2 * t.k)
 }
-
-// BRUTE FORCE
 
 pub struct Table {
     pub degree: i32,

@@ -6,8 +6,6 @@ export const units = { math };
 const CODES = [1, 3, 7, 9, 11, 15];
 const SIDES = [3, 5, 7, 9];
 
-// DESIGNS
-
 type Cells = ReturnType<typeof math.two.create>;
 
 let memo: Cells[][] | undefined;
@@ -29,8 +27,6 @@ function designs() {
   );
   return memo;
 }
-
-// DRAW
 
 export default function draw(pen: Pen, ink: Ink) {
   const cells = designs();

@@ -16,9 +16,6 @@ def down(x, d):
     return floor(x * 10**d) / 10**d
 
 
-# GASKET CHUNKS
-
-
 def base_pair(m, fix0):
     u = np.zeros(1, dtype=np.int64)
     v = np.zeros(1, dtype=np.int64)
@@ -50,9 +47,6 @@ def chunks(n, fix0, m):
     bu, bv = base_pair(m, fix0)
     for du, dv in top_offsets(m, n):
         yield bu + du, bv + dv
-
-
-# RATIO SET
 
 
 def ratio_values(k, m):
@@ -123,8 +117,6 @@ def cmd_ratios(args):
             band[-1][0],
         )
 
-
-# CENSUS
 
 POW3 = np.array([3**i for i in range(39)], dtype=np.int64)
 
@@ -232,9 +224,6 @@ def cmd_census(args):
         )
 
 
-# LARGE PRIME SUM
-
-
 def spf_sieve(limit):
     spf = np.zeros(limit + 1, dtype=np.int32)
     spf[2::2] = 2
@@ -287,9 +276,6 @@ def cmd_sieve(args):
                 n, beta, total, int(heavy[0]), round(bound, 1), round(total / bound, 4)
             )
         print("level", n, "secs", round(time.time() - t, 1))
-
-
-# CHECKS
 
 
 def brute_ratios(k):

@@ -7,8 +7,6 @@ const HIGH = 40;
 const TOP = 91;
 const TERMS = 40;
 
-// THE CENSUS EXCESS
-
 function binomial(n: number, k: number) {
   let out = 1n;
   for (let i = 1; i <= k; i++) out = (out * BigInt(n - k + i)) / BigInt(i);
@@ -39,8 +37,6 @@ function excess(dim: number, top: number) {
   }
   return { signs, stop };
 }
-
-// THE CROSSING
 
 function crossing(dim: number) {
   let logR = 0;
@@ -74,8 +70,6 @@ function rows() {
     throw new Error(`paper-slice-sign-law: ${forty?.last} and ${forty?.star} at 40, want 87 and 88.7719`);
   return out;
 }
-
-// DRAW
 
 export default function draw(pen: Pen, ink: Ink) {
   const table = rows();

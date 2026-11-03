@@ -10,8 +10,6 @@ const GAP = 2;
 const LUCAS = 11;
 const ANF = "00100110001100100110001101110011";
 
-// MASKS
-
 function primes() {
   const flags = new Array<boolean>(SIDE).fill(true);
   flags[0] = flags[1] = false;
@@ -54,8 +52,6 @@ function parity(mask: boolean[][], chosen: boolean[]) {
   if (head !== ANF) throw new Error(`research-random-mess: the prime parities begin ${head}, want ${ANF}`);
   return out;
 }
-
-// DRAW
 
 export default function draw(pen: Pen, ink: Ink) {
   const mask = lucas();

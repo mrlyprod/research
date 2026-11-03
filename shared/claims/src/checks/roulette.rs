@@ -9,8 +9,6 @@ const CARPET: [u8; 9] = [1, 1, 1, 1, 0, 1, 1, 1, 1];
 
 const TWO: [u8; 9] = [1, 0, 0, 0, 0, 0, 0, 1, 0];
 
-// THE SEATS
-
 fn pin(target: f64) -> Vec<Pencil> {
     let reach = target * 1.5f64.hypot(0.5);
     pencils(&[1, 0, 0], 3, 1, "fill", reach, 0.0, 1).expect("the pin seats")
@@ -45,8 +43,6 @@ fn count(
     }
     Ok(nodes(&path, &seats, samples, TOL).expect("the nodes"))
 }
-
-// THE LAWS
 
 pub fn one_curve_of_a_circle_roulette() -> Result<(), String> {
     for (kind, a, b, target) in [
@@ -115,8 +111,6 @@ pub fn a_roulette_cuts_the_plane_into() -> Result<(), String> {
     }
     Ok(())
 }
-
-// THE ENDS
 
 pub fn the_loop_threshold_is_not_where() -> Result<(), String> {
     let path = track("in", 7, 6, 4, 1).expect("the track");

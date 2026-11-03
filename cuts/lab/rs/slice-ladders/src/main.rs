@@ -8,8 +8,6 @@ fn ok<T, E: std::fmt::Display>(r: Result<T, E>) -> Out<T> {
     r.map_err(|e| e.to_string())
 }
 
-// ROUTES
-
 fn automaton(dim: usize, levels: usize) -> Out<Vec<i128>> {
     ok(ladder(3, dim, levels))
 }
@@ -78,8 +76,6 @@ fn enumeration(dim: usize, budget: f64) -> Vec<i128> {
     out
 }
 
-// RECURRENCE
-
 fn signature(dim: usize) -> Out<Vec<i128>> {
     let block = ok(even_block(3, dim))?;
     Ok(ok(characteristic(&block))?[1..]
@@ -141,8 +137,6 @@ fn join(v: &[i128]) -> String {
         .collect::<Vec<_>>()
         .join(",")
 }
-
-// VERBS
 
 fn ladders(dims: &[usize]) -> Out<()> {
     for &dim in dims {

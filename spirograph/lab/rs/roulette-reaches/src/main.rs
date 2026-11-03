@@ -1,8 +1,6 @@
 use mrly_math::spirograph::{distinct, pencils, point, trace, track, Kind, Pencil};
 use std::f64::consts::{PI, TAU};
 
-// THE CURVE
-
 #[derive(Clone, Copy)]
 struct Wheel {
     a: usize,
@@ -41,8 +39,6 @@ fn mark_at(w: &Wheel, rho: f64, r: f64) -> f64 {
     let c = ((r * r - w.amp * w.amp - rho * rho) / (2.0 * w.amp * rho)).clamp(-1.0, 1.0);
     4.0 * w.a as f64 * sweep(w, rho, c.acos()) / PI
 }
-
-// THE SEATS
 
 #[derive(Clone, Copy)]
 struct Seat {
@@ -90,8 +86,6 @@ fn seat_oct(w: &Wheel, seat: &Seat) -> i64 {
     (-(w.b as i64) * (w.side as i64) * dial).rem_euclid(8)
 }
 
-// THE CURVES
-
 fn band(w: &Wheel, rho: f64) -> (f64, f64) {
     ((w.amp - rho).abs(), w.amp + rho)
 }
@@ -126,8 +120,6 @@ fn curves(w: &Wheel, seats: &[Seat], t: f64) -> (Vec<Curve>, Vec<usize>) {
     }
     (out, owner)
 }
-
-// THE SOLVER
 
 fn meeting(cs: &[Curve], m: i64, n: i64, flat: bool) -> (usize, usize, i64, Vec<usize>) {
     let mut best = (0usize, 0usize, 0i64, Vec::new());
@@ -307,8 +299,6 @@ fn alignments(w: &Wheel, tlo: f64, thi: f64, grid: usize) -> Vec<Align> {
     out
 }
 
-// THE CENSUS
-
 struct Node {
     ring: f64,
     angle: f64,
@@ -432,8 +422,6 @@ fn census(w: &Wheel, cs: &[Curve], grid: usize) -> Vec<Node> {
     out
 }
 
-// THE TRACES
-
 const CARPET: [u8; 9] = [1, 1, 1, 1, 0, 1, 1, 1, 1];
 
 fn near(px: f64, py: f64, x0: f64, y0: f64, x1: f64, y1: f64) -> f64 {
@@ -530,8 +518,6 @@ fn residue(w: &Wheel, arm: f64, x: f64, mark: i64) -> f64 {
     );
     ((left.0 - want.0).hypot(left.1 - want.1)) / (left.0.hypot(left.1)).max(1e-12)
 }
-
-// THE RUN
 
 fn defect(w: &Wheel, t: f64, m: f64, n: f64) -> f64 {
     let (arm_c, arm_e) = (2.0 * t / 3.0, 2.0_f64.sqrt() * t / 3.0);

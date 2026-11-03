@@ -295,8 +295,6 @@ struct Panel {
     family: Vec<Complex>,
 }
 
-// WRITE
-
 fn points(zeros: &[Complex]) -> Json {
     json!(zeros.iter().map(|z| [z.re, z.im]).collect::<Vec<_>>())
 }
@@ -310,8 +308,6 @@ fn record(p: &Panel) -> Json {
         "hollow": points(&p.hollow),
     })
 }
-
-// CHECK
 
 fn panels() -> (Panel, Panel) {
     let design = Ladder::new(3, &[0, 1]);

@@ -80,7 +80,6 @@ fn language(tile: &Picture) -> Vec<Picture> {
         .collect()
 }
 
-/// Counts the distinct `k x k` windows of the renders of an `s x s` tile for `k = 1..=count`, through the substitution census: for `k <= s^n + 1` they are the `k x k` blocks of the `n`-fold images of the `2 x 2` render windows; stops where the pictures pass the cell budget, and says whether it stopped short.
 pub fn census(cells: &[u8], side: usize, count: usize, budget: u128) -> (Vec<i128>, bool) {
     let tile = Picture {
         side,

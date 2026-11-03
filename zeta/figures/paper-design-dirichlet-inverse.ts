@@ -15,8 +15,6 @@ const OVER = 22;
 
 export const units = { math };
 
-// FACTS
-
 function comb(design: math.ladder.Design): Point[] {
   const poles: Point[] = [];
   for (let j = 0; ; j++) {
@@ -48,8 +46,6 @@ function check(alpha: number, period: number, poles: Point[]) {
     throw new Error(`paper-design-dirichlet-inverse: period ${period}, want 5.7192017348`);
 }
 
-// PLANE
-
 function at(rect: Frame, abscissa: number, re: number, im: number): Point {
   return [rect.x + (rect.w * (re - abscissa)) / RE_WIDTH, rect.y + rect.h * (1 - im / IM_REACH)];
 }
@@ -79,8 +75,6 @@ function band(pen: Pen, ink: Ink, rect: Frame, abscissa: number, span: number[])
   pen.segment([rect.x, high], [rect.x + run, high], 1.8, ink.fade(ink.yellow, 0.5));
   pen.segment([rect.x, low], [rect.x + run, low], 1.8, ink.fade(ink.yellow, 0.5));
 }
-
-// DRAW
 
 export default function draw(pen: Pen, ink: Ink) {
   const ladder = new math.ladder.Design(3, [0, 1]);

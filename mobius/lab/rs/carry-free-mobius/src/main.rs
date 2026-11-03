@@ -2,8 +2,6 @@ use std::cmp::Ordering;
 use std::env;
 use std::time::Instant;
 
-// PACKING
-
 fn binom(n: usize, k: usize) -> u64 {
     if k > n {
         return 0;
@@ -101,8 +99,6 @@ fn hashk(k: &[u64]) -> u64 {
     h ^ (h >> 31)
 }
 
-// TABLE
-
 struct Table {
     w: usize,
     cap: usize,
@@ -177,8 +173,6 @@ impl Table {
     }
 }
 
-// LAYERS
-
 struct Layer {
     deg: usize,
     pk: Pack,
@@ -246,8 +240,6 @@ fn power(l: usize) -> i64 {
         0
     }
 }
-
-// LADDER
 
 struct Stats {
     odd: Vec<u64>,
@@ -536,8 +528,6 @@ fn ladder(top: usize, quiet: bool, budget: usize) -> Stats {
     st
 }
 
-// REPORT
-
 fn report(st: &Stats) {
     let n = st.mx.len();
     println!();
@@ -619,8 +609,6 @@ fn report(st: &Stats) {
     );
 }
 
-// PYTHON PIN
-
 const PIN_MX: [u64; 18] = [
     1, 1, 2, 3, 4, 7, 15, 23, 45, 86, 162, 331, 741, 1665, 3173, 7508, 17753, 36147,
 ];
@@ -633,8 +621,6 @@ const PIN_CENS: [u64; 18] = [
 const PIN_COEF: [u64; 18] = [
     1, 1, 2, 3, 6, 10, 20, 35, 70, 126, 252, 462, 924, 1716, 3432, 6435, 12870, 24310,
 ];
-
-// VERBS
 
 fn pin() {
     let st = ladder(17, false, usize::MAX);
@@ -673,8 +659,6 @@ fn main() {
         _ => println!("verbs: pin, ladder <top degree> <GB>"),
     }
 }
-
-// TESTS
 
 #[cfg(test)]
 mod tests {

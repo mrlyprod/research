@@ -9,8 +9,6 @@ const CODE: u128 = 495;
 const SPLIT: usize = 9;
 const SIDE: usize = SPLIT * SPLIT;
 
-// MASKS
-
 fn render(level: usize) -> Result<Vec<Vec<bool>>> {
     let cells = designs::create(Code::from(CODE), 3, level, 0, 3)?;
     let types = cells.types();
@@ -42,8 +40,6 @@ fn rearrange(cells: &[Vec<bool>]) -> Vec<Vec<bool>> {
 fn ones(mask: &[Vec<bool>]) -> usize {
     mask.iter().flatten().filter(|on| **on).count()
 }
-
-// WRITE
 
 fn main() -> Result<()> {
     let whole = render(4)?;

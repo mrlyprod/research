@@ -1,26 +1,16 @@
 use super::{Axis, Key, Measure, Tag};
 use std::sync::OnceLock;
 
-/// One OEIS entry the tree cites, with the design sequence it names when it names one.
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub struct Record {
-    /// The OEIS id.
     pub id: &'static str,
-    /// The entry's name.
     pub name: &'static str,
-    /// The index of the first listed term.
     pub offset: i32,
-    /// The record's index less the ledger's, where a key names the sequence.
     pub shift: i32,
-    /// The first terms, as text.
     pub terms: &'static str,
-    /// The status of the identification.
     pub status: Tag,
-    /// The design sequence the entry names, when it names one.
     pub key: Option<Key>,
-    /// The formula, or none.
     pub formula: &'static str,
-    /// The generator or page that witnesses the entry.
     pub witness: &'static str,
 }
 
@@ -67,7 +57,6 @@ const FILLS: &str = "mrly_math::counts::fill";
 const SIDES: &str = "ledger::terms, the odd-side law";
 const EXPOSURE: &str = "mrly_math::counts::exposure";
 
-/// Every OEIS entry the tree cites, by id.
 pub static RECORDS: &[Record] = &[
     record("A000029", "Number of necklaces with n beads of 2 colors, allowing turning over (these are also called bracelets)", 0, "1, 2, 3, 4, 6, 8, 13, 18, 30, 46, 78, 126", Tag::Verified, "none", "mrly_math::bang::baseq::bracelets, the base line at dim 1"),
     record("A000070", "a(n) = Sum_{k=0..n} p(k) where p(k) = number of partitions of k", 0, "1, 2, 4, 7, 12, 19, 30, 45, 67, 97, 139, 195", Tag::Verified, "none", "REFS.md"),
@@ -136,7 +125,6 @@ pub static RECORDS: &[Record] = &[
     record("A399019", "Number of empty unit triangles in the hexagonal cross-section of the first iteration of the generalized Menger sponge with subdivision 2n+1, cut through the center perpendicular to a space diagonal", 0, "0, 12, 78, 90, 276, 240, 594, 462, 1032, 756, 1590, 1122", Tag::Verified, "3n(5n+3) for n even, 3n(3n+1) for n odd", "mrly_math::counts::cut_voids").keyed(23, 3, Measure::Gaps, Axis::Side, -1),
 ];
 
-/// Finds a record by id.
 pub fn record_by_id(id: &str) -> Option<&'static Record> {
     RECORDS.iter().find(|record| record.id == id)
 }
@@ -158,7 +146,6 @@ fn parsed() -> &'static [Vec<i128>] {
 }
 
 impl Record {
-    /// Returns the listed terms that fit an i128, in order.
     pub fn parsed(&self) -> &'static [i128] {
         let at = RECORDS
             .iter()
@@ -168,12 +155,6 @@ impl Record {
     }
 }
 
-/// Finds every record holding the terms as a window, with the record's index of the first term.
-///
-/// ```
-/// let found = ledger::identify(&[6, 42, 306, 2250]);
-/// assert_eq!(found.iter().map(|(r, s)| (r.id, *s)).collect::<Vec<_>>(), [("A299916", 1)]);
-/// ```
 pub fn identify(terms: &[i128]) -> Vec<(&'static Record, i32)> {
     if terms.is_empty() {
         return Vec::new();

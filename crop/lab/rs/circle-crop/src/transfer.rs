@@ -1,7 +1,5 @@
 use crate::{list, ones_table, root_floor, trim};
 
-// SHELL LADDER
-
 pub(crate) struct Rung {
     pub(crate) high: Vec<u64>,
     start: Vec<usize>,
@@ -41,8 +39,6 @@ impl Rung {
     }
 }
 
-// LOCAL PATTERN
-
 fn pattern(here: &Rung, below: &Rung) -> Vec<u16> {
     let mut out = vec![0u16; here.size];
     let mut children = 0u64;
@@ -74,8 +70,6 @@ fn pattern(here: &Rung, below: &Rung) -> Vec<u16> {
     out
 }
 
-// EXACT RATIOS
-
 fn below(left: (u128, u128), right: (u128, u128)) -> bool {
     left.0 * right.1 < right.0 * left.1
 }
@@ -83,8 +77,6 @@ fn below(left: (u128, u128), right: (u128, u128)) -> bool {
 fn ratio(pair: (u128, u128)) -> f64 {
     pair.0 as f64 / pair.1 as f64
 }
-
-// PERRON BRACKET
 
 fn weights(matrix: &[Vec<u64>], rows: &[u64]) -> Vec<u128> {
     let size = matrix.len();
@@ -166,8 +158,6 @@ fn block(matrix: &[Vec<u64>], keep: &[usize]) -> Vec<Vec<u64>> {
         .collect()
 }
 
-// DOEBLIN
-
 fn doeblin(matrix: &[Vec<u64>], steps: usize) -> Vec<f64> {
     const UNIT: u128 = 1 << 40;
     let size = matrix.len();
@@ -207,8 +197,6 @@ fn doeblin(matrix: &[Vec<u64>], steps: usize) -> Vec<f64> {
     out
 }
 
-// DOBRUSHIN
-
 fn dobrushin(matrix: &[Vec<u64>]) -> (u128, u128) {
     let size = matrix.len();
     let rows: Vec<u64> = matrix.iter().map(|row| row.iter().sum()).collect();
@@ -236,8 +224,6 @@ fn dobrushin(matrix: &[Vec<u64>]) -> (u128, u128) {
     }
     worst
 }
-
-// OPERATOR
 
 struct Operator {
     order: Vec<u16>,
@@ -339,8 +325,6 @@ fn operator(radius: u64, deep: u32, shallow: u32) -> Operator {
         parents,
     }
 }
-
-// SURVIVAL LADDER
 
 struct Ladder {
     filled: u64,
@@ -454,8 +438,6 @@ fn survival(label: &str, radius: u64, depth: usize) {
         top < 1.0 && next < 1.0
     );
 }
-
-// PROFILE
 
 struct Gather {
     depth: usize,
@@ -635,8 +617,6 @@ fn resample(label: &str, windows: &[u32], strides: &[u64], head: &[f64]) {
     }
 }
 
-// REPORT
-
 fn spectrum(label: &str, tag: &str, matrix: &[Vec<u64>], rows: &[u64], target: f64) -> (f64, f64) {
     let (low, high) = bracket(matrix, rows);
     let (bottom, top) = (trim(ratio(low), false), trim(ratio(high), true));
@@ -753,8 +733,6 @@ fn report(label: &str, radius: u64, deep: u32, shallow: u32) -> Vec<u16> {
     );
     built.order
 }
-
-// ALPHABET
 
 pub(crate) fn levels(radius: u64) -> u32 {
     let mut level = 0u32;
@@ -877,8 +855,6 @@ fn scan(label: &str, low: u64, high: u64, back: u32, base: &[u16]) {
             .join(",")
     );
 }
-
-// MEMORY ONE
 
 fn memory(label: &str, radius: u64, deep: u32, shallow: u32, start: u32) {
     let built = operator(radius, deep, shallow);
@@ -1004,8 +980,6 @@ fn signs(label: &str, radii: &[u64]) {
         trim(most * 1.0e3, true)
     );
 }
-
-// INDEX BOUND
 
 fn floor_shift(square: i64, back: i64, step: i64) -> i64 {
     let root = if square <= 0 {
@@ -1191,8 +1165,6 @@ fn indexed(label: &str, radius: u64) -> usize {
     );
     read.live
 }
-
-// ENTRY
 
 pub fn transfer() {
     println!("circle-crop transfer convention: every line below is the carpet, the crossing shell at level j is the whole grid's shell at the real radius r/3^j, a box's state is the 9-bit pattern of its crossed children printed in octal with bit 4 the centre, every matrix entry is an exact count of parent-child pairs over the printed levels, a gain is indexed by the depth from the top k = L - 1 - j so g_k = (T_(k+1)/T_k)/(1 - p_(L-1-k)), and a profile line samples its window at an even stride");

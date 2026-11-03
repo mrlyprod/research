@@ -35,8 +35,6 @@ CLASSES = ("kronecker", "magic", "life")
 HERE = os.path.dirname(os.path.abspath(__file__))
 TREE = os.path.normpath(os.path.join(HERE, "..", "..", "..", ".."))
 
-# TILES
-
 
 def tile(code, base, side):
     i = np.arange(side) % base
@@ -89,9 +87,6 @@ def magic_word(codes, sides):
     return out
 
 
-# LIFE
-
-
 def life_step(grid, birth, survive):
     n = np.zeros(grid.shape, dtype=np.int8)
     for dr in (-1, 0, 1):
@@ -117,9 +112,6 @@ def life_seeds():
     for _ in range(LIFE_SEEDS - 1):
         out.append((rng.random((LIFE_SIDE, LIFE_SIDE)) < LIFE_DENSITY).astype(np.uint8))
     return out
-
-
-# THE CATALOG
 
 
 def build_catalog(depth):
@@ -187,9 +179,6 @@ def build_catalog(depth):
     return atoms, len(raw), collisions, len(reps)
 
 
-# CORPORA
-
-
 def corpus_tree():
     return power(tile(CARPET2, 2, 3), LEVEL)
 
@@ -217,8 +206,6 @@ def corpus_halftone():
     ) / 16.0
     return (grey > thresh).astype(np.uint8)
 
-
-# THE SCORE
 
 TABLES = {}
 
@@ -281,9 +268,6 @@ def floor_cells(log2a, positions):
     while n - (log2a + math.log2(positions) + math.log2(n + 1)) <= 0:
         n += 1
     return n
-
-
-# THE PURSUIT
 
 
 def candidates(x, atoms, tables):
@@ -440,9 +424,6 @@ def run(x, atoms, tables, key="dense"):
     return rep
 
 
-# THE REARRANGEMENT
-
-
 def rearrange(a, p, q):
     m, n = a.shape
     assert m % p == 0 and n % q == 0
@@ -488,9 +469,6 @@ def peel(a, sides):
         out.append((code_of(threshold(outer)), s[1] / s[0]))
         rest = threshold(inner)
     return out, rest
-
-
-# THE RUN
 
 
 def table(rows):

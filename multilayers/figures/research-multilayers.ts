@@ -6,8 +6,6 @@ const BINS = 128;
 
 export const units = {};
 
-// PANEL
-
 function panel(pen: Pen, ink: Ink, box: Frame, grid: number[][], hue: Color) {
   pen.rect(box.x, box.y, box.w, box.h, ink.line);
   const gap = 3;
@@ -19,8 +17,6 @@ function panel(pen: Pen, ink: Ink, box: Frame, grid: number[][], hue: Color) {
     });
   });
 }
-
-// DRAW
 
 export default function draw(pen: Pen, ink: Ink) {
   const { light, fading } = census;

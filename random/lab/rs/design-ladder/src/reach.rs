@@ -22,8 +22,6 @@ impl Seed {
     }
 }
 
-// RULES
-
 fn aff_rule(i: u8) -> u8 {
     let (a, b, d, e) = (i >> 3 & 1, i >> 2 & 1, i >> 1 & 1, i & 1);
     (0..8u8).fold(0, |acc, p| {
@@ -68,8 +66,6 @@ fn window_name(mask: u8) -> String {
 fn fits(rule: u8, g: u8, mask: u8) -> bool {
     (rule ^ g) & mask == 0
 }
-
-// ORBIT
 
 pub struct Orbit {
     pub masks: Vec<u8>,
@@ -209,8 +205,6 @@ fn union(o: &Orbit) -> u8 {
     o.masks.iter().fold(0, |a, &m| a | m)
 }
 
-// EXACT
-
 type Vec15 = u16;
 type Comp = (Vec15, i32);
 type State = (Vec<Comp>, u8);
@@ -349,8 +343,6 @@ pub fn exact_mask(i: u8, seed: Seed) -> u8 {
     mask
 }
 
-// SHADOW
-
 pub fn shadow() {
     let horizon = 4096usize;
     println!("shadow: exact window sets of the 16 affine orbits over all t and all n, against the simulation t <= {horizon}");
@@ -431,8 +423,6 @@ fn census(seed: Seed, exact: &[u8; 16], horizon: usize) {
         println!("  identical diagrams to t <= {horizon}: rules {:?}", fs);
     }
 }
-
-// COLUMNS
 
 pub fn columns(rule: u8, seed: Seed, steps: usize, centre: i64, probes: &[i64]) -> Vec<Vec<u8>> {
     let half = steps + 8;
@@ -729,8 +719,6 @@ pub fn escape() {
         }
     }
 }
-
-// LEMMAS
 
 fn row_windows(radius: i32) -> HashSet<(u16, u8)> {
     let g = (1u8, 0u8, 1u8);

@@ -14,8 +14,6 @@ OM5 = 2 * math.pi / math.log(5)
 INDEPENDENT = (3, (0, 1), 5, (0, 1, 2))
 DEPENDENT = (3, (0, 1), 9, (0, 1, 3))
 
-# ENUMERATION
-
 
 def walk(L, p, pd, q, qd, sink):
     pw_p = [p**i for i in range(L + 1)]
@@ -109,9 +107,6 @@ def crop(h, counts):
     while start < len(counts) and counts[start] < WINDOW_FLOOR:
         start += 1
     return [i * h for i in range(start, len(counts))], list(counts[start:])
-
-
-# DETECTOR
 
 
 def blackman(m):
@@ -210,8 +205,6 @@ CANDIDATES = [
     ("sum", 2 * math.pi / math.log(3) + 2 * math.pi / math.log(5)),
 ]
 
-# READING
-
 
 def nearest_comb(w):
     best = None
@@ -304,9 +297,6 @@ def report(name, us, cs, asked):
 
 def fmt(c):
     return "%d" % c if float(c).is_integer() else "%.6g" % c
-
-
-# VERBS
 
 
 def verb_control(M):

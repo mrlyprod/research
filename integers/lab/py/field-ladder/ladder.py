@@ -17,8 +17,6 @@ CHUNKS = 256
 DIMS = (2, 3, 4, 5, 6)
 VERBS = {}
 
-# BOX
-
 
 def sig_bounds(dim, cap=None):
     return [
@@ -50,9 +48,6 @@ def multiplicity(dim, sig):
 
 def weight(sig):
     return list(sig)
-
-
-# POLYNOMIALS
 
 
 def polymul(a, b):
@@ -135,9 +130,6 @@ def text(coeffs, var="n"):
         head = "" if c == 1 and i else str(c)
         body.append(head + ("" if i == 0 else var if i == 1 else f"{var}^{i}"))
     return " + ".join(body) if body else "0"
-
-
-# NORM
 
 
 def norm_report(dim):
@@ -238,8 +230,6 @@ def verb_norm():
 
 
 VERBS["norm"] = verb_norm
-
-# SWEEP
 
 
 def label_of(top, signs):
@@ -355,8 +345,6 @@ def verb_ladder():
 
 
 VERBS["ladder"] = verb_ladder
-
-# TABLES
 
 TABLES = {
     (3, (1, 1)): [
@@ -969,9 +957,6 @@ def table(degree, sig):
     return TABLES.get((degree, sig))
 
 
-# FIELDS
-
-
 def square(value):
     if value <= 0:
         return 0
@@ -1177,8 +1162,6 @@ def verb_fields():
 
 VERBS["fields"] = verb_fields
 
-# LAYER
-
 
 def fundamental_part(d):
     f = 1
@@ -1230,9 +1213,6 @@ def layer_report(dim, classes):
             pure["imaginary"] == window
         )
     )
-
-
-# SWAP
 
 
 def splits(coeffs):
@@ -1288,8 +1268,6 @@ def verb_swap():
 
 
 VERBS["swap"] = verb_swap
-
-# HUNTER
 
 
 def merged(degree):
@@ -1385,8 +1363,6 @@ def verb_hunter():
 
 
 VERBS["hunter"] = verb_hunter
-
-# SIGN
 
 
 def field_table(carried):
@@ -1549,8 +1525,6 @@ def verb_sign():
 
 
 VERBS["sign"] = verb_sign
-
-# BEYOND
 
 
 def root_bound(dim):
@@ -1789,8 +1763,6 @@ def verb_beyond():
 
 VERBS["beyond"] = verb_beyond
 
-# POLYA
-
 MISSED = {
     "2.2.37.1": (37, [-9, -1, 1]),
     "3.3.316.1": (316, [2, -4, -1, 1]),
@@ -1897,8 +1869,6 @@ def verb_polya():
 
 
 VERBS["polya"] = verb_polya
-
-# MAIN
 
 
 def main():

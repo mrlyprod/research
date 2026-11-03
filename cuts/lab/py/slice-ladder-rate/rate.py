@@ -14,8 +14,6 @@ FIT = "1.34612251727283689"
 DETS = [2, 12, -66, 3120, -14310, 3894912]
 MARKS = (60, 80, 100, 120)
 
-# DIGIT POLYNOMIAL AND EVEN BLOCK
-
 
 def polymul(a, b):
     out = [0] * (len(a) + len(b) - 1)
@@ -62,9 +60,6 @@ def bareiss(A):
     return sign * M[n - 1][n - 1]
 
 
-# PRINTING
-
-
 def trunc(x, digits):
     e = int(mp.floor(mp.log10(x)))
     whole = int(mp.floor(x * mpf(10) ** (digits - 1 - e)))
@@ -74,9 +69,6 @@ def trunc(x, digits):
 
 def show(x, digits=20):
     return mp.nstr(x, digits)
-
-
-# THE PRODUCT
 
 
 def cosines(terms):
@@ -129,9 +121,6 @@ def verb_product():
         f"the fit candidate {FIT} differs from r_inf by {show(fit - r, 6)} ({show((fit - r) / r, 3)} relative) and shares its first {agree - 1} digits"
     )
     print(f"product done in {time.time() - start:.1f} s")
-
-
-# THE PERRON ROOT
 
 
 def perron(D):

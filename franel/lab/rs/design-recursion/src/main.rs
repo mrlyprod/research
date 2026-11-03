@@ -1,8 +1,6 @@
 use std::sync::atomic::{AtomicUsize, Ordering};
 use std::time::Instant;
 
-// THE DESIGN
-
 const CHUNK_BITS: usize = 16;
 const THREADS: usize = 4;
 const SIEVE_LEVEL: usize = 15;
@@ -19,8 +17,6 @@ fn read3(mut k: u64) -> u64 {
     }
     n
 }
-
-// THE FACTORING
 
 fn small_primes(limit: u64) -> Vec<u64> {
     let mut sieve = vec![true; limit as usize + 1];
@@ -150,8 +146,6 @@ fn mobius(mut n: u64, primes: &[u64]) -> i8 {
     }
 }
 
-// THE WALK
-
 #[derive(Clone, Copy, Debug, PartialEq)]
 struct Rung {
     level: u32,
@@ -247,8 +241,6 @@ fn walk(level: usize, primes: &[u64]) -> Vec<Rung> {
     rungs
 }
 
-// THE READINGS
-
 fn theta(max: u64, level: u32) -> f64 {
     (max as f64).ln() / (level as f64 * 3f64.ln())
 }
@@ -287,8 +279,6 @@ fn trial_bound(level: usize) -> u64 {
     }
     b
 }
-
-// THE LEVEL
 
 fn mu_level(level: usize, primes: &[u64]) -> Vec<i8> {
     let total = 1usize << level;
@@ -547,8 +537,6 @@ fn level_verb(level: usize) {
     println!("check Plancherel: 2^-n sum_I (M^I)^2 = Q_n and both ladders 2^-j sum = E_j at every j <= n and every n = 2..{level}: exact");
     println!("level verb done at {:.1}s", start.elapsed().as_secs_f64());
 }
-
-// THE MULTIPLICATIVE FAKES
 
 fn factor(mut n: u64, primes: &[u64]) -> Option<Vec<u64>> {
     let mut out = Vec::new();

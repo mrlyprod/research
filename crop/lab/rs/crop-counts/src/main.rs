@@ -3,8 +3,6 @@ use mrly_math::bang::factory::create;
 use mrly_math::bang::Code;
 use mrly_math::shape::{census, crop, named, Frac, Shape};
 
-// DESIGNS
-
 fn design(dimension: usize, level: usize) -> Tensor {
     if level == 0 {
         return Tensor::full(vec![1; dimension], 1);
@@ -14,8 +12,6 @@ fn design(dimension: usize, level: usize) -> Tensor {
         _ => create(Code::from(23u128), 3, 3, 2, level).unwrap(),
     }
 }
-
-// EXPOSURE
 
 fn exposed(types: &Tensor) -> usize {
     let dims = types.shape.clone();
@@ -49,8 +45,6 @@ fn exposed(types: &Tensor) -> usize {
     }
     count
 }
-
-// LINES
 
 fn line(label: &str, name: &str, dimension: usize, radius: Frac, types: &Tensor) {
     let shape = named(name, dimension, radius).unwrap();

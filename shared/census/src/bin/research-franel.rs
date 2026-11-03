@@ -11,8 +11,6 @@ const DIGITS: [u64; 2] = [0, 1];
 const ORDER: usize = 81;
 const LIT: [usize; 16] = [1, 2, 6, 8, 14, 15, 18, 20, 28, 30, 31, 36, 37, 39, 40, 81];
 
-// THE FORM
-
 fn dilated(holds: &[bool], mu: &[i8]) -> Vec<i64> {
     let mut out = vec![0i64; ORDER + 1];
     for d in 1..=ORDER {
@@ -41,8 +39,6 @@ fn nodes(dens: &[usize]) -> Vec<(usize, usize)> {
     }
     out
 }
-
-// WRITE
 
 fn main() -> Result<()> {
     let design: Vec<usize> = elements(BASE, &DIGITS, 5)

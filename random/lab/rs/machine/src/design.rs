@@ -1,8 +1,6 @@
 use std::fs;
 use std::path::PathBuf;
 
-// CATALOG
-
 pub const HOODS: [(&str, u32); 3] = [("carpet", 495), ("net", 186), ("void", 341)];
 pub const SPREADS: [&str; 6] = ["id", "shift", "drop", "slide", "turn", "flip"];
 pub const LETTERS: std::ops::RangeInclusive<u32> = 1..=14;
@@ -122,8 +120,6 @@ pub fn splits() -> Vec<Split> {
         .collect()
 }
 
-// SOURCES
-
 const WEIGHTS: [(&str, &[u32]); 8] = [
     ("carpet", &[0, 1, 1]),
     ("net", &[1, 1, 2]),
@@ -230,8 +226,6 @@ pub fn census_check(k: usize) -> Option<(usize, usize)> {
     }
     Some((read, agree))
 }
-
-// RULES
 
 #[derive(Clone)]
 pub enum Mess {

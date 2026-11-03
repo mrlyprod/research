@@ -7,8 +7,6 @@ const DIM: usize = 6;
 const N: usize = 117649;
 const THREADS: usize = 8;
 
-// FIELDS
-
 fn norm2(a: u32, b: u32) -> u32 {
     (a * a + 4 * b * b) % P
 }
@@ -77,8 +75,6 @@ fn field_checks() {
         assert!((a * a * a + 5) % P != 0);
     }
 }
-
-// POINTS
 
 fn coords(i: usize) -> [u32; DIM] {
     let mut c = [0u32; DIM];
@@ -163,8 +159,6 @@ fn chunks<T: Clone>(v: &[T]) -> Vec<Vec<T>> {
     v.chunks(size.max(1)).map(|c| c.to_vec()).collect()
 }
 
-// LINES
-
 fn line_histogram(bits: &Bits) -> [u64; 8] {
     let points = all_points();
     let mut dirs = Vec::new();
@@ -213,8 +207,6 @@ fn line_histogram(bits: &Bits) -> [u64; 8] {
     });
     hist
 }
-
-// SATURATION
 
 fn saturation(bits: &Bits, outside: &[u32]) -> Vec<(u32, u32, u32)> {
     let points = all_points();
@@ -280,8 +272,6 @@ fn summarize(name: &str, values: &[u32]) {
     let shown: Vec<String> = runs.iter().map(|(v, c)| format!("{v}:{c}")).collect();
     println!("{name} histogram value:count {}", shown.join(" "));
 }
-
-// INDEPENDENT CHECK
 
 fn digits_add(a: &[u8; DIM], b: &[u8; DIM]) -> [u8; DIM] {
     let mut c = [0u8; DIM];
@@ -356,8 +346,6 @@ fn membership(inside: &[u32]) -> Vec<bool> {
     }
     member
 }
-
-// MAIN
 
 fn main() {
     let args: Vec<String> = env::args().skip(1).collect();

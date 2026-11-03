@@ -15,8 +15,6 @@ const BASES: [(Ring, Z); 7] = [
     (Ring::Eisenstein, (3, 1)),
 ];
 
-// RING
-
 fn add(z: Z, w: Z) -> Z {
     (z.0 + w.0, z.1 + w.1)
 }
@@ -134,8 +132,6 @@ fn spell_turns(turns: &[usize]) -> String {
         .join("")
 }
 
-// DESIGN
-
 #[derive(Clone, Debug, PartialEq, Eq, Hash)]
 struct Design {
     digits: Vec<Z>,
@@ -195,8 +191,6 @@ fn points(lab: &Lab, design: &Design, level: usize) -> Vec<Z> {
 fn incongruent(lab: &Lab, digits: &[Z]) -> bool {
     (0..digits.len()).all(|i| (0..i).all(|j| !lab.base.congruent(digits[i], digits[j])))
 }
-
-// STEP
 
 fn junction_key(lab: &Lab, design: &Design, a: usize) -> Z {
     let k = design.size();
@@ -271,8 +265,6 @@ fn brute_steps(lab: &Lab, design: &Design, level: usize) -> bool {
     let p = points(lab, design, level);
     p.windows(2).all(|w| lab.norm(sub(w[1], w[0])) == 1)
 }
-
-// MACHINE
 
 struct Machine {
     points: Vec<Z>,
@@ -565,8 +557,6 @@ fn brute_glue(lab: &Lab, design: &Design, level: usize) -> (bool, bool) {
     (place.len() < p.len(), map.len() < p.len())
 }
 
-// GROUP
-
 #[derive(Clone)]
 struct Symmetry {
     perm: Vec<usize>,
@@ -709,8 +699,6 @@ fn same_up_to_turn(lab: &Lab, left: &[Z], right: &[Z]) -> bool {
     (0..lab.n).any(|v| left.iter().all(|&z| target.contains(&lab.turn(z, v))))
         && left.len() == right.len()
 }
-
-// CENSUS
 
 #[derive(Clone, Default)]
 struct Cell {
@@ -1144,8 +1132,6 @@ fn main() {
     }
 }
 
-// WALKS
-
 #[derive(Clone)]
 struct Walk {
     turns: Vec<usize>,
@@ -1340,8 +1326,6 @@ fn run_curves() {
         println!("    {:.2} s", clock.elapsed().as_secs_f64());
     }
 }
-
-// JUNCTION
 
 const BRUTE: usize = 4096;
 
@@ -1589,8 +1573,6 @@ fn deep_witnesses() {
         );
     }
 }
-
-// NAMED
 
 fn as_design(lab: &Lab, radix: &Radix) -> Design {
     Design {

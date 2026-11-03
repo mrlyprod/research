@@ -11,8 +11,6 @@ ROUNDING = 1e-14
 HERE = os.path.dirname(os.path.abspath(__file__))
 CONTROL = os.path.join(HERE, "control.json")
 
-# ENGINE
-
 
 def roots(poly):
     n = len(poly) - 1
@@ -242,9 +240,6 @@ class Engine:
         return value / den, bound / abs(den)
 
 
-# BOX
-
-
 def geometry(rule, left, right, height):
     combs, poles = [], []
     for re, off in rule.combs(0):
@@ -419,9 +414,6 @@ class Census:
             u = eps * cmath.exp(2j * math.pi * i / n)
             total += self.value(s0 + u) / self.engine.rule.deter(two_pow(s0 + u))
         return total / n
-
-
-# VERBS
 
 
 def census(args):
@@ -609,9 +601,6 @@ def census(args):
     )
 
 
-# CLASSES
-
-
 def window_maps(k):
     tables = set()
     for flip in (0, 1):
@@ -665,9 +654,6 @@ def spectrum(rule):
         default=float("inf"),
     )
     return order, mods, gap
-
-
-# TEETH
 
 
 def flank(rule, walls):
@@ -880,9 +866,6 @@ def teeth(args):
     print(f"runtime {time.perf_counter() - start:.2f} s")
 
 
-# BRIDGE
-
-
 def bridge(args):
     start = time.perf_counter()
     a, b = Rule(2, 7, args.peel), Rule(3, 55, args.peel)
@@ -953,9 +936,6 @@ def control(args):
             f" bound {bound:.3e} {'in' if gap <= bound else 'OUT'}"
         )
     print(f"largest gap {worst:.3e}, outside its bound {over} of {len(data['rows'])}")
-
-
-# DIAL
 
 
 def lines_of(combs):

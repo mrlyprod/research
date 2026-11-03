@@ -3,13 +3,9 @@ import * as math from "@mrlyprod/math";
 
 export const units = { math };
 
-// LAYERS
-
 function letter(code: number) {
   return math.bang.MagicLayer.new(new math.name.Bang(code, 2, 2), 2);
 }
-
-// PANEL
 
 function lattice(pen: Pen, frame: Frame, side: number, thick: number, ink: Ink) {
   const step = frame.w / side;
@@ -37,8 +33,6 @@ function panel(pen: Pen, frame: Frame, order: [number, number], tone: Color, ink
   }
   return filled;
 }
-
-// DRAW
 
 export default function draw(pen: Pen, ink: Ink) {
   const frame = pen.frame(0.08);

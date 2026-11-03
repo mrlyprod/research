@@ -3,8 +3,6 @@ import time
 
 GAMMA = 0.5772156649015329
 
-# CONSTANTS
-
 
 def harm(n):
     from math import log
@@ -190,9 +188,6 @@ def wall():
             "  base %d, excluded %2d, k = %d: c_k/c_(k-1) = %.4f against 2(base - 1) = %d"
             % (q, e0, k, cs[1] / cs[0], 2 * (q - 1))
         )
-
-
-# GRID
 
 
 def mu_upto(N):
@@ -534,9 +529,6 @@ def regions():
     lemma_a_prime(10, 5, 30, 60, 3000, 1009)
     lemma_a_prime(5, 0, 45, 40, 3000, 1013)
     print("runtime %.1f s" % (time.time() - t))
-
-
-# BLOCKS
 
 
 def blocks_of(x, q, F):

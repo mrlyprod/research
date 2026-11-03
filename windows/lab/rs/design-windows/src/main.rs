@@ -5,8 +5,6 @@ use std::env;
 use std::hash::{BuildHasherDefault, Hasher};
 use std::time::Instant;
 
-// HASH
-
 #[derive(Default)]
 struct Fx(u64);
 
@@ -25,8 +23,6 @@ impl Hasher for Fx {
 }
 
 type Fast = BuildHasherDefault<Fx>;
-
-// PICTURE
 
 #[derive(Clone, PartialEq, Eq)]
 struct Pic {
@@ -65,8 +61,6 @@ impl Pic {
         out
     }
 }
-
-// DESIGN
 
 #[derive(Clone)]
 struct Design {
@@ -159,8 +153,6 @@ impl Design {
     }
 }
 
-// COUNT
-
 fn depth(base: usize, top: usize) -> usize {
     let mut n = 0;
     while base.pow(n as u32) + 1 < top {
@@ -216,8 +208,6 @@ fn count(design: &Design, top: usize) -> Vec<usize> {
     out
 }
 
-// SCAN
-
 fn brute(pic: &Pic, top: usize) -> Vec<usize> {
     let side = pic.side;
     let mut out = Vec::new();
@@ -253,8 +243,6 @@ fn crate_render(design: &Design, level: usize) -> Pic {
         cells: tensor.bytes().unwrap().to_vec(),
     }
 }
-
-// KIND
 
 fn blocks(pairs: &BTreeSet<[u8; 4]>) -> Option<(usize, u32, u32)> {
     for s in 1..=2usize {
@@ -420,8 +408,6 @@ fn kind(design: &Design) -> String {
     "open".into()
 }
 
-// CENSUS
-
 fn orbits(base: usize) -> Vec<(u32, usize)> {
     let mut sizes: BTreeMap<u32, usize> = BTreeMap::new();
     for code in 0..1u32 << (base * base) {
@@ -447,8 +433,6 @@ fn periodic(p: &[usize]) -> Option<usize> {
         .find(|&(k, v)| 2 * v <= k * k)
         .map(|(k, _)| k)
 }
-
-// FORMULAS
 
 fn carpet(k: i64) -> i64 {
     let mut n = 1i64;
@@ -507,8 +491,6 @@ fn quadratic(p: &[usize]) -> Option<String> {
         ))
     })
 }
-
-// VERBS
 
 fn verb_count(base: usize, top: usize, only: Option<u32>) {
     let codes: Vec<(u32, usize)> = match only {

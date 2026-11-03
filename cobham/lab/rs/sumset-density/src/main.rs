@@ -2,8 +2,6 @@ use std::collections::HashSet;
 use std::env;
 use std::time::Instant;
 
-// BITSET
-
 struct Bits {
     top: u64,
     w: Vec<u64>,
@@ -69,8 +67,6 @@ impl Bits {
     }
 }
 
-// DESIGNS
-
 fn powers(base: u64, top: u64) -> Vec<u64> {
     let mut v = vec![1u64];
     while v
@@ -123,8 +119,6 @@ fn sumset_direct(top: u64) -> Bits {
     }
     s
 }
-
-// SCAN
 
 #[derive(Clone, Copy)]
 struct Ext {
@@ -279,8 +273,6 @@ fn scan(s: &Bits, marks: &[u64]) -> Scan {
     sc
 }
 
-// PRINT
-
 fn dens(c: u64, x: u64) -> String {
     let q = (c as u128) * 1_000_000u128 / (x as u128);
     format!("{}.{:06}", q / 1_000_000, q % 1_000_000)
@@ -411,8 +403,6 @@ fn density(k: u32) {
     );
 }
 
-// ENERGY
-
 fn zeros3(mut t: i64, k: u32) -> Option<u32> {
     let mut z = 0;
     for _ in 0..k {
@@ -541,8 +531,6 @@ fn energies(kmax: u32) {
     }
     println!("{:.2} s", t0.elapsed().as_secs_f64());
 }
-
-// LADDER
 
 const CHUNK: u32 = 8;
 const WIDTH: u64 = 6561;
@@ -870,8 +858,6 @@ fn constants() {
     );
 }
 
-// PHASES
-
 fn window_energy(k: u32, strings: &[(i64, u32)], sigma: f64, zt: &[u8], ct: &[u64]) -> u128 {
     let chunks = k.div_ceil(CHUNK);
     let pad = chunks * CHUNK - k;
@@ -1032,8 +1018,6 @@ fn phases(kmax: u32, grid: usize) {
         grid
     );
 }
-
-// CONTROL
 
 const OEIS_A367090: [u64; 58] = [
     62, 63, 143, 144, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221,

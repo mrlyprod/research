@@ -6,8 +6,6 @@ use std::sync::{Mutex, OnceLock};
 use std::thread;
 use std::time::Instant;
 
-// DESIGNS
-
 const DESIGNS: usize = 57;
 const RS: usize = 57;
 const COIN: usize = 58;
@@ -79,8 +77,6 @@ fn coin(n: u64) -> u64 {
     mix(SALT.wrapping_add(n.wrapping_mul(GOLDEN))) >> 63
 }
 
-// READER
-
 const P3: u64 = 1_594_323;
 const P4: u64 = 1 << 20;
 const P5: u64 = 1_953_125;
@@ -147,8 +143,6 @@ impl Reader {
 fn sign(w: u64, i: usize) -> i64 {
     1 - 2 * ((w >> i) & 1) as i64
 }
-
-// CENSUS
 
 const ZS: [u64; 10] = [7, 11, 13, 17, 31, 47, 73, 127, 257, 1021];
 const BINS: usize = ZS.len();
@@ -568,8 +562,6 @@ fn at(rows: &[(u64, Acc)], x: u64) -> &Acc {
     &rows.iter().find(|r| r.0 == x).unwrap().1
 }
 
-// FOURIER
-
 #[derive(Clone, Copy, Debug, PartialEq)]
 struct Cx {
     re: f64,
@@ -857,8 +849,6 @@ fn flat(xs: &[u64], m: &[f64]) -> Vec<f64> {
     }
     out
 }
-
-// VERBS
 
 const Q: u64 = 1024;
 const FROM: u64 = 1 << 20;

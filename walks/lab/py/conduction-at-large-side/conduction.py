@@ -10,8 +10,6 @@ import scipy.sparse.linalg as spl
 R3 = math.sqrt(3.0)
 SIGMA = 1.0 / R3
 
-# RENDER
-
 
 def odd_digits(n, level, k=1):
     i = np.arange(n**level)
@@ -39,9 +37,6 @@ def obnosov(z):
 
 def fill(n):
     return n * n - ((n - 1) // 2) ** 2
-
-
-# NETWORK
 
 
 def pair(a, b):
@@ -122,9 +117,6 @@ def aitken(g1, g2, g3, r=2.0):
 
 def level(n, lv, k):
     return conductance(render(n, lv, k).astype(float))
-
-
-# CELL
 
 
 def cell(m, z):

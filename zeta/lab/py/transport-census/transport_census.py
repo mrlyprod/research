@@ -11,8 +11,6 @@ sys.path.insert(0, os.path.join(HERE, "..", "zeta-locus"))
 import design_zeta as dz
 import zeta_locus as zl
 
-# DESIGNS
-
 LOCUS = zl.Q3 + zl.Q4 + zl.Q5 + zl.HALF + zl.CONTROL + zl.WIDE
 SHADOW = [(20, tuple(range(19))), (50, tuple(range(49)))]
 RUNGS = [(5, (0, 1, 2, 3)), (10, tuple(range(8)))]
@@ -44,9 +42,6 @@ def build(q, F):
     return zl.build(q, F, dps=25, tol=mp.mpf(10) ** -10)
 
 
-# THE ZERO FREE EDGE
-
-
 def edge(d):
     amin = min(a for a in d.F if a != 0)
     s = d.alpha + mp.mpf("0.05")
@@ -56,9 +51,6 @@ def edge(d):
             return s, v, e
         s += mp.mpf("0.05")
     return None, None, None
-
-
-# THE POLES
 
 
 def poledist(d, x0, x1, y0, y1):
@@ -72,9 +64,6 @@ def poledist(d, x0, x1, y0, y1):
             dy = max(y0 - yp, yp - y1, mp.mpf(0))
             best = min(best, mp.sqrt(dx * dx + dy * dy))
     return best
-
-
-# THE SWEEP
 
 
 def sweep(q, F, ymax, nsub):
@@ -122,9 +111,6 @@ def sweep(q, F, ymax, nsub):
     }
 
 
-# THE BOX
-
-
 def certify(q, F, z, half=HALF, n=16):
     d = build(q, F)
     f = dz.Cache(d)
@@ -147,8 +133,6 @@ def certify(q, F, z, half=HALF, n=16):
 
 
 VERBS = {}
-
-# CENSUS
 
 
 def census(which=None, ymax=YMAX):
@@ -263,8 +247,6 @@ def census(which=None, ymax=YMAX):
 
 
 VERBS["census"] = census
-
-# LAW
 
 
 def nullbox(q, F, j, half=HALF):
@@ -472,8 +454,6 @@ def law(which=None, ymax=YMAX):
 
 
 VERBS["law"] = law
-
-# THE CROSSING
 
 
 def root(which=None, ymax=YMAX):

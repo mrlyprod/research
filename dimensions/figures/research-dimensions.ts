@@ -10,8 +10,6 @@ const LATTICE = 13;
 
 export const units = { math };
 
-// FACTS
-
 function lattice(): { real: number; poles: Point[] } {
   const design = new math.ladder.Design(3, [0, 1]);
   const real = design.abscissa();
@@ -31,8 +29,6 @@ function control(): Point[] {
   if (poles.some((p) => p.length !== 2)) throw new Error("research-dimensions: a control pole that is not a pair");
   return poles;
 }
-
-// DRAW
 
 export default function draw(pen: Pen, ink: Ink) {
   const { real, poles } = lattice();

@@ -2,8 +2,6 @@ use std::sync::atomic::{AtomicUsize, Ordering};
 
 use crate::design::Design;
 
-// GCD
-
 fn gcd(mut a: u64, mut b: u64) -> u64 {
     while b != 0 {
         let rest = a % b;

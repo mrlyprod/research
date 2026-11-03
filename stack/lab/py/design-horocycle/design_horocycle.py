@@ -21,9 +21,6 @@ def clock(label):
     print(f"[{time.time() - T0:6.1f}s] {label}")
 
 
-# ARITHMETIC
-
-
 def mobius(n):
     mu = np.ones(n + 1, dtype=np.int8)
     mu[0] = 0
@@ -92,8 +89,6 @@ def brute_nu(c, members, mu):
     )
 
 
-# WINDOWS
-
 GL_X, GL_W = np.polynomial.legendre.leggauss(2000)
 GL_U = 1.5 + 0.5 * GL_X
 GL_WU = 0.5 * GL_W
@@ -125,8 +120,6 @@ def balanced(fn):
     shift = moment(fn, 3.0) / moment(fn, 2.0)
     return lambda u: fn(u) * (np.asarray(u, dtype=float) - shift), shift
 
-
-# BRIDGE
 
 BX, BW = np.polynomial.legendre.leggauss(80)
 
@@ -287,9 +280,6 @@ def bridge(mu, phi):
         ch = h * sum(int(phi[c]) * g_transform(f, c * y) for c in range(1, 2**k + 1))
         print(f"full set: {k}  {(ch - math.pi / 2 * 6 / math.pi**2 * area_f) / y:.6f}")
     clock("bridge done")
-
-
-# METER
 
 
 def grid():

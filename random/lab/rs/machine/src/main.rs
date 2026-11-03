@@ -15,8 +15,6 @@ const TOP: usize = 6;
 const SLACK: f64 = 1.5;
 const FINAL: usize = 4;
 
-// CELLS
-
 #[derive(Clone)]
 struct Cell {
     split: Split,
@@ -62,8 +60,6 @@ fn data_dir() -> std::path::PathBuf {
     repo.join("data")
         .join(here.strip_prefix(&repo).unwrap_or(&here))
 }
-
-// REPORT
 
 fn extra_text(e: &Option<Extra>) -> String {
     e.as_ref().map_or(String::new(), |e| {
@@ -203,8 +199,6 @@ fn symmetries(n: usize, m: &Machine, rounds: usize) -> [usize; 3] {
     }
     counts
 }
-
-// VERBS
 
 fn tail(x: f64, count: u64) -> f64 {
     let z = x / std::f64::consts::SQRT_2;
@@ -692,8 +686,6 @@ fn controls(best: &Cell) {
     }
 }
 
-// HONEST
-
 struct Row {
     tag: String,
     rs: Vec<Option<usize>>,
@@ -885,8 +877,6 @@ fn headline() {
     );
 }
 
-// SPEED
-
 const REPS: usize = 7;
 const RSTAR: [(u32, [usize; 3]); 2] = [(4, [24, 15, 68]), (5, [45, 22, 141])];
 
@@ -931,8 +921,6 @@ fn speeds() {
         t.elapsed().as_secs_f64()
     );
 }
-
-// DIAGNOSIS
 
 fn active<G: Gen<State = Grid>>(g: &G, rounds: usize, batches: u64) -> Vec<f64> {
     let mut sum = vec![0f64; rounds + 1];
@@ -1026,8 +1014,6 @@ fn diagnose() {
         );
     }
 }
-
-// BRANCH 3
 
 fn translation_symmetric(fill: &[bool], n: usize, d: (i64, i64)) -> bool {
     let w = n as i64;

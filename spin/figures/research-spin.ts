@@ -10,8 +10,6 @@ const RINGS = 1600;
 
 export const units = { core, math };
 
-// FIELD
-
 function mirror() {
   const carpet = math.two.create(495, 3, LEVEL, 0, 3);
   if (carpet.shape[0] !== SIDE || carpet.shape[1] !== SIDE)
@@ -43,8 +41,6 @@ function profile(): Profile {
   memo = { rings, lo, hi };
   return memo;
 }
-
-// DRAW
 
 export default function draw(pen: Pen, ink: Ink) {
   const { rings, lo, hi } = profile();

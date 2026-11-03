@@ -12,8 +12,6 @@ LO = 2
 HI = 40
 PRIMES = list(sympy.primerange(2, 100))
 
-# DIGIT POLYNOMIAL
-
 
 def polymul(a, b):
     out = [0] * (len(a) + len(b) - 1)
@@ -57,9 +55,6 @@ def coefficient(P, x):
 
 def half_width(D):
     return (D - 1) // 2
-
-
-# THREE BUILDS OF THE EVEN BLOCK
 
 
 def census_block(D):
@@ -107,9 +102,6 @@ def split_blocks(D):
     ]
     odd = [[at(c, cp) - at(c, -cp) for cp in range(1, H + 1)] for c in range(1, H + 1)]
     return F, even, odd
-
-
-# EXACT DETERMINANTS
 
 
 def bareiss(A):
@@ -166,9 +158,6 @@ def valuation(x, p):
         x //= p
         v += 1
     return v
-
-
-# SELF TEST
 
 
 def selftest():
@@ -231,9 +220,6 @@ def selftest():
         "reproduces the ladder row: v_2(det M_even) = %d at D = 7, det = %d"
         % (valuation(d7, 2), d7)
     )
-
-
-# TABLE
 
 
 def determinants():
@@ -328,9 +314,6 @@ def verb_primes():
         "random-residue expectation of the count at p = 5, 7, 47: %.1f, %.1f, %.1f of %d"
         % (len(dets) / 5, len(dets) / 7, len(dets) / 47, len(dets))
     )
-
-
-# FULL FACTORISATION THROUGH PARI
 
 
 def gp_factor(dets):

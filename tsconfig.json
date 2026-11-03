@@ -22,6 +22,6 @@
       "@mrlyprod/tile": ["../tile/js/index"]
     }
   },
-  "include": ["*/figures/*.ts", "shared/figures/*.ts", "test/*.ts"],
+  "include": ["*/figures/*.ts", "shared/figures/*.ts"],
   "exclude": ["**/node_modules/**", "**/data/**", "**/target/**"]
 }

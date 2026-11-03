@@ -1,7 +1,5 @@
 use crate::factor::mobius;
 
-// FAMILIES
-
 pub struct Family {
     pub q: u64,
     pub digits: Vec<u64>,
@@ -83,8 +81,6 @@ pub fn families() -> Vec<Family> {
     out
 }
 
-// SWEEP
-
 pub fn sweep(q: u64, digits: &[u64], lmax: usize, visit: &mut impl FnMut(u64, usize)) {
     fn rec(
         v: u64,
@@ -129,8 +125,6 @@ fn twist(a: u64, v: u64, mu_v: i8) -> i64 {
     }
 }
 
-// ORDERED SWEEP
-
 pub fn sweep_length(q: u64, digits: &[u64], length: usize, visit: &mut impl FnMut(u64)) {
     fn rec(v: u64, len: usize, q: u64, digits: &[u64], length: usize, visit: &mut impl FnMut(u64)) {
         if len == length {
@@ -147,8 +141,6 @@ pub fn sweep_length(q: u64, digits: &[u64], length: usize, visit: &mut impl FnMu
         }
     }
 }
-
-// METER
 
 pub fn run_family(fam: &Family, primes: &[u64]) -> Outcome {
     let l = fam.lmax;

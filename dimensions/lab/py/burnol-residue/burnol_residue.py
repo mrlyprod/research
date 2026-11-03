@@ -9,8 +9,6 @@ from mpmath import iv
 iv.prec = 128
 BOX = iv.mpc(iv.mpf([-1, 1]), iv.mpf([-1, 1]))
 
-# EXACT PRINTING
-
 
 def to_frac(t):
     sign, man, exp, bc = t
@@ -95,9 +93,6 @@ def rat(p, q):
     return iv.mpf(p) / iv.mpf(q)
 
 
-# DESIGN
-
-
 class Design:
     def __init__(self, q, F):
         assert 0 in F and len(F) >= 2
@@ -140,9 +135,6 @@ class Design:
         return lev
 
 
-# TAILS
-
-
 def poch_row(a, T):
     pr = [iv.mpf(1)]
     for l in range(T + 1):
@@ -167,9 +159,6 @@ def choose_I(a, rho, eps):
         if hi(hyp_tail(a, rho, T)) < eps:
             return T + 2
         T += 2
-
-
-# ENGINE ONE: THE LEVEL RECURSION
 
 
 def level_limit(D, k, L, I):
@@ -220,9 +209,6 @@ def level_limit(D, k, L, I):
     return R, R / D.logq, E
 
 
-# ENGINE TWO: THE FUNCTIONAL EQUATION WITH DIRECT SUMS
-
-
 def direct_enclosure(D, k, Lp, M):
     s = D.s(k)
     q, N = D.q, D.N
@@ -246,9 +232,6 @@ def direct_enclosure(D, k, Lp, M):
     tailM = (D.N1 * D.amin_pow(0) / (1 - rat(1, q ** (M + 1))) * hyp_tail(a, rho0, M)).b
     R = R + tailM * BOX
     return R, R / D.logq
-
-
-# THE COLUMN
 
 
 def column(D, k, lam0, mmax):
@@ -276,9 +259,6 @@ def column_closed(D, k, lam0):
     c1 = -(s - 1) * lam0 * rat(b1.numerator, b1.denominator)
     c2 = (s - 1) * (s - 2) * lam0 * rat(b2.numerator, b2.denominator)
     return [c1, c2], [b1, b2]
-
-
-# CONTROLS IN FLOATS
 
 
 def dist_box(z, cre, cim):
@@ -349,9 +329,6 @@ def control_fourier(D, k, J, M):
         else float("nan")
     )
     return ck, s * ck * math.log(D.q), float(Phi.min()), float(Phi.max()), dev
-
-
-# REPORT
 
 
 def report(D, k, L, second=False, controls=False, col=0, d=15):

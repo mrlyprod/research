@@ -10,8 +10,6 @@ const BASE: u64 = 3;
 const DIGITS: [u64; 2] = [0, 1];
 const ORDER: usize = 81;
 
-// THE NODES
-
 fn nodes_of(dens: &[usize]) -> Vec<(usize, usize)> {
     let mut out = Vec::new();
     for &b in dens {
@@ -63,8 +61,6 @@ fn dilated(holds: &[bool], mu: &[i8]) -> Vec<i64> {
     }
     out
 }
-
-// WRITE
 
 fn main() -> Result<()> {
     let design: Vec<usize> = elements(BASE, &DIGITS, 5)

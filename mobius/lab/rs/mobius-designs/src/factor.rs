@@ -1,5 +1,3 @@
-// SIEVES
-
 pub fn small_primes(limit: usize) -> Vec<u64> {
     let mut comp = vec![false; limit + 1];
     let mut primes = Vec::new();
@@ -44,8 +42,6 @@ pub fn mu_sieve(limit: usize) -> Vec<i8> {
     mu
 }
 
-// MODULAR ARITHMETIC
-
 fn mulmod(a: u64, b: u64, n: u64) -> u64 {
     ((a as u128 * b as u128) % n as u128) as u64
 }
@@ -71,8 +67,6 @@ fn gcd(mut a: u64, mut b: u64) -> u64 {
     }
     a
 }
-
-// PRIMALITY
 
 const WITNESSES: [u64; 12] = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37];
 
@@ -109,8 +103,6 @@ pub fn is_prime(n: u64) -> bool {
     }
     true
 }
-
-// FACTOR SPLITTING
 
 pub fn isqrt(n: u64) -> u64 {
     let mut r = (n as f64).sqrt() as u64;
@@ -176,8 +168,6 @@ fn brent(n: u64) -> u64 {
         c += 1;
     }
 }
-
-// MOBIUS
 
 pub fn mobius(n: u64, primes: &[u64]) -> i8 {
     if n == 1 {

@@ -9,8 +9,6 @@ from mpmath import cos as mpcos
 from mpmath import expjpi, iv, mp, mpc, mpf, quad
 from mpmath import log as mplog
 
-# DESIGNS
-
 
 def cube_minus(q, D, drop):
     return (q, D, [v for v in itertools.product(range(q), repeat=D) if v != drop])
@@ -34,8 +32,6 @@ ROSTER = [
     ("base 10 missing 1", base_missing(10, 1)),
     ("base 10 missing 5", base_missing(10, 5)),
 ]
-
-# CHECKS
 
 FAILS = []
 
@@ -61,9 +57,6 @@ def close(t0):
     print("every asserted row matches")
 
 
-# FLOAT TRANSFORM
-
-
 def mask(F, D):
     k = len(F)
 
@@ -78,9 +71,6 @@ def mask(F, D):
 
 def lip_of(F):
     return (2 * math.pi / len(F)) * sum(sum(abs(c) for c in v) for v in F)
-
-
-# ONE DIGIT, EXACT
 
 
 def digit_sums():
@@ -145,9 +135,6 @@ def entropy_bound():
     )
 
 
-# GRID SUMS
-
-
 def grid_sum(q, D, F, L):
     f, _k = mask(F, D)
     n = q**L
@@ -208,9 +195,6 @@ def grids(rows):
             print(f"{name} L={L:2d}: sum {S:16.4f} exponent {e:.6f}{tag}")
 
 
-# SANDWICH, FLOAT
-
-
 def sandwich(name, q, D, F, N, m, want_lo, want_hi, chunk=2048):
     t0 = time.time()
     f, _k = mask(F, D)
@@ -240,9 +224,6 @@ def sandwich(name, q, D, F, N, m, want_lo, want_hi, chunk=2048):
     print(
         f"{name} N={N} m={m}: scan [{vals.min():.6f}, {vals.max():.6f}] slack {slack:.6f} threshold {thr:.4f} -> alpha_1 > {el:.6f}{tl} and < {eh:.6f}{th}  ({time.time() - t0:.1f}s)"
     )
-
-
-# INTERVAL KERNEL
 
 
 def dn(x):
@@ -340,9 +321,6 @@ def kernel_check(pts=400, Q=1944):
     )
 
 
-# SANDWICH, CERTIFIED
-
-
 def sandwich_iv(name, q, D, F, N, m, chunk=2048):
     t0 = time.time()
     Q = q**N * m
@@ -379,9 +357,6 @@ def sandwich_iv(name, q, D, F, N, m, chunk=2048):
         f"{name} N={N} m={m} certified: min > {cl:.6f}, max < {ch:.6f}, slack {slack:.6f}, threshold q^(ND/2) = {thr:.4f} -> alpha_1 > {el:.4f} and < {eh:.4f}  [{'KILL' if cl > thr else 'no kill'}]  ({time.time() - t0:.1f}s)"
     )
     return el, eh
-
-
-# WINDOW STATES
 
 
 def window_state(q, D, nd):
@@ -526,9 +501,6 @@ def certify_windows(rows):
         )
 
 
-# MOMENTS
-
-
 def crit(b):
     return (1 + math.log(b - 1) / math.log(b) / 2) / 5
 
@@ -616,9 +588,6 @@ def moments(rows):
         print(f"  ({time.time() - t0:.1f}s)")
 
 
-# LEMMA A PRIME
-
-
 def m_of(q, d):
     m, p = 1, q
     while 2 * p <= d:
@@ -661,9 +630,6 @@ def lemma_a(name, q, D, F, dmax, want):
         print(
             f"  d={d:4d} ord={r:3d} m_d={md:2d} rate {rate:.6f}{tag} Lemma A' rate c^(1/m_d) {c ** (1 / md):.6f} Lemma A rate c^(1/ord) {c ** (1 / r):.6f}"
         )
-
-
-# COROLLARIES
 
 
 def counts_mod(q, D, F, d, n):
@@ -745,9 +711,6 @@ def base_peel(name, q, D, F, ms, nmax):
     print(
         f"  worst ratio {worst[0]:.6f} at m={m} n={n} (m_m {mm}): error {math.ceil(err * 1e7) / 1e7:.7f} against A' {math.ceil(bp * 1e6) / 1e6:.6f} and A {math.ceil(ba * 1e6) / 1e6:.6f}"
     )
-
-
-# THE ORDER BAND
 
 
 def hat_missing(b, a0, th):
@@ -861,8 +824,6 @@ def two_dim_moments(rows, ss):
                 f"{name} {nd} digit-vectors s={s:.6f}: lambda {lam:.6f} exponent in X = q^(D M) units {math.ceil(e * 1e6) / 1e6:.6f}{tag} criterion {math.ceil(crit(q**D) * (2 - s) * 1e6) / 1e6:.6f}"
             )
 
-
-# THE LEAST BASE
 
 TWIDDLE = {}
 
@@ -1688,9 +1649,6 @@ def base_ladder(bases, nd, m, a0s):
     return out
 
 
-# THE PAIR FAMILY
-
-
 def pair_missing(b, a, c):
     return (b, 1, [(d,) for d in range(b) if d != a and d != c])
 
@@ -1968,9 +1926,6 @@ def pair_ladder(bases, a, c, nd, m):
         + f"  ({time.time() - t0:.1f}s)"
     )
     return out
-
-
-# VERBS
 
 
 def main():

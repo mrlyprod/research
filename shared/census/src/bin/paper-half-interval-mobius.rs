@@ -11,8 +11,6 @@ const SAMPLES: usize = 1600;
 const FIFTH: u64 = 94939;
 const QUARTER: u64 = 3789;
 
-// CERTIFICATE
-
 fn rate(base: u64) -> f64 {
     let b = base as f64;
     let fill = (b + 1.0) / 2.0;
@@ -34,8 +32,6 @@ fn odd(x: f64) -> u64 {
         n + 1
     }
 }
-
-// WRITE
 
 fn main() -> Result<()> {
     assert!(margin(FIFTH - 2, 0.2) < 0.0 && margin(FIFTH, 0.2) > 0.0);

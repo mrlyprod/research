@@ -10,8 +10,6 @@ mp.dps = 80
 PI = iv.pi
 TOP = 70
 
-# CARRY MACHINE
-
 
 def polymul(a, b):
     out = [0] * (len(a) + len(b) - 1)
@@ -235,9 +233,6 @@ def show(x, digits=8):
     return mp.nstr(up(x), digits)
 
 
-# BASE 3 INTERVALS
-
-
 def base3_constants():
     tg = {i: 2 * iv.cos(PI / 3**i) for i in range(2, TOP + 1)}
     hg = {i: 2 * iv.cos(2 * PI / 3**i) for i in range(2, TOP + 1)}
@@ -380,9 +375,6 @@ def verb_base3():
         " ".join(f"{D}:{K}" for D, K in certs.items()),
     )
     print(f"base3 done in {time.time() - start:.1f} s")
-
-
-# BASE 5 INTERVALS
 
 
 def g5(x):
@@ -572,9 +564,6 @@ def perron(M):
     return p, pl, resid
 
 
-# OTHER BASES
-
-
 def verb_bases():
     start = time.time()
     report = {}
@@ -640,9 +629,6 @@ def verb_bases():
     print(f"bases done in {time.time() - start:.1f} s")
 
 
-# DETERMINANTS AND VALUATIONS
-
-
 def verb_odd():
     start = time.time()
     p = (1 << 61) - 1
@@ -686,9 +672,6 @@ def verb_odd():
         f"v_2(det M_even) at base 3, D = 4 mod 6, D = 4..118: max {max(rows3)}, first five {rows3[:5]}, below D - 1 + v_2(D+2) everywhere; 2-adic elimination matches Bareiss at D = 2..30"
     )
     print(f"odd done in {time.time() - start:.1f} s")
-
-
-# ANCHORS
 
 
 def verb_anchors():

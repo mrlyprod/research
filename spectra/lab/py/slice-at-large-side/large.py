@@ -14,8 +14,6 @@ N = sp.symbols("n")
 B = sp.symbols("b", positive=True)
 FIVE = {"g": (0, 0), "g+b": (0, -1), "g+1": (1, 0), "g+b-1": (-1, -1), "g+b+1": (1, -1)}
 
-# DIGIT POLYNOMIALS
-
 
 def weights(code):
     w = [0, 0, 0, 0]
@@ -115,9 +113,6 @@ def brute(word, code):
     )
 
 
-# THE WORDS
-
-
 def verb_words():
     print(
         "WORDS: brute-force slice counts against the carry product, finest letter on the left"
@@ -170,9 +165,6 @@ def verb_words():
         % (not leak)
     )
     print("mismatches=%s" % bad)
-
-
-# THE LETTER, SYMBOLIC
 
 
 @cache
@@ -337,9 +329,6 @@ def verb_letter():
     )
 
 
-# THE DRIFT
-
-
 def ink_logs(sides, marks, rows):
     v, scale, side2, out = [1.0, 0.0], 0.0, 0.0, {}
     for i, b in enumerate(sides, 1):
@@ -413,9 +402,6 @@ def verb_drift():
                 ", ".join("%.6f" % e for e in rich),
             )
         )
-
-
-# THE CONSTANTS
 
 
 def neville(xs, ys):
@@ -525,9 +511,6 @@ def verb_constants():
             ),
         )
     )
-
-
-# THE DESIGNS
 
 
 def exact_sign(s, q):
@@ -681,9 +664,6 @@ def verb_designs():
     print("mismatches=%s" % mism)
 
 
-# THE CLOSED FORM AT SIDES 3 MOD 4
-
-
 def verb_closed():
     print(
         "CLOSED: sides 3, 7, 11, .. coarsest first, the generating function and the constant"
@@ -749,8 +729,6 @@ def verb_closed():
         )
     )
 
-
-# RUN
 
 VERBS = {
     "words": verb_words,

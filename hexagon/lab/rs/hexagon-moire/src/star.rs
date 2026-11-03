@@ -379,8 +379,6 @@ pub fn cell_frame(rule: &Rule) {
     );
 }
 
-// WIDTH FAMILY
-
 struct Width {
     k: i64,
     b: i64,

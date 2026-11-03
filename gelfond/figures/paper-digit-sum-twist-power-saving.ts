@@ -8,8 +8,6 @@ const TWIST = 1 / 2;
 const PATH = 200000;
 const GAMMA = 0.85;
 
-// FACTS
-
 function digit(v: number) {
   let re = 0;
   let im = 0;
@@ -83,8 +81,6 @@ function segments(shift: number) {
   }
   return out;
 }
-
-// DRAW
 
 export default function draw(pen: Pen, ink: Ink) {
   facts();

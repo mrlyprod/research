@@ -1,8 +1,6 @@
 use crate::menergy::{bits_of, boxes, column, qpow, Bits};
 use crate::signed::{cells, mobius, spf_table, sweep};
 
-// THE PIECES
-
 pub fn iroot(n: u128, k: u32) -> u64 {
     let mut r = (n as f64).powf(1.0 / k as f64) as u64;
     while r > 0 && (r as u128).pow(k) > n {
@@ -56,8 +54,6 @@ pub fn signs(b: &[f64]) -> Vec<f64> {
         })
         .collect()
 }
-
-// THE ROW
 
 pub struct VaughanRow {
     pub r: u128,
@@ -127,8 +123,6 @@ pub fn vaughan_row(
         nz,
     }
 }
-
-// THE STUDY
 
 const BAND: (f64, f64) = (0.2343, 2.4727);
 
@@ -301,8 +295,6 @@ pub fn run() {
         piece[3], piece[4], edge, nzall.0, nzall.1, bmaxall
     );
 }
-
-// TESTS
 
 #[cfg(test)]
 mod tests {

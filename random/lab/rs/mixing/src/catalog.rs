@@ -1,7 +1,5 @@
 use std::collections::HashSet;
 
-// CATALOG
-
 pub const NEIGHBOURHOODS: [(&str, u32); 3] = [("carpet", 495), ("net", 186), ("void", 341)];
 pub const SOURCES: [(&str, &[u32]); 4] = [
     ("primes", &[2, 3, 5, 7]),
@@ -60,8 +58,6 @@ pub fn four() -> Vec<u32> {
         .collect()
 }
 
-// TORUS
-
 pub fn symmetries(n: usize) -> Vec<Vec<usize>> {
     let mats: [[i64; 4]; 8] = [
         [1, 0, 0, 1],
@@ -114,8 +110,6 @@ fn reps(masks: &[u32], group: &[&Vec<usize>]) -> Vec<u32> {
         })
         .collect()
 }
-
-// ROUND
 
 pub struct Round {
     pub bits: usize,
@@ -237,8 +231,6 @@ impl Round {
         })
     }
 }
-
-// CELLS
 
 pub struct Spec {
     pub n: usize,

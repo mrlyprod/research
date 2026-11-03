@@ -1,8 +1,6 @@
 use mrly_math::spirograph::{frame, trace, track, Kind, Pencil};
 use std::f64::consts::{PI, TAU};
 
-// THE TRACK
-
 fn rim(a: i64, b: i64, out: bool) -> i64 {
     if out {
         a + b
@@ -27,8 +25,6 @@ fn gcd(mut x: i64, mut y: i64) -> i64 {
     }
     x
 }
-
-// THE ROOTS
 
 fn bisect(f: &dyn Fn(f64) -> f64, mut lo: f64, mut hi: f64) -> f64 {
     let sign = f(lo).signum();
@@ -59,8 +55,6 @@ fn sweep(f: &dyn Fn(f64) -> f64, lo: f64, hi: f64, steps: usize) -> Vec<f64> {
     out
 }
 
-// THE CROSSING EQUATION
-
 fn arm_roots(a: i64, b: i64, out: bool, lam: f64, eps: f64, steps: usize) -> Vec<f64> {
     let (r, bf) = (rim(a, b, out) as f64, b as f64);
     let f = |d: f64| r * (bf * d).sin() - eps * lam * bf * (r * d).sin();
@@ -74,8 +68,6 @@ fn arms(a: i64, b: i64, out: bool, lam: f64, steps: usize) -> usize {
 fn crossings(a: i64, b: i64, out: bool, lam: f64, steps: usize) -> usize {
     a as usize * arms(a, b, out, lam, steps) / 2
 }
-
-// THE TANGENCY
 
 fn tangent_angles(a: i64, b: i64, out: bool, steps: usize) -> Vec<f64> {
     let m = skew(a, b, out);
@@ -120,8 +112,6 @@ fn law(a: i64, b: i64, out: bool, lam: f64, steps: &[f64]) -> i64 {
     a * (b - 1) + sign * a * past
 }
 
-// THE SIGNS
-
 fn parity(e: i64) -> i64 {
     if e % 2 == 0 {
         1
@@ -144,8 +134,6 @@ fn turns(b: i64, r: i64) -> i64 {
     walk.extend(marks.iter().map(|&(_, _, s)| s));
     1 + walk.windows(2).filter(|w| w[0] != w[1]).count() as i64
 }
-
-// THE POLYLINE
 
 fn seat(p: (f64, f64)) -> Pencil {
     Pencil {
@@ -300,8 +288,6 @@ fn stray(x: f64, y: f64, axes: i64, tilt: f64) -> f64 {
         .fold(f64::MAX, f64::min)
 }
 
-// THE SURDS
-
 #[derive(Clone, Copy)]
 struct Surd {
     a: i128,
@@ -454,8 +440,6 @@ fn quadratic_roots(q: &[i128]) -> Vec<Surd> {
         .collect()
 }
 
-// THE PAIRS
-
 fn pair_arms(a: i64, b: i64, out: bool, p: (f64, f64), q: (f64, f64), steps: usize) -> usize {
     let (r, bf) = (rim(a, b, out) as f64, b as f64);
     let sw = if out { 1.0 } else { -1.0 };
@@ -476,8 +460,6 @@ fn pair_arms(a: i64, b: i64, out: bool, p: (f64, f64), q: (f64, f64), steps: usi
 fn pair_count(a: i64, b: i64, out: bool, p: (f64, f64), q: (f64, f64), steps: usize) -> usize {
     a as usize * pair_arms(a, b, out, p, q, steps) / 2
 }
-
-// THE ALGEBRA
 
 fn poly_add(p: &[i128], q: &[i128], sp: i128, sq: i128) -> Vec<i128> {
     let n = p.len().max(q.len());
@@ -831,8 +813,6 @@ fn signs(top: i64) {
     println!("  frequency pairs {pairs} to {top} failures {wrong}");
 }
 
-// THE WORDS
-
 fn cutting(b: i64, r: i64) -> Vec<bool> {
     let mut marks: Vec<(i64, bool)> = Vec::new();
     for j in 1..r {
@@ -874,8 +854,6 @@ fn words(top: i64) {
     }
     println!("  frequency pairs {pairs} to {top} failures {wrong} minority letter loose {loose}");
 }
-
-// THE FOLDS
 
 fn lift(b: i64, r: i64, d: f64) -> f64 {
     (r as f64 * (b as f64 * d).sin() / (b as f64 * (r as f64 * d).sin())).abs()

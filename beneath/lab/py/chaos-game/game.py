@@ -8,8 +8,6 @@ import numpy as np
 
 SEED = 20261030
 
-# DESIGNS
-
 
 def corners(dim, base=2):
     return list(product(range(base), repeat=dim))
@@ -52,9 +50,6 @@ def tv(p, q):
     return sum(abs(p.get(c, 0) - q.get(c, 0)) for c in keys) / 2
 
 
-# REGISTER
-
-
 def register():
     bad, checked = 0, 0
     for base, dim in [(2, 1), (2, 2), (3, 2), (2, 3)]:
@@ -81,9 +76,6 @@ def register():
         f"register: x_n = sum a_(n+1-j) b^-j + b^-n x_0 and cell_k(x_n) = reversed last k draws, {checked} checks, {bad} mismatches"
     )
     assert bad == 0
-
-
-# FORGETTING
 
 
 def weights(F, uniform):
@@ -165,9 +157,6 @@ def forget():
     )
 
 
-# PAINTING
-
-
 def de_bruijn(m, k):
     a = [0] * (m * k)
     seq = []
@@ -246,9 +235,6 @@ def paint():
             f"paint: m={m} k={k}: perfect cyclic paintings {count}, (m!)^(m^(k-1))/m^k = {best}, schedule length m^k+k-1 = {m**k + k - 1}"
         )
         assert count == best
-
-
-# COVER
 
 
 def gauss(M, rhs):
@@ -346,8 +332,6 @@ def cover():
         if k == 1:
             assert ie == coupon
 
-
-# SQUARE
 
 CORNERS = 4
 CYCLE = [0, 1, 3, 2]
@@ -798,8 +782,6 @@ def square():
     width_three()
 
 
-# FAMILIES
-
 GASKET = [(0, 0), (1, 0), (0, 1)]
 DIAGONAL = [(0, 0), (1, 1)]
 
@@ -1064,11 +1046,6 @@ def families():
     mosaic()
     slices()
 
-
-# MAIN
-
-
-# MAIN
 
 VERBS = {
     "register": register,

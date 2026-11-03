@@ -3,8 +3,6 @@ use std::time::Instant;
 
 use crate::design::Design;
 
-// CHUNKS
-
 const CHUNK: u32 = 9;
 const CHUNK_SPAN: u64 = 19683;
 
@@ -36,8 +34,6 @@ fn mask_of(mut x: u64, table: &[u32], chunks: u32, full: u32) -> u32 {
     }
     mask & full
 }
-
-// SIEVE
 
 pub fn mobius(limit: usize) -> Vec<i8> {
     let mut mu = vec![0i8; limit];
@@ -124,8 +120,6 @@ pub fn mobius_range(lo: u64, hi: u64, primes: &[u64], mu: &mut Vec<i8>, rest: &m
     }
 }
 
-// TRANSFORMS
-
 fn pass<T: Copy + std::ops::AddAssign, const BIT: usize>(buf: &mut [T]) {
     for chunk in buf.chunks_exact_mut(2 * BIT) {
         let (low, high) = chunk.split_at_mut(BIT);
@@ -155,8 +149,6 @@ fn zeta<T: Copy + std::ops::AddAssign>(buf: &mut [T], level: u32) {
         }
     }
 }
-
-// BITS
 
 #[cfg(target_arch = "aarch64")]
 #[inline(always)]
@@ -249,8 +241,6 @@ impl Ring for u128 {
     }
 }
 
-// THRESHOLDS
-
 #[derive(Clone, Copy, PartialEq, Eq, Debug)]
 pub enum Mode {
     Auto,
@@ -341,8 +331,6 @@ pub fn caps_for(level: u32, dimension: usize, mode: Mode) -> Caps {
     }
 }
 
-// RESIDUE AUTOMATON
-
 pub fn residue_count(design: &Design, level: u32, modulus: u64) -> u128 {
     let corners = design.corners();
     let width = modulus as usize;
@@ -384,8 +372,6 @@ pub fn residue_count(design: &Design, level: u32, modulus: u64) -> u128 {
     }
     cur[0]
 }
-
-// CONTEXT
 
 const SHELF: u32 = 6;
 
@@ -982,8 +968,6 @@ fn pair_term<R: Ring>(
     acc
 }
 
-// PROFILE
-
 pub const METHODS: [&str; 5] = ["residue", "bitset", "rows", "cube", "tail"];
 
 #[derive(Clone, Copy, Debug, Default)]
@@ -1032,8 +1016,6 @@ impl Profile {
         println!("cpu seconds {:.3}", total as f64 * 1e-9);
     }
 }
-
-// LEVELS
 
 #[derive(Clone, Copy, Debug)]
 pub struct Level {

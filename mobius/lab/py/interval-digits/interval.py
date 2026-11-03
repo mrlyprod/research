@@ -11,8 +11,6 @@ C_P = math.sqrt(2) - 4 / math.pi
 K_2 = 2 * (4 / 3 + (36 / 35) * (7 * ZETA3 / 8 - 1))
 TAIL = 3.4
 
-# CLOSED FORMS
-
 
 def x0_float(N):
     return (N / math.pi) * (
@@ -103,9 +101,6 @@ def gup(x, d=3):
 
 def odd_up(N):
     return N if N % 2 else N + 1
-
-
-# WALL
 
 
 def wall_at(d, label, lo, hi, mono):
@@ -216,9 +211,6 @@ def wall():
         f"  Maynard 2022 alpha_q below 1/5: one missing digit from {one} (calibration), consecutive half interval from {half}"
     )
     print(f"wall in {time.time() - t0:.1f}s")
-
-
-# CHECK
 
 
 def grid_sums(N, ts):
@@ -390,9 +382,6 @@ def check():
     print(f"check in {time.time() - t0:.1f}s")
 
 
-# RATE
-
-
 def power(N, M, it):
     n = (N + 1) // 2
     t = (np.arange(M) + 0.5) / M
@@ -442,9 +431,6 @@ def rate():
             f"  one-step reading G(1/2)/fill < base^{e} first at odd base {hi}, G(1/2)/fill - (2 sqrt2/pi) log base = {one(hi) - 2 * math.sqrt(2) / math.pi * math.log(hi):.5f} there"
         )
     print(f"rate in {time.time() - t0:.1f}s")
-
-
-# METER
 
 
 def meter():

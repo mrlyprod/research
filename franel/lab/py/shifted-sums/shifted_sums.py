@@ -37,8 +37,6 @@ PAGE_ENDPOINT = [
 ]
 LOWS = f"L=vector(2^{LOW},r,6*fromdigits(binary(r-1),3));"
 
-# PARI
-
 
 def gp(script):
     out = subprocess.run(
@@ -93,9 +91,6 @@ def sequential(top):
 
 def spread(items):
     return [items[k::WORKERS] for k in range(WORKERS) if items[k::WORKERS]]
-
-
-# THE WALK
 
 
 def chunk_sums():
@@ -190,9 +185,6 @@ def verb_walk():
     for m, sg, n in flips[-SHOW:]:
         print(f"  n = {m:10d}  {'+' if sg > 0 else '-'}  6w + 1 = {n}")
     print(f"walk {t1 - t0:.1f} s, rewalk {t2 - t1:.1f} s, {WORKERS} gp processes")
-
-
-# THE CONTROL
 
 
 def smooth23(x):

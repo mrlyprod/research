@@ -22,8 +22,6 @@ from level_tiles import (
     zero_set,
 )
 
-# ORDERS AND HADAMARD TRIPLES
-
 
 def orders(E, b):
     m0 = min(E)
@@ -80,9 +78,6 @@ def sumset(parts):
     return out
 
 
-# STAGE FORM
-
-
 def digits(f, B, J):
     return [(f // B**j) % B for j in range(J)]
 
@@ -127,9 +122,6 @@ def stage_form(F, b):
         ):
             return [list(x) for x in Ls]
     return None
-
-
-# FOURIER
 
 
 def hat_mu(F, b, xi):
@@ -203,9 +195,6 @@ def q_report(F, b, spec_of_n, ns, xi):
     for n in ns:
         out.append(1 - q_values(F, b, spec_of_n(n), xi).min())
     return out
-
-
-# VERBS
 
 
 def census(bfull=16, bmax=30, cap=130_000):
@@ -555,9 +544,6 @@ def pq(cells=((30, 30), (36, 36), (42, 42), (48, 48), (66, 36)), k=6, chunk=4000
     print("time %.1f s" % (time.time() - t0))
 
 
-# CONVERSE
-
-
 def rad(n):
     return math.prod(p for p, _ in factor(n))
 
@@ -848,9 +834,6 @@ def converse(cells=((5, 42), (7, 26), (11, 20), (13, 20)), chunk=200000):
     print("time %.1f s" % (time.time() - t0))
 
 
-# SEVEN DIGITS
-
-
 def smooth_orders(b):
     ms = [1]
     for q, _ in factor(b):
@@ -1092,9 +1075,6 @@ def seven(full=(30, 60), built=(30, 60, 90, 120, 210)):
     for b in built:
         built_census(b)
     print("time %.1f s" % (time.time() - t0))
-
-
-# ELEVEN AND THIRTEEN DIGITS
 
 
 def fibre_patterns(m, p, limit=None):

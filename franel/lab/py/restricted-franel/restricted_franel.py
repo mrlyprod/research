@@ -11,8 +11,6 @@ BASE10 = (10, frozenset(range(9)), "base 10, digit 9 missing")
 
 TWO_PI_I = 2j * pi
 
-# THE DESIGN
-
 
 def holds(base, digits, n):
     if n == 0:
@@ -57,9 +55,6 @@ def totients(n):
     return phi
 
 
-# THE DILATED MERTENS SUMS
-
-
 def mertens_dilated(keep, mu, q, d):
     c = np.arange(1, q // d + 1, dtype=np.int64)
     return int(mu[c][keep[d * c]].sum())
@@ -67,9 +62,6 @@ def mertens_dilated(keep, mu, q, d):
 
 def mertens_design(keep, mu, q):
     return mertens_dilated(keep, mu, q, 1)
-
-
-# THE LITERAL FOURIER SIDE, DENOMINATOR SET
 
 
 def literal_denominator(keep, q, freqs):
@@ -107,9 +99,6 @@ def ladder_check(keep, mu, q):
         if round(v.real) != int(mu[b]) or abs(v.imag) > 0.5:
             bad += 1
     return total, worst, at, bad
-
-
-# THE STRICT SET
 
 
 def design_list(keep, q):
@@ -162,9 +151,6 @@ def strict_weights(keep, mu, phi, q):
     return plain, counted, ratio
 
 
-# THE GCD KERNEL
-
-
 def kernel_sum(keep, mu, q):
     ms = {}
     for d in range(1, q + 1):
@@ -201,9 +187,6 @@ def fourier_side(keep, q, cut):
         total += float((np.abs(s) ** 2 / ks.astype(float) ** 2).sum())
         k = hi + 1
     return 2.0 * total, m
-
-
-# THE BACKWARD SCAN
 
 
 def kernel_float(keep, mu, w, q):
@@ -247,9 +230,6 @@ def scan_backward(design, qmax):
     return seen, bad, best, at, tail, tail_at
 
 
-# THE CONTROL
-
-
 def farey_delta_square(keep, q):
     nodes = []
     for b in range(1, q + 1):
@@ -273,8 +253,6 @@ def reflection_closed(keep, q):
                 return False
     return True
 
-
-# THE VERBS
 
 FREQS = [1, 2, 3, 4, 5, 6, 12]
 
@@ -470,9 +448,6 @@ def verb_strict():
             )
 
 
-# THE DILATE AUTOMATON
-
-
 def dilate_matrix(base, digits, d):
     t = [[0] * d for _ in range(d)]
     for r in range(d):
@@ -657,9 +632,6 @@ def verb_dilate():
         prev = b
 
 
-# THE CONVERSE
-
-
 def digit_gap(digits):
     f = sorted(digits)
     g = 0
@@ -799,9 +771,6 @@ def verb_converse():
     print(
         f"   K_d / K_(q-free part) over d <= 200 in [{ratio[lo]:.4f} at d = {lo}, {ratio[hi]:.4f} at d = {hi}]"
     )
-
-
-# THE SANDWICH
 
 
 def jordan_two(n):
@@ -974,9 +943,6 @@ def verb_sandwich():
         print(
             f"   {base:4d} | {sorted(digits)!s:15s} | {1 in digits!s:6s} | {qmax:5d} | {len(consts):5d} | {sorted(consts)} | {at26}"
         )
-
-
-# THE ACCEPTING LAW
 
 
 def padded_strings(base, digits, level):
@@ -1291,8 +1257,6 @@ def verb_accepting():
             f"{exact:17.4f} | {npin:19d} | {npin * pinned / len(members):.4f}   {time.time() - t0:.1f} s"
         )
 
-
-# THE REPUNIT DILATE
 
 REPUNIT_DESIGNS = (
     (3, frozenset({0, 1}), "base 3, digits {0,1}", 17, 24, 10),

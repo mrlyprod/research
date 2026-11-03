@@ -8,8 +8,6 @@ import numpy as np
 
 DELTA = {2: 0.5312805062772051416, 3: 0.705660908028}
 
-# TOTIENTS
-
 
 def totients(n):
     phi = np.arange(n + 1, dtype=np.int64)
@@ -17,9 +15,6 @@ def totients(n):
         if phi[p] == p:
             phi[p::p] -= phi[p::p] // p
     return phi
-
-
-# QUOTIENTS
 
 
 def quotients(a, b):
@@ -44,9 +39,6 @@ def rule(a, b, m):
     if not qs:
         return True
     return max(qs[:-1], default=1) <= m and qs[-1] <= m + 1
-
-
-# CROSSINGS
 
 
 def egcd(a, b):
@@ -111,9 +103,6 @@ def crossings(bound, heights):
         m2 = int(phi[1 : math.isqrt(2 * Q * Q) + 1].sum())
         assert closed == mQ and opened == mQ1 and half == m2
         print(f"{Q}  1/{Q * Q}  {closed}  {mQ}  {opened}  {mQ1}  {half}  {m2}")
-
-
-# BRIDGE
 
 
 def bump_smooth(u):
@@ -208,9 +197,6 @@ def bridge(kmax, nodes):
             print(
                 f"{k}  {h:.3e}  {Q}  {bumps}  {lhs:.15f}  {rhs:.15f}  {abs(lhs - rhs):.1e}  {err:+.3e}  {err / h**0.75:+.4f}  ({time.time() - t0:.1f}s)"
             )
-
-
-# CENSUS
 
 
 def census_walk(m, qmax):
@@ -323,9 +309,6 @@ def census(jmax2, jmax3, jcontrol, jcheck):
             print(
                 f"{j}  {Q}  {n}  {power:.3f}  {n / power:.5f}  {one}  {dev}  {two}  {min(band):.5f} {max(band):.5f}"
             )
-
-
-# MAIN
 
 
 def main():

@@ -1,7 +1,5 @@
 use std::collections::BTreeMap;
 
-// SPANS
-
 pub struct Span {
     pub bits: usize,
     pub dim: usize,
@@ -63,8 +61,6 @@ impl Rng {
     }
 }
 
-// BLOCKS
-
 pub fn closure(gens: &[&[u32]], v: u32, bits: usize, full: &[bool], rng: &mut Rng) -> Option<Span> {
     let size = 1usize << bits;
     let mut u = Span::new(bits);
@@ -119,8 +115,6 @@ pub fn is_block(gens: &[&[u32]], u: &Span) -> bool {
             .all(|&g| (0..size).all(|x| u.has(h[x ^ g as usize] ^ h[x])))
     })
 }
-
-// CYCLES
 
 pub fn cycles(perm: &[u32]) -> Vec<usize> {
     let mut seen = vec![false; perm.len()];

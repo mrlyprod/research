@@ -9,8 +9,6 @@ const LOOPS = 50;
 const STRANDS = 2 * SIDE;
 const HALF = Math.PI / 2;
 
-// ARCS
-
 let memo: number[] | undefined;
 
 function arcs() {
@@ -40,8 +38,6 @@ function arcs() {
   memo = drawn.cells;
   return memo;
 }
-
-// DRAW
 
 export default function draw(pen: Pen, ink: Ink) {
   const cells = arcs();

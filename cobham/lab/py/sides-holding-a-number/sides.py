@@ -10,8 +10,6 @@ A030979_URL = (
     "https://raw.githubusercontent.com/oeis/oeisdata/main/seq/A030/A030979.seq"
 )
 
-# MEMBERSHIP
-
 
 def held(p, q, n):
     m = 2 * q
@@ -193,9 +191,6 @@ def period(top):
     print(f"runtime {time.time() - t0:.2f} s")
 
 
-# EISENSTEIN
-
-
 def eisenstein(top):
     t0 = time.time()
     tests = bad = full_match = 0
@@ -219,9 +214,6 @@ def eisenstein(top):
         f"sum of floor(pN/q) over odd N < 2q equals (2p-1)(q-1)/2 + p at all {tests}; its parity agrees with the symbol at {full_match}"
     )
     print(f"runtime {time.time() - t0:.2f} s")
-
-
-# INTEGER COUNT
 
 
 def in_k(k, n):
@@ -342,9 +334,6 @@ def second(top):
     print(f"runtime {time.time() - t0:.2f} s")
 
 
-# FAMILY
-
-
 def carries_ok(k, p, a):
     c = 0
     i = 0
@@ -431,9 +420,6 @@ def family():
         f"least k in K_3 cap K_5 outside K_15: {a}; least in K_15 outside K_3: {b}; outside K_5: {cc}; least k in K_15 with 15 | C(2k,k): {d}"
     )
     print(f"runtime {time.time() - t0:.2f} s")
-
-
-# FINITE INTERSECTIONS
 
 
 def next_in(n, lo):
@@ -536,9 +522,6 @@ def deep(e, sides):
     print(
         f"sides {sides}: integers below 10^{e}: {[2 * k for k in got]}, {nodes} nodes, {time.time() - t0:.2f} s"
     )
-
-
-# IRRATIONALS
 
 
 def weyl(top, levels):

@@ -18,8 +18,6 @@ NAMED = {
     (1, -1, -1, -1): "tribonacci",
 }
 
-# WINDOWS
-
 
 def digits_of(w, d, k):
     a = 1 << d
@@ -31,9 +29,6 @@ def word_of(ds, d):
     for c in ds:
         w = (w << d) | c
     return w
-
-
-# GROUP
 
 
 def bd_apply(c, perm, flip, d):
@@ -82,9 +77,6 @@ def orbit_walk(maps, ncodes):
         reps.append(c)
         sizes.append(len(orb))
     return reps, sizes
-
-
-# TRANSFER MATRIX
 
 
 def transfer(code, d, k):
@@ -154,9 +146,6 @@ def divides(p, q):
     return all(c == 0 for c in q)
 
 
-# PARI
-
-
 def pari_roots(polys, scratch):
     body = (
         "for(i = 1, #V, p = V[i]; f = factor(p); best = -1; bg = 0; "
@@ -183,9 +172,6 @@ def pari_roots(polys, scratch):
         cs = tuple(int(t) for t in vec.strip().strip("[]").split(","))
         got[int(idx) - 1] = (cs, val.strip(), float(sec))
     return [got[i] for i in range(len(polys))]
-
-
-# CENSUS
 
 
 def burnside(d, k, reversal):
@@ -392,9 +378,6 @@ def main():
     print(f"total {time.time() - t_all:.2f}s")
 
 
-# CLOSED FORM
-
-
 def classes_closed(k):
     if k % 2 == 0:
         m = k // 2
@@ -443,9 +426,6 @@ def verb_burnside(top=11):
     )
     print("words under the same group k=1..8  " + ", ".join(str(v) for v in words[:8]))
     print(f"burnside {time.time() - t0:.2f}s")
-
-
-# DETERMINANT
 
 
 def det_bareiss(m):
@@ -522,9 +502,6 @@ def block_support(k):
                 return False
         cover += sorted(pair)
     return sorted(cover) == list(range(s_n))
-
-
-# PERRON
 
 
 def pari_minpolys(polys, scratch):

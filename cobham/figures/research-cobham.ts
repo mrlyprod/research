@@ -8,8 +8,6 @@ const K = 7;
 const PX = 6;
 const SIDE = 2 ** K;
 
-// GASKETS
-
 type Cells = ReturnType<typeof math.two.create>;
 
 let memo: { two: Cells; three: Cells } | undefined;
@@ -25,8 +23,6 @@ function gaskets() {
   memo = { two, three };
   return memo;
 }
-
-// DRAW
 
 export default function draw(pen: Pen, ink: Ink) {
   const { two, three } = gaskets();

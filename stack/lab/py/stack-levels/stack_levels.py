@@ -3,8 +3,6 @@ from math import gcd
 
 import numpy as np
 
-# GENERAL LAW
-
 
 def shadow_mask(base, keep, level):
     span = base**level
@@ -36,9 +34,6 @@ def cross_cov(mask_f, mask_g, m, n):
     mu_f = Fraction(int(mask_f.sum()), len(mask_f))
     mu_g = Fraction(int(mask_g.sum()), len(mask_g))
     return cross_mean(mask_f, mask_g, m, n) - mu_f * mu_g
-
-
-# PARITY CHECK
 
 
 def parity_integral(m, n):
@@ -120,9 +115,6 @@ def check_parity():
         "1-periodic odd strip: covariance g^2/(4mn), %s at (3,5), nonzero at %d of the %d coprime pairs to 40"
         % (cross_cov(strip, strip, 3, 5), live, coprime)
     )
-
-
-# CARPET STACK
 
 
 def carpet_mask(level):
@@ -241,9 +233,6 @@ def check_carpet():
     )
 
 
-# LEVELS
-
-
 def level_product_mask(level):
     top = carpet_mask(1)
     span = 3**level
@@ -294,9 +283,6 @@ def check_levels():
         "so level L' at scale 3n is not redundant against level L at scale n"
         % (cross_cov(masks[1], masks[2], 1, 3), cross_cov(masks[2], masks[1], 1, 3))
     )
-
-
-# DESIGNS
 
 
 def design_mask(base, removed):
@@ -367,9 +353,6 @@ def check_designs():
         "%d of %d pairs exactly zero, because the centred shadow is even and the centred strip odd "
         "under x -> -x" % (zero, 1600)
     )
-
-
-# GRAM
 
 
 def jordan2(k):

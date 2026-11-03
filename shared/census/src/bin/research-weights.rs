@@ -8,8 +8,6 @@ const SAMPLES: usize = 720;
 const CELLS: [(i64, i64); 3] = [(0, 0), (2, 0), (0, 2)];
 const CURVES: [&str; 4] = ["lattice", "smooth", "thin", "fat"];
 
-// FOLDS
-
 fn root(costs: [f64; 3]) -> f64 {
     let (mut lo, mut hi) = (0.0f64, 8.0f64);
     for _ in 0..200 {
@@ -108,8 +106,6 @@ fn length_side(nums: [u64; 3], den: u64) -> (f64, Vec<f64>) {
         .collect();
     (alpha, ys)
 }
-
-// WRITE
 
 fn main() -> Result<()> {
     let window = (48.0, 48.0 + 6.0 * 2.0f64.ln());

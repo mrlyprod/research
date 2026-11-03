@@ -11,8 +11,6 @@ SEED = 20260930
 EXHAUSTIVE = [(2, 1), (2, 2), (2, 3), (2, 4), (3, 1), (3, 2), (4, 1), (4, 2)]
 NEAR = [(2, 5), (2, 6), (3, 3), (3, 4), (4, 3)]
 
-# WINDOWS
-
 
 def all_windows(a, k):
     return list(product(range(a), repeat=k))
@@ -28,9 +26,6 @@ def letters(rule):
 
 def is_product(rule, a, k):
     return len(rule) == len(letters(rule)) ** k
-
-
-# SPLICING
 
 
 def straddles(u, v, rule, k):
@@ -56,9 +51,6 @@ def broken_pair(rule, k):
 
 def closed(rule, k):
     return pair_count(rule, k) == len(rule) ** 2
-
-
-# TRANSFER
 
 
 def transfer(rule, a, k):
@@ -108,9 +100,6 @@ def bound_of(rule, k):
 
 def gap_of(w, k):
     return math.log2(w * w / (w * w - 1)) / (2 * k)
-
-
-# SWEEP
 
 
 class Tally:
@@ -198,9 +187,6 @@ def sweep_random(a, k, density, count, rng):
         rule = frozenset(w for w in wins if rng.random() < density)
         tally.take(rule, a, k)
     return tally
-
-
-# VERBS
 
 
 def verb_golden():

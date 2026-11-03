@@ -4,8 +4,6 @@ use mrly_num::prime::is_prime;
 
 const SAMPLED: [(usize, usize); 7] = [(3, 5), (3, 9), (5, 15), (9, 15), (5, 7), (7, 21), (9, 21)];
 
-// CORRELATION LAW
-
 pub fn the_moire_correlation_law_for_odd() -> Result<(), String> {
     let (mut worst, mut at) = (0.0f64, (0, 0));
     for m in (3..=99).step_by(2) {
@@ -50,8 +48,6 @@ fn closed(m: usize, n: usize) -> f64 {
     let spread = |side: i128| 4 * side * side - (side - 1) * (side - 1);
     (echo * (2 * apart + echo)) as f64 / (apart as f64 * ((spread(m) * spread(n)) as f64).sqrt())
 }
-
-// PRIME DETECTOR
 
 pub fn the_stack_is_an_exact_prime() -> Result<(), String> {
     let (mut primes, mut composites) = (0, 0);

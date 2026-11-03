@@ -1,8 +1,6 @@
 use crate::root_floor;
 use crate::transfer::{levels, masks_seen, rung, show};
 
-// PATTERN LAW
-
 fn mask_of(steps: [i64; 4], reach: usize) -> u16 {
     let mut mask = 0u16;
     for column in 0..reach.min(3) {
@@ -40,8 +38,6 @@ fn window(steps: [i64; 4]) -> Option<(i64, i64)> {
     }
 }
 
-// LINE ALPHABET
-
 fn line_alphabet(span: i64) -> Vec<(u16, i64, i64)> {
     let mut found: Vec<Option<(i64, i64)>> = vec![None; 512];
     for a in -span..=span {
@@ -73,8 +69,6 @@ fn line_alphabet(span: i64) -> Vec<(u16, i64, i64)> {
         .collect()
 }
 
-// SHELL AGAINST THE LINE
-
 fn compare(label: &str, radius: u64) {
     let deep = levels(radius);
     let seen = masks_seen(radius, 1, deep - 3);
@@ -97,8 +91,6 @@ fn compare(label: &str, radius: u64) {
         show(&curved)
     );
 }
-
-// FROZEN SLOPE
 
 fn frozen(label: &str, radius: u64) {
     let deep = levels(radius);
@@ -209,8 +201,6 @@ fn frozen(label: &str, radius: u64) {
     }
 }
 
-// CENTRE SEAT
-
 fn centre(label: &str, radius: u64) {
     let deep = levels(radius);
     for level in 0..deep.saturating_sub(1) {
@@ -247,8 +237,6 @@ fn centre(label: &str, radius: u64) {
         );
     }
 }
-
-// STRAIGHT LINE LADDER
 
 fn ones(value: u64, depth: u32) -> u32 {
     let mut mask = 0u32;
@@ -309,8 +297,6 @@ fn ladder(name: &str, num: i128, den: i128, off: i128, depth: u32) {
         independent.powf(1.0 / depth as f64)
     );
 }
-
-// RESONANCE TRACKING
 
 fn coprime(a: i128, b: i128) -> bool {
     let mut x = a;
@@ -516,8 +502,6 @@ fn blind(sigma_num: i128, sigma_den: i128, back: u32) -> u64 {
     1
 }
 
-// BOX AGAINST BLOCK
-
 fn heights(radius: u64) -> Vec<i128> {
     let r = radius as i128;
     let square = r * r;
@@ -669,8 +653,6 @@ fn blocks(label: &str, radius: u64, level: u32) -> u64 {
 fn t_of(r: i128, u: i128) -> f64 {
     u as f64 / ((r * r - u * u) as f64).sqrt()
 }
-
-// PASS
 
 pub fn derive() {
     let alphabet = line_alphabet(9);

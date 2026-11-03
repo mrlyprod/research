@@ -11,8 +11,6 @@ from mpmath import log as mplog
 from mpmath import mp, mpf, quad
 from mpmath import pi as mppi
 
-# THE TREE'S MACHINERY
-
 HERE = os.path.dirname(os.path.abspath(__file__))
 NORMS = os.path.join(
     HERE,
@@ -57,9 +55,6 @@ def expect(ok, name):
     return "ok" if ok else "MISMATCH"
 
 
-# EXACT ROWS
-
-
 def one_digit():
     total = Fraction(1) + 2 * Fraction(1, 2)
     top = hi7(math.log(2) / LN3)
@@ -78,9 +73,6 @@ def entropy_floor():
         f"entropy floor: int_0^1 log|cos(pi t)| dt = {float(jensen):.12f} against -log 2 = {float(exact):.12f} (Jensen's formula, int log|1 + e(u)| = 0), so I_level >= 2^(-level) and alpha_1 >= 1 - log_3 2 = log(3/2)/log 3 > {fl:.7f} {expect(abs(jensen - exact) < mpf(10) ** -9, 'jensen')}"
     )
     return fl
-
-
-# SHIFT SANDWICH
 
 
 def sandwich(N, m, chunk=2048):
@@ -118,9 +110,6 @@ def sandwich(N, m, chunk=2048):
         f"CVY sandwich N={N} m={m}: min_x Sigma_N > {cl:.6f}, max_x Sigma_N < {ch:.6f}, slack {slack:.2e} -> alpha_1 in ({el:.7f}, {eh:.7f})  ({time.time() - t0:.1f}s)"
     )
     return el, eh, cl, ch
-
-
-# WINDOW MACHINE
 
 
 def masked_perron(G, nd, keep, iters=6000, tol=1e-14):
@@ -173,9 +162,6 @@ def window(nd, m):
     return el, eh, tree
 
 
-# READING
-
-
 def grid_reading(top):
     prev = None
     for L in range(1, top + 1):
@@ -187,9 +173,6 @@ def grid_reading(top):
         step = "" if prev is None else f"  log_3 step {math.log(s / prev) / LN3:.6f}"
         print(f"  reading Sigma_{L}(0) = {s:.6f}{step}")
         prev = s
-
-
-# VERBS
 
 
 def check():

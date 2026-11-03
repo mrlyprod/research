@@ -7,8 +7,6 @@ const CARPET = 7;
 const RULE = [2, 3, 5, 7].reduce((r, v) => r | (1 << v), 0);
 const TILES = 8;
 
-// ROUND
-
 function word(outer: number, inner: number) {
   let mask = 0;
   for (let i = 0; i < SIDE; i++)
@@ -76,8 +74,6 @@ function census(round: (x: number) => number) {
     throw new Error(`research-random: ${cycles} cycles, longest ${longest}, ${fixed} fixed; want 258, 24865, 3`);
   return next;
 }
-
-// DRAW
 
 export default function draw(pen: Pen, ink: Ink) {
   const next = census(machine());

@@ -30,9 +30,6 @@ def down(x, d):
     return (n - 1 if n > x * f else n) / f
 
 
-# BAND AUTOMATON
-
-
 def succ(j, z1, z2):
     if j % 3 == 0:
         return (j // 3, (j + z1) // 3)
@@ -76,9 +73,6 @@ def degree_profile(z1, z2):
             if not lo <= t <= hi:
                 raise ValueError("the band is not invariant at " + str((z1, z2, j)))
     return cnt, edges, hi - lo + 1
-
-
-# COLUMN TRANSFER
 
 
 def slot_profile(k, n):
@@ -155,9 +149,6 @@ def brute_lift_count(k, n, prim=True):
         if v % w == 0:
             out += 1
     return out
-
-
-# THE FIXED MATRIX AT n = bk
 
 
 def block_head(b, j, K=64):
@@ -268,9 +259,6 @@ def block_bracket(b):
             )
     cs = [Fraction(3 * sum(A[u][t] for u in C) - 2**b, 3) for t in sorted(C)]
     return sorted(dev), min(cs), max(cs), len(C), r0s, max(rhos)
-
-
-# EXACT ALGEBRA
 
 
 def poly_div(P, Q):
@@ -476,9 +464,6 @@ def lam_block(b, terms=0, maxord=0, kbig=160):
     )
 
 
-# THE LIFT COUNT
-
-
 def lift_support(word):
     k = len(word) + 1
     T = [i + 1 for i, c in enumerate(word) if c]
@@ -610,9 +595,6 @@ def irreducible_count(word):
     return len(irreducibles(D))
 
 
-# THE FLOOR AND THE MODEL
-
-
 def floor_count(k):
     w = (3**k - 1) // 2
     pw = [3**i for i in range(k)]
@@ -635,8 +617,6 @@ def model_by_top(k):
         out[t] = acc * 2**k
     return out
 
-
-# THE FITS
 
 TQ = (
     12.706,
@@ -764,9 +744,6 @@ def dec_up(x, d):
     return str(n // 10**d) + "." + str(n % 10**d).rjust(d, "0")
 
 
-# SWEEP
-
-
 def sweep(k):
     w = (3**k - 1) // 2
     hist = {}
@@ -779,9 +756,6 @@ def sweep(k):
         if d:
             hist[d] = hist.get(d, 0) + 2
     return hist, 2 * cand
-
-
-# VERBS
 
 
 def cmd_automaton(args):

@@ -44,8 +44,6 @@ fn complex_div(z: (f64, f64), w: (f64, f64)) -> (f64, f64) {
     ((z.0 * w.0 + z.1 * w.1) / den, (z.1 * w.0 - z.0 * w.1) / den)
 }
 
-// IFS
-
 fn iterate(maps: &[Map], level: usize) -> Vec<(f64, f64)> {
     let mut out = vec![(0.0f64, 0.0f64)];
     for _ in 0..level {
@@ -156,8 +154,6 @@ fn face_off(name: &str, design: &Radix, maps: &[Map], free: bool, note: &str) {
     println!("  {note}");
 }
 
-// TERDRAGON
-
 fn lsystem(level: usize) -> Vec<u8> {
     let mut out = b"F".to_vec();
     for _ in 0..level {
@@ -259,8 +255,6 @@ fn run_compare() {
     assert!(plain > 1e-3, "the untwisted code 7 matches after all");
 }
 
-// KOCH
-
 fn run_koch() {
     let design = koch().unwrap();
     println!(
@@ -306,8 +300,6 @@ fn run_koch() {
         assert!(worst < 1e-9, "level {level} misses by {worst}");
     }
 }
-
-// NAMED
 
 fn report(name: &str, design: &Radix) {
     let ring = design.ring();
@@ -379,8 +371,6 @@ fn run_named() {
     println!("  distinct equals 2^(L-1) + 1 at every level to {top}");
 }
 
-// TODAY
-
 fn run_today() {
     let level = 2;
     let mut checked = 0usize;
@@ -446,8 +436,6 @@ fn run_today() {
         Some(where_) => println!("  first mismatch {where_}"),
     }
 }
-
-// CENSUS
 
 fn cycles(map: &[usize]) -> u32 {
     let mut seen = vec![false; map.len()];
@@ -584,8 +572,6 @@ fn run_census() {
             .join(" ")
     );
 }
-
-// AFFINE
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 struct Alg {

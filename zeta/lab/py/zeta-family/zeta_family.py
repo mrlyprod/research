@@ -94,8 +94,6 @@ SETS = {
 }
 CAP = {(10, tuple(range(8))): 25.0}
 
-# THE LATTICE
-
 
 def period(q):
     return 2 * mp.pi / mp.log(q)
@@ -157,9 +155,6 @@ def classify(zs, lat, rho):
     cof = [z for z, kd, p in kinds if kd == "cofactor"]
     lv1 = [z for z, kd, p in kinds if kd == "tooth" and p["lvl"] == 1]
     return sec, tth, cof, lv1
-
-
-# THE HUNT
 
 
 def hunt(d, dp, f, x0, x1, res, seeds, fine=0):
@@ -378,9 +373,6 @@ def sweep(q, F, ymax, show=True):
     return out
 
 
-# SYMMETRY
-
-
 def symmetry(got):
     line(
         "SYMMETRY expectation on the full set c = 1/2 = alpha/2 and every zero self paired,",
@@ -563,9 +555,6 @@ def shadow(got):
         )
 
 
-# THE TRANSPORT READING
-
-
 def mertens(got):
     line(
         "MERTENS a zero at Re rho > alpha forces the Mertens exponent of the design's own",
@@ -605,9 +594,6 @@ def mertens(got):
         "and from the second family alone",
         sum(1 for t, a, ra, rs in rows if rs is not None and mp.re(rs) > a),
     )
-
-
-# COUNT
 
 
 def wcount(q, F, ymax):
@@ -731,9 +717,6 @@ def count(which, ymax):
         )
 
 
-# THE FULL SET LIMIT
-
-
 def limit(got):
     line(
         "LIMIT expectation: if RH is the alpha -> 1 face of MrlyMath the second family's",
@@ -806,9 +789,6 @@ def limit(got):
             "  FULL SET controls max abs",
             " ".join(tag(*x[1]) + " " + mp.nstr(x[7], 6) for x in full),
         )
-
-
-# STUDY
 
 
 def main():

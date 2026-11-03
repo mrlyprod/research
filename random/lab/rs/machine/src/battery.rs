@@ -1,7 +1,5 @@
 use crate::gen::{counter_words, transpose, Gen, Words, CTR, LANES, OUT};
 
-// BARS
-
 pub const SAC_LOG: usize = 14;
 pub const MAIN_LOG: usize = 20;
 pub const BM_WORDS: usize = 1024;
@@ -15,8 +13,6 @@ pub const BM_BAR: i64 = 10;
 pub const RANK_BAR: f64 = 27.0;
 pub const SCREEN_BAR: f64 = 2048.0 + 4.5 * 64.0;
 pub const TESTS: [&str; 6] = ["monobit", "sac", "walsh", "cube", "complexity", "rank"];
-
-// SCREEN
 
 pub fn screen_stat(base: &Words, flip: &[Words]) -> f64 {
     let mut s = 0.0;
@@ -160,8 +156,6 @@ pub fn lite<G: Gen>(g: &G, from: usize, cap: usize) -> Option<usize> {
     (from..=cap).find(|&r| (r..r + RUN).all(ok))
 }
 
-// SAC
-
 pub struct Sac {
     pub flips: Vec<Vec<u32>>,
 }
@@ -203,8 +197,6 @@ impl Sac {
         self.flips[r].iter().all(|&f| f > 0)
     }
 }
-
-// MAIN RUN
 
 #[derive(Clone)]
 pub struct Acc {
@@ -365,8 +357,6 @@ pub fn complexity(words: &[u64]) -> usize {
     }
     l
 }
-
-// VERDICT
 
 pub struct Verdict {
     pub rstar: Option<usize>,
@@ -544,8 +534,6 @@ pub fn last(v: &Verdict) -> String {
         .collect::<Vec<_>>()
         .join("+")
 }
-
-// CORRECTIONS
 
 pub const SIDES: [usize; 2] = [8, 16];
 pub const BIG_BAR: f64 = 24.0;

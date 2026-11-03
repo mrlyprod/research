@@ -1,5 +1,3 @@
-// RANDOM
-
 pub struct Rng(u64);
 
 impl Rng {
@@ -28,8 +26,6 @@ impl Rng {
     }
 }
 
-// COLUMNS
-
 pub fn column(q: u64, digits: &[u64], l: usize) -> Vec<u128> {
     let mut out = vec![0u128];
     for _ in 0..l {
@@ -57,8 +53,6 @@ pub fn random_column(x: u128, count: usize, rng: &mut Rng) -> Vec<u128> {
     }
     out
 }
-
-// GLOBAL ENERGY
 
 pub trait Prod: Copy + Ord {
     fn times(self, other: Self) -> Self;
@@ -132,8 +126,6 @@ pub fn energy_of(vals: &[u128], cap: usize) -> (u128, u32) {
     }
 }
 
-// SHIFT SOLUTIONS
-
 fn live(k: u128, m: i64) -> u128 {
     if m >= 1 {
         let mut p = k - 1;
@@ -166,8 +158,6 @@ pub fn shift_excess(k: u128, l: usize) -> u128 {
     t
 }
 
-// MEMBERSHIP
-
 pub struct Bits {
     w: Vec<u64>,
 }
@@ -195,8 +185,6 @@ pub fn bits_of(vals: &[u128], x: u128) -> Bits {
     }
     b
 }
-
-// BOXES
 
 pub struct BoxRow {
     pub m: u64,
@@ -379,8 +367,6 @@ fn row_copy(r: &BoxRow) -> BoxRow {
     }
 }
 
-// SIGMA
-
 fn sigma_max(bits: &Bits, mm: u64, nn: u64, delta: f64, rounds: usize, rng: &mut Rng) -> f64 {
     let mut worst = 0.0f64;
     let mut asign = vec![0.0f64; mm as usize];
@@ -407,8 +393,6 @@ fn sigma_max(bits: &Bits, mm: u64, nn: u64, delta: f64, rounds: usize, rng: &mut
     }
     worst
 }
-
-// STUDY
 
 struct Cell {
     q: u64,
@@ -689,8 +673,6 @@ pub fn run() {
         );
     }
 }
-
-// TESTS
 
 #[cfg(test)]
 mod tests {

@@ -10,8 +10,6 @@ const Z = 8;
 const COUNTS = [732, 202, 26, 40];
 const NAMES = ["A", "B", "C1", "C2"];
 
-// DISSECTION
-
 let memo: number[] | undefined;
 
 function regions() {
@@ -36,8 +34,6 @@ function regions() {
   memo = found;
   return memo;
 }
-
-// DRAW
 
 function band(pen: Pen, center: Point, radii: Point, angles: Point, color: Color) {
   const at = (r: number, t: number): Point => [center[0] + r * Math.sin(t), center[1] - r * Math.cos(t)];

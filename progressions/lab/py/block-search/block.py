@@ -12,8 +12,6 @@ from scipy.sparse import coo_matrix
 HERE = os.path.dirname(os.path.abspath(__file__))
 T0 = time.time()
 
-# GRID
-
 
 class Grid:
     def __init__(self, m, k):
@@ -216,9 +214,6 @@ class Grid:
         return t, lam[:nr], lam[nr:], (rx, rz, ry, rd), extra
 
 
-# BLOCKS
-
-
 def ehps(a, b, eps):
     one, half = Fraction(1), Fraction(1, 2)
     s = a + b
@@ -273,9 +268,6 @@ def C(alpha, k):
 
 def stamp(msg):
     print(f"{msg}  [{time.time() - T0:.1f}s]")
-
-
-# CONTROLS
 
 
 def controls(args):
@@ -382,9 +374,6 @@ def controls(args):
     stamp("control 3 passed")
 
 
-# EXACT
-
-
 def symmetries(grid):
     m, k = grid.m, grid.k
     maps = []
@@ -479,9 +468,6 @@ def exact_cmd(args):
                     f"m = {m} k = {k} {label}: not closed in {args.cap}s, upper bound {bound} of {m**k}, alpha <= {bound / m**k:.5f}"
                 )
         stamp(f"m = {m} done")
-
-
-# SEARCH
 
 
 def strip(grid, mask, mode):
@@ -717,9 +703,6 @@ def search_cmd(args):
         stamp(f"saved {path}")
 
 
-# REFINE
-
-
 def dilate(grid, mask, j):
     big = Grid(grid.m * j, grid.k)
     out = np.zeros(big.n, dtype=bool)
@@ -770,9 +753,6 @@ def refine_cmd(args):
                     f"    repaired at m = {m * j} in {args.repair}s: {int(local.sum())} points, density {local.sum() / big.n:.5f}"
                 )
         stamp(f"m = {m} refined")
-
-
-# STABLE
 
 
 class Stable:
@@ -913,9 +893,6 @@ def stable_cmd(args):
         stamp(f"saved {path}")
 
 
-# LIFT
-
-
 def lift_cmd(args):
     import itertools
 
@@ -972,9 +949,6 @@ def lift_cmd(args):
         stamp(f"m = {m} lifted")
 
 
-# BRUTE
-
-
 def brute_cmd(args):
     for m in args.m:
         grid = Grid(m, 2)
@@ -1018,9 +992,6 @@ def brute_cmd(args):
             f"m = {m}: every peelable set containing the origin enumerated by depth-first search with hereditary pruning, {count[0]} sets, largest {len(best)} of {n}, alpha = {len(best) / n:.5f}, witness {sorted(best)}"
         )
         stamp(f"m = {m} brute")
-
-
-# PROGRESSION-FREE
 
 
 def r3_cmd(args):
@@ -1145,9 +1116,6 @@ def raster_cmd(args):
         print(
             f"  m = {m}: {cnt} points, {which}, shift ({i}, {j})/({n} m), ceil(7 m^2/24) = {bound}, excess {cnt - bound}; best EHPS {ehps}, best EPS {eps}; peelable, {rounds} peel rounds, certificate g <= {max(g.values())} checked on every triple, sqrt(card T) = {root:.4f}.."
         )
-
-
-# MAIN
 
 
 def main():

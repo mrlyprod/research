@@ -10,8 +10,6 @@ const GASKET = 7;
 const DOMINO = 3;
 const PIECES = [14, 45];
 
-// WORDS
-
 function thueMorse(index: number) {
   let bits = 0;
   for (let n = index; n > 0; n >>= 1) bits += n & 1;
@@ -25,8 +23,6 @@ function letter(code: number) {
 function reading(gasketAt: number) {
   return Array.from({ length: LENGTH }, (_, place) => letter(thueMorse(place) === gasketAt ? GASKET : DOMINO));
 }
-
-// PIECES
 
 function pieces(cells: ArrayLike<number>) {
   const label = new Int32Array(SIDE * SIDE).fill(-1);
@@ -62,8 +58,6 @@ function pieces(cells: ArrayLike<number>) {
   return { label, count, filled };
 }
 
-// PANEL
-
 function panel(pen: Pen, frame: Frame, letters: ReturnType<typeof letter>[], inks: Color[], rule: number, ink: Ink) {
   const picture = math.bang.magic(letters);
   if (picture.shape.join() !== `${SIDE},${SIDE}`)
@@ -84,8 +78,6 @@ function panel(pen: Pen, frame: Frame, letters: ReturnType<typeof letter>[], ink
   }
   return count;
 }
-
-// DRAW
 
 export default function draw(pen: Pen, ink: Ink) {
   const rule = pen.width / 320;

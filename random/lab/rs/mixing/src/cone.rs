@@ -1,5 +1,3 @@
-// MACHINE
-
 pub fn rot(i: usize, level: usize) -> usize {
     (i >> 1) | ((i & 1) << (level - 1))
 }
@@ -171,8 +169,6 @@ impl Grid {
         out
     }
 }
-
-// SAMPLER
 
 type Bits = [u64; 4];
 

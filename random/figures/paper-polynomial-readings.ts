@@ -8,8 +8,6 @@ const SLACK = 1e-9;
 
 let memo: { walks: [number, number][][]; lo: number; hi: number } | undefined;
 
-// CORRELATIONS
-
 function correlations() {
   const c = new Float64Array(LAGS + 1);
   c[0] = 1;
@@ -17,8 +15,6 @@ function correlations() {
   for (let h = 2; h <= LAGS; h++) c[h] = h & 1 ? -(c[h >> 1] + c[(h >> 1) + 1]) / 2 : c[h >> 1];
   return c;
 }
-
-// WALKS
 
 function walks() {
   if (memo) return memo;
@@ -47,8 +43,6 @@ function walks() {
   memo = { walks: out, lo, hi };
   return memo;
 }
-
-// DRAW
 
 export default function draw(pen: Pen, ink: Ink) {
   const { walks: lines, lo, hi } = walks();

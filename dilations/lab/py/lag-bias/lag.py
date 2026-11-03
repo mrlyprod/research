@@ -24,8 +24,6 @@ LAGS = [129, 143, 144, 151, 168, 214, 254, 255]
 GRID = [1.0, 0.3, 0.1, 0.03, 0.01]
 DEPTH, LENGTH, START, BATCH, PROBES, HIT = 8, 512, 255, 32, 8, 0.5
 
-# PATH COUNTS
-
 
 def product(q, b, L):
     r = np.array([1.0])
@@ -71,9 +69,6 @@ def save(key, value):
 
 def peak_gb():
     return resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 2**30
-
-
-# FIELD
 
 
 def arms():
@@ -299,9 +294,6 @@ def spread(store):
 def span(ws, k):
     vals = [w[k] for w in ws if w[k] is not None]
     return f"{min(vals):.4f} to {max(vals):.4f}" if vals else "-"
-
-
-# LEARN
 
 
 def device(a):
@@ -607,9 +599,6 @@ def contrast(key, res):
         print(
             f"learn {key}: post hoc {opt} without lag 255, Spearman with 1/s(n+1): K=3 median {spearman(m3[k], inv[k]):.3f}, K=2 median {spearman(m2[k], inv[k]):.3f}, ratio {spearman(ratio[k], inv[k]):.3f}; K=2 median on all 8 lags {spearman(m2, inv):.3f}"
         )
-
-
-# MAIN
 
 
 def table(a):

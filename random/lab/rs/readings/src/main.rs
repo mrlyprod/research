@@ -2,8 +2,6 @@ use std::collections::HashMap;
 use std::env;
 use std::time::Instant;
 
-// DESIGNS
-
 #[derive(Clone, Copy, PartialEq, Debug)]
 enum Design {
     Thue,
@@ -71,8 +69,6 @@ impl Kit {
     }
 }
 
-// READINGS
-
 #[derive(Clone)]
 enum Reading {
     Poly(&'static str, Vec<i128>),
@@ -111,8 +107,6 @@ fn probes() -> Vec<Reading> {
         Reading::Poly("n^3 + n", vec![0, 1, 0, 1]),
     ]
 }
-
-// POLYNOMIALS
 
 fn eval(p: &[i128], n: i128) -> i128 {
     p.iter().rev().fold(0, |acc, &c| acc * n + c)
@@ -170,8 +164,6 @@ fn near_head(p: &[i128], b: i128, phi: (i128, i128), psi: (i128, i128)) -> Optio
     })
 }
 
-// PRIMES
-
 fn sieve(count: usize, mut each: impl FnMut(usize, u64)) {
     if count == 0 {
         return;
@@ -221,8 +213,6 @@ fn sieve(count: usize, mut each: impl FnMut(usize, u64)) {
         lo = hi;
     }
 }
-
-// STREAMS
 
 struct Stream {
     bits: Vec<u64>,
@@ -312,8 +302,6 @@ fn stream(kit: &Kit, d: Design, r: &Reading, len: usize, primes: &[Stream]) -> S
         }
     }
 }
-
-// TESTS
 
 fn pearson(n: f64, su: f64, sv: f64, suv: f64) -> Option<f64> {
     let (mu, mv) = (su / n, sv / n);
@@ -441,8 +429,6 @@ fn lz78(s: &Stream, len: usize) -> f64 {
     c * (c.log2() + 1.0) / len as f64
 }
 
-// HEADS
-
 const PERIODS: [usize; 18] = [
     1, 2, 3, 4, 6, 8, 9, 12, 16, 18, 24, 27, 32, 36, 48, 54, 64, 81,
 ];
@@ -484,8 +470,6 @@ fn heads(s: &Stream, n: usize) -> Vec<Identity> {
     }
     out
 }
-
-// LOCAL CONSTANTS
 
 fn up(x: f64) -> String {
     if x == 0.0 {
@@ -573,8 +557,6 @@ fn battery_pairs() -> Vec<(String, (i128, i128), (i128, i128))> {
     out
 }
 
-// BATTERY
-
 fn row(v: &Verdict) -> String {
     format!(
         "mean {:+.4} | shift max|r| {:.4} at h={} | dilation max|r| {:.4} at (B, r)=({}, {}) | kernel max|r| {:.4} at b={} | square mean {:+.4}",
@@ -648,8 +630,6 @@ fn battery() {
         ids.len()
     );
 }
-
-// LOCAL
 
 fn local() {
     let kit = Kit::new();
@@ -754,8 +734,6 @@ fn local() {
     }
 }
 
-// FALSIFY
-
 fn free(d: Design, r: &Reading) -> bool {
     match r {
         Reading::Primes => true,
@@ -854,8 +832,6 @@ fn falsify(top: u32) {
     report("splitmix64, seed 1", &build_control(len));
 }
 
-// LEAK
-
 fn thue_correlations(len: usize) -> Vec<f64> {
     let mut c = vec![0f64; len + 2];
     c[0] = 1.0;
@@ -940,8 +916,6 @@ fn leak() {
     }
     println!("  max abs C_t(h) over 3 | h < 2^{check}, h > 0: {big:.6}");
 }
-
-// IDENTITIES
 
 fn identities() {
     let kit = Kit::new();

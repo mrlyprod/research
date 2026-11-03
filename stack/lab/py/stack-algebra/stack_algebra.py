@@ -19,8 +19,6 @@ DAVENPORT_X = [
     Fraction(3, 11),
 ]
 
-# SIEVES
-
 
 def mobius_table(n):
     mu = np.ones(n + 1, dtype=np.int64)
@@ -74,9 +72,6 @@ def totients(n):
         if phi[p] == p:
             phi[p::p] -= phi[p::p] // p
     return phi
-
-
-# DIRICHLET CONVOLUTION
 
 
 def convolve(u, v, n):
@@ -218,9 +213,6 @@ def convolution_check():
     print("  scale weight W(M) = (u*v)(M) for every M <= N under the hyperbolic cut")
 
 
-# SELECTIONS
-
-
 def selection_literal(weight, n, b):
     return sum(1 for k in range(1, n // b + 1) if weight(k * b))
 
@@ -314,9 +306,6 @@ def selection_closed_forms():
     )
 
 
-# HARMONIC STACK
-
-
 def zeta_em(s, terms=200000):
     k = np.arange(1, terms + 1, dtype=np.float64)
     total = float(np.sum(k ** (-float(s))))
@@ -355,9 +344,6 @@ def harmonic_stack():
             "  s = %d  b = %2d  node %.9f  literal %.9f  zeta(s)/b^s %.9f"
             % (s, b, node, literal, z / b**s)
         )
-
-
-# CARPET LAYERS
 
 
 def sign_at(n, i, length):
@@ -503,9 +489,6 @@ def squarefree_carpet_variance():
             "  L = %4d  pairs sharing a factor %6d  L*Var = %.7f  independent %.7f  ratio %.6f"
             % (count, sharing, actual, indep, actual / indep)
         )
-
-
-# DAVENPORT
 
 
 def davenport():

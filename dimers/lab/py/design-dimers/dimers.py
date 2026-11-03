@@ -11,8 +11,6 @@ DATA_DIR = os.path.join(REPO, "data", os.path.relpath(HERE, REPO))
 
 DENSITY = 0.7
 
-# DESIGN
-
 
 def digits(base, code):
     return [
@@ -40,9 +38,6 @@ def imbalance_law(base, code, n):
 def neighbours(cells, cell):
     r, c = cell
     return [q for q in ((r + 1, c), (r - 1, c), (r, c + 1), (r, c - 1)) if q in cells]
-
-
-# MATCHING
 
 
 def has_perfect_matching(cells):
@@ -103,9 +98,6 @@ def brute_count(cells, side):
     return states.get(0, 0)
 
 
-# KASTELEYN
-
-
 def kasteleyn(cells, side, marked=None, holes=True):
     black = sorted(p for p in cells if (p[0] + p[1]) % 2 == 0)
     white = sorted(p for p in cells if (p[0] + p[1]) % 2 == 1)
@@ -161,9 +153,6 @@ def kasteleyn_count(cells, side, holes=True):
     if not rows:
         return 1
     return abs(int(gp(gp_matrix(rows) + "print(matdet(M));")[0]))
-
-
-# STRUCTURE
 
 
 def components(cells):
@@ -269,8 +258,6 @@ def picture(base, code):
         "".join("#" if (i, j) in F else "." for j in range(base)) for i in range(base)
     )
 
-
-# VERBS
 
 LATE = (
     (5, 15571455),

@@ -50,9 +50,6 @@ def mask_offsets(code, dim, side, level):
     return [tuple(int(v) for v in row) for row in cells[keep]]
 
 
-# DICTIONARY
-
-
 def rule_table(number):
     return np.array([(number >> i) & 1 for i in range(8)], dtype=np.uint8)
 
@@ -109,9 +106,6 @@ def dictionary():
     )
 
 
-# TOWER
-
-
 def popcount_le_one_code(dim):
     code = 0
     for i in range(2**dim):
@@ -163,9 +157,6 @@ def tower():
     say(
         f"tower: Cantor level 3 offsets {sorted(o[0] for o in cantor3)}, Menger level 1 mask {len(menger)} cells"
     )
-
-
-# DECOUPLING
 
 
 def hnf2(rows):
@@ -319,8 +310,6 @@ def decoupling():
     )
 
 
-# COMPOSITES
-
 BLOCKS = np.arange(512, dtype=np.int64)
 ROW = [(BLOCKS >> (6 - 3 * i)) & 7 for i in range(3)]
 CENTRE = (BLOCKS >> 4) & 1
@@ -445,8 +434,6 @@ def composites():
     )
     return h
 
-
-# CANTOR LIFE
 
 CANTOR = (-13, -11, -7, -5, 5, 7, 11, 13)
 NAMED = (
@@ -628,8 +615,6 @@ def cantor_patterns():
     periods = sorted({p for k, p, v, n in fates.values() if k == "oscillator"})
     say(f"cantor B3/S23 oscillator periods found {periods}")
 
-
-# MENGER LIFE
 
 MENGER = tuple(
     o for o in product((-1, 0, 1), repeat=3) if sum(1 for v in o if v == 0) <= 1
@@ -836,8 +821,6 @@ def menger_block():
         "menger B3/S23 block: a 2x2 plane block becomes a rule 90 stack of blocks along the normal, checked to t=8"
     )
 
-
-# PRODUCTS
 
 TORUS2 = 256
 PRODUCT_STEPS = 512

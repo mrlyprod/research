@@ -3,8 +3,6 @@ from fractions import Fraction
 CODES = list(range(1, 16))
 FRAME = ("gamma", "h", "v", "phi")
 
-# GEOMETRY
-
 
 def tile(c):
     return [(c >> 0) & 3, (c >> 2) & 3]
@@ -73,9 +71,6 @@ def obs(word):
         rows, n = draw(word)
         CACHE[word] = (comp(rows, n), hruns(rows), vruns(rows), fill(rows))
     return CACHE[word]
-
-
-# EXACT LINEAR ALGEBRA
 
 
 def solve(basis, target):
@@ -170,8 +165,6 @@ def seeded(alphabet, count, lo, hi):
     return out
 
 
-# THE REPRESENTATION
-
 SUFFIXES = [()] + [(c,) for c in CODES] + [(a, b) for a in CODES for b in CODES]
 
 
@@ -227,8 +220,6 @@ print("non-commuting class pairs %d of 15" % noncomm)
 for g in CLASS:
     print("  M_%s = %s" % (g, M[g[0]]))
 
-# THE OBSERVABLE FRAME
-
 print()
 print("== THE OBSERVABLE FRAME ==")
 G = [[gamma[i], h[i], v[i], phi[i]] for i in range(4)]
@@ -274,8 +265,6 @@ print(
     "every column sum is (comp, rows, cols, fill) of the letter's own tile, and the largest is the fill"
 )
 
-# THE FOUR TRANSFER LAWS, CHECKED AGAINST DRAWN CELLS
-
 print()
 print("== THE TRANSFER LAWS ==")
 short = [w for L in range(4) for w in words(CODES, L)]
@@ -311,8 +300,6 @@ print(
     % (len(sweep), len(short), len(seeds), rep_bad)
 )
 
-# TRIANGULARITY AND SPECTRUM
-
 print()
 print("== TRIANGULARITY ==")
 for g in CLASS:
@@ -338,8 +325,6 @@ for g in CLASS:
     )
     assert max(diag) == obs((c,))[3]
 
-# THE CROSS-POLYTOPE CERTIFICATE
-
 print()
 print("== THE CERTIFICATE ==")
 print(
@@ -357,8 +342,6 @@ for g in CLASS:
 print(
     "M_c P is inside k_c P at every code, so the gauge of P, the frame l1 norm N(a gamma + b h + c v + d phi) = |a| + |b| + |c| + |d|, is an extremal norm with ||M_c|| = k_c"
 )
-
-# JSR AND LSR OVER EVERY SUBFAMILY
 
 print()
 print("== JSR AND LSR ==")
@@ -378,8 +361,6 @@ print(
 print(
     "JSR = max fill and LSR = min fill on every one of them, each attained by a one-letter word"
 )
-
-# THE BRACKET ON TWO NAMED PAIRS
 
 print()
 print("== THE BRACKET ==")
@@ -454,8 +435,6 @@ for pair in [(3, 6), (3, 7)]:
         )
     )
 
-# THE TELESCOPE BLOCK
-
 print()
 print("== THE TELESCOPE ==")
 A = [[M[3][i][j] for j in range(2)] for i in range(2)]
@@ -488,8 +467,6 @@ for L in (1, 2, 3, 6, 10):
         % (L, sorted(vals))
     )
     assert vals == {2**L}
-
-# THE DEAD ROUTES
 
 print()
 print("== WHAT DIES ==")

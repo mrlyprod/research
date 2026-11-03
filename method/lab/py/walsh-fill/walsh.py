@@ -6,8 +6,6 @@ from functools import cache
 
 import numpy as np
 
-# CORNERS
-
 
 def corners(code, dim):
     return [i for i in range(2**dim) if code >> i & 1]
@@ -46,9 +44,6 @@ def bits(dim):
     return (codes[:, None] >> np.arange(2**dim)[None, :]) & 1
 
 
-# WALSH
-
-
 def hadamard(dim):
     s = np.arange(2**dim)
     pc = np.array([weight(int(v)) for v in (s[:, None] & s[None, :]).ravel()]).reshape(
@@ -72,9 +67,6 @@ def square_levels(h, dim):
 
 def evaluate(lev, dim, n):
     return sum(int(lev[j]) * n ** (dim - j) for j in range(dim + 1))
-
-
-# RENDER
 
 
 @cache
@@ -153,9 +145,6 @@ def poly_text(lev, dim):
     return s[2:] if s.startswith("+ ") else "-" + s[2:]
 
 
-# PROFILE
-
-
 def krawtchouk(j, w, dim):
     return sum(
         (-1) ** i * math.comb(w, i) * math.comb(dim - w, j - i) for i in range(j + 1)
@@ -178,9 +167,6 @@ def section_profile():
     print(
         f"profile: 2^dim W_j = sum_w a_w K_j(w) on every code at dim 1..4, {total} level sums, {bad} mismatches; K^2 = 2^dim I at dim 1..4"
     )
-
-
-# MIRROR
 
 
 def section_mirror():
@@ -224,9 +210,6 @@ def section_mirror():
             print(
                 f"  dim 3 code 1 swaps: {1 in swap}; code 23 swaps: {23 in swap}; code 27 swaps: {27 in swap}, self-dual: {27 in selfdual}, corners {[format(c, '03b') for c in corners(27, 3)]}, profile {profile(27, 3)}"
             )
-
-
-# ROOTS
 
 
 def k_coefficients(code, dim):
@@ -274,9 +257,6 @@ def section_roots():
     )
 
 
-# DRIFT
-
-
 def downset(code, dim):
     cs = set(corners(code, dim))
     return all((c & ~(1 << b)) in cs for c in cs for b in range(dim) if c >> b & 1)
@@ -321,9 +301,6 @@ def section_drift():
     )
 
 
-# STABILITY
-
-
 def section_stability():
     bad = checks = 0
     for dim in (1, 2, 3):
@@ -351,9 +328,6 @@ def section_stability():
     )
 
 
-# ENTROPY
-
-
 def section_entropy():
     for dim, code in ((1, 1), (1, 2), (2, 7), (3, 23)):
         lev = levels(spectra(dim), dim)[code]
@@ -371,9 +345,6 @@ def section_entropy():
         print(
             f"entropy dim {dim} code {code}: bits per level {', '.join(row)}, infinity {inf:.9f}; N (limit - cost) at 729 {n * (inf + math.log2(ratio)):.6f} against (W_1/W_0)/ln 2 = {slope:.6f}"
         )
-
-
-# THRESHOLD
 
 
 def partial(n, t):
@@ -446,9 +417,6 @@ def section_threshold(top=2048):
         print(f"    {label}: {m}")
 
 
-# FLAT
-
-
 def section_flat():
     counts = []
     for dim in (1, 2, 3, 4):
@@ -497,8 +465,6 @@ def section_flat():
                 f"  dim 4: {len(bent)} bent codes, {len(bent & free)} of them lower-order-free; x1 x2 + x3 x4 is code {x}, bent {x in bent}, profile {profile(x, 4)}, 2^4 fill = {poly_text(lev[x], 4)}"
             )
 
-
-# MAIN
 
 SECTIONS = {
     "expansion": section_expansion,

@@ -8,8 +8,6 @@ fn md(x: i32) -> u8 {
     x.rem_euclid(P) as u8
 }
 
-// VECTORS OVER F_7
-
 struct Space {
     size: usize,
     add: Vec<u32>,
@@ -46,8 +44,6 @@ impl Space {
         self.add[i * self.size + j] as usize
     }
 }
-
-// SPECTRA
 
 fn pair_bit(d0: u8, d1: u8) -> u64 {
     1u64 << (d0 as u32 * 7 + d1 as u32)
@@ -113,8 +109,6 @@ fn show(mask: u64) -> String {
     }
     parts.join(" ")
 }
-
-// UNIVARIATE
 
 fn degree(h: &[u8]) -> usize {
     let mut deg = 0;
@@ -218,8 +212,6 @@ fn univariate() -> Vec<u64> {
     spectra.keys().copied().collect()
 }
 
-// LAYERS OF UNIVARIATE FUNCTIONS
-
 fn layers(spectra: &[u64], want: usize) {
     let mut masks: Vec<u64> = spectra.to_vec();
     masks.sort_by_key(|m| (m.count_ones(), *m));
@@ -297,8 +289,6 @@ fn layers(spectra: &[u64], want: usize) {
     }
 }
 
-// LIFT
-
 fn lift(m: usize) {
     let space = Space::new(m);
     let size = space.size;
@@ -348,8 +338,6 @@ fn lift(m: usize) {
     );
     assert_eq!(dim, binom);
 }
-
-// EXTENSION FIELDS
 
 struct Field {
     q: usize,
@@ -564,8 +552,6 @@ fn stacks(label: &str, parts: &[&[Monomial]]) {
         }
     );
 }
-
-// THE PLANE WITH A SEED LINE
 
 struct Csp {
     n: usize,

@@ -8,8 +8,6 @@ from math import comb
 
 from mpmath import cos, exp, floor, log, mp, mpf, nint, pi
 
-# DIGIT POLYNOMIAL
-
 
 def digit_poly(D):
     base = [0] * (2 * D - 1)
@@ -39,9 +37,6 @@ def sign_vector(D):
     return [
         (3 if c % 3 == 0 else 0) - 1 for c in range(-half_width(D), half_width(D) + 1)
     ]
-
-
-# STRUCTURAL ASSERTIONS
 
 
 def assert_nonnegative(D):
@@ -77,9 +72,6 @@ def assert_colsum(D):
         assert f - 3 * cs == (D - 1) * v, "colsum identity fails at D=%d c=%d" % (D, c)
 
 
-# FOLDED CORE, COLUMNS OF THE TRANSPOSE
-
-
 def folded_columns(D):
     P = digit_poly(D)
     H = half_width(D)
@@ -102,9 +94,6 @@ def functional(D):
         v = (3 if c % 3 == 0 else 0) - 1
         out.append(v if c == 0 else 2 * v)
     return out
-
-
-# UNFOLDED CENSUS, THE INDEPENDENT ROUTE
 
 
 def census_V(D, top):
@@ -131,9 +120,6 @@ def census_V(D, top):
     return out
 
 
-# UNFOLDED ROW SWEEP, THE INDEPENDENT ROUTE
-
-
 def unfolded_rows(D, top):
     P = digit_poly(D)
     H = half_width(D)
@@ -152,9 +138,6 @@ def unfolded_rows(D, top):
         r = [sum(x * r[j] for j, x in col) for col in cols]
         out.append(r)
     return out
-
-
-# ROW SWEEP
 
 
 def row_sweep(D, cap):
@@ -183,9 +166,6 @@ def row_sweep(D, cap):
     raise AssertionError("no nonnegative row within cap at D=%d" % D)
 
 
-# CROSSING LEVEL
-
-
 def k_star(D, levels=400):
     log_r = mpf(0)
     s = mpf(0)
@@ -203,9 +183,6 @@ def l_zero(D, guard):
     assert near > guard, "K* within %s of an integer at D=%d" % (guard, D)
     L0 = int(floor(ks))
     return (L0 if L0 % 2 else L0 - 1), ks, near
-
-
-# WINDOW
 
 
 def envelope(D, K):
@@ -268,9 +245,6 @@ def values(D, lo, hi):
             )
 
 
-# SELF TEST
-
-
 def selftest():
     for D in range(4, 62, 2):
         assert_colsum(D)
@@ -307,9 +281,6 @@ def selftest():
     print(
         "folded row against the unfolded row on all of S, entrywise: even D = 4..36, L <= 4D+8, exact"
     )
-
-
-# RUN
 
 
 def run(lo, hi, cap_slope, out_path, budget):

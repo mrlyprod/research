@@ -11,8 +11,6 @@ const HALF = 6;
 
 let memo: Point[][] | undefined;
 
-// FACTS
-
 function place(point: ArrayLike<number>): Point {
   const [u, v] = math.three.shadow(point);
   return [Number(u) / Math.SQRT2, Number(v) / Math.sqrt(6)];
@@ -43,8 +41,6 @@ function cuts() {
   });
   return memo;
 }
-
-// DRAW
 
 export default function draw(pen: Pen, ink: Ink) {
   const slices = cuts();

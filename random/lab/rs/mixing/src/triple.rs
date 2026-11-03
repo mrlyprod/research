@@ -1,8 +1,6 @@
 use crate::catalog::Round;
 use crate::kernel::{compress, expand, spots};
 
-// TRIPLE
-
 pub struct Triple {
     pub m: usize,
     pub size: usize,

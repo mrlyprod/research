@@ -13,9 +13,6 @@ def down(x, d):
     return floor(x * 10**d) / 10**d
 
 
-# INCREMENT AUTOMATON
-
-
 def level(z1, z2):
     start = z1 // 3
     if start == 0:
@@ -146,8 +143,6 @@ def pairs(cap):
                 yield z1, z2
 
 
-# PAIR CARRY AUTOMATON
-
 OUT = ((0, 0), (0, 1), (1, 0))
 
 
@@ -180,9 +175,6 @@ def carry_occupied(z1, z2):
     return False, len(seen)
 
 
-# BRUTE GASKET
-
-
 def brute(n, cap):
     out = {}
     for lab in range(3**n):
@@ -205,9 +197,6 @@ def brute(n, cap):
                 if z not in out or k < out[z]:
                     out[z] = k
     return out
-
-
-# SWEEP
 
 
 def cmd_sweep(args):
@@ -295,9 +284,6 @@ def cmd_sweep(args):
     print("secs", round(secs, 1))
 
 
-# LEVELS
-
-
 def cmd_levels(args):
     cap = args.cap
     t = time.time()
@@ -312,9 +298,6 @@ def cmd_levels(args):
     for n in range(args.lo, args.hi + 1):
         print(n, int(cum[n]), int(tab[n]))
     print("secs", round(time.time() - t, 1))
-
-
-# MISSING DIGIT MULTIPLES
 
 
 def dcount(n, q):
@@ -347,9 +330,6 @@ def cmd_multiples(args):
         q = 1 + 3**h
         d = dcount(2 * h, q)
         print(h, q, d, 2**h, round(4**h / q, 2), round(d * q / 4**h, 3))
-
-
-# BAND
 
 
 def cmd_band(args):
@@ -388,9 +368,6 @@ def cmd_band(args):
         up(frac[0] / frac[1], 4),
     )
     print("secs", round(time.time() - t, 1))
-
-
-# WEIGHT LAYERS
 
 
 def cmd_layers(args):
@@ -499,9 +476,6 @@ def cmd_core(args):
         )
 
 
-# SLOPE COVER
-
-
 def tri(k, base):
     a = np.zeros(1, dtype=np.int64)
     b = np.zeros(1, dtype=np.int64)
@@ -564,9 +538,6 @@ def cmd_box(args):
             round(time.time() - t, 1),
         )
         prev = c
-
-
-# REPUNIT
 
 
 def witness(z1, z2):
@@ -750,9 +721,6 @@ def cmd_repunit(args):
                 base3(m * z2),
                 base3(m * (z1 + z2)),
             )
-
-
-# LIFT UNION
 
 
 def subset_sums(ws):
@@ -1159,9 +1127,6 @@ def cmd_agg(args):
     )
 
 
-# DEEP TAIL
-
-
 def col_sums(opts):
     out = np.zeros(1, dtype=np.int64)
     for o in opts:
@@ -1322,9 +1287,6 @@ def cmd_tail(args):
             if live[i][2]
         ],
     )
-
-
-# CHECKS
 
 
 def cmd_check(args):

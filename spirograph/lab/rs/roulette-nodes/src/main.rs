@@ -11,8 +11,6 @@ const ROOTS: usize = 2_000_000;
 const DEEP: usize = 5;
 const GRIT: usize = 12;
 
-// THE DESIGNS
-
 struct Design {
     name: &'static str,
     types: Vec<u8>,
@@ -88,8 +86,6 @@ fn designs() -> Vec<Design> {
     ]
 }
 
-// THE RUN
-
 struct Run {
     curves: usize,
     least: f64,
@@ -161,8 +157,6 @@ fn ratios(kind: &str, top: usize, deep: usize) -> Vec<(usize, usize)> {
     out
 }
 
-// THE ROOTS
-
 fn roots(wide: f64, b: usize, m: usize, cp: f64, cq: f64, phase: f64, steps: usize) -> usize {
     let gap = (cp - cq).abs();
     let mean = 4.0 * cp * cq;
@@ -224,8 +218,6 @@ fn main() {
         regions();
     }
 }
-
-// THE SCRATCH
 
 fn at_reach(design: &Design, reach: f64) -> f64 {
     let circum = (design.width as f64 / 2.0).hypot(design.height as f64 / 2.0);
@@ -329,8 +321,6 @@ fn scratch() {
         row.join("  ")
     );
 }
-
-// THE LAW
 
 fn faults(run: &Run, a: usize, b: usize) -> Option<String> {
     let (want, pair) = (a * (b - 1), 2 * a * b);
@@ -454,8 +444,6 @@ fn census() {
     println!("- cells {cells}, nodes {counted}, broken {broken}, crowded {crowded} of which {blurred} disagree and are excluded, near {near}");
     println!("- every count is three sample counts alike, the last two doubled: {shaky} cells needed a further doubling, {wobbly} never settled");
 }
-
-// THE GAP
 
 fn crest(b: usize, m: usize) -> f64 {
     let steps = 400_000;
@@ -587,8 +575,6 @@ fn gap() {
     }
 }
 
-// THE TORUS
-
 fn reduction() {
     println!("THE TORUS");
     let all = designs();
@@ -635,8 +621,6 @@ fn reduction() {
     }
 }
 
-// THE CENTRE
-
 fn core() -> Design {
     Design {
         name: "core",
@@ -674,8 +658,6 @@ fn centre() {
         );
     }
 }
-
-// THE REGIONS
 
 fn flood(path: &Track, seats: &[Pencil], samples: usize, side: usize) -> usize {
     let trail = trace(path, seats, samples).unwrap();

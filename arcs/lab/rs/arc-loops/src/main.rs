@@ -9,8 +9,6 @@ use count::{arcs, glue, mirrors, series, void_block};
 use design::Design;
 use std::time::Instant;
 
-// CHECK
-
 fn check() {
     let (mut levels, mut images, mut voids, mut routes, mut bad) = (0, 0, 0, 0, 0);
     for (base, top) in [(2usize, 7usize), (3, 4)] {

@@ -8,8 +8,6 @@ const LEVEL: u32 = 6;
 const SAMPLES: usize = 3072;
 const KEPT: f64 = 1e9;
 
-// THE MEASURE
-
 fn cantor(mut y: f64) -> f64 {
     let mut out = 0.0;
     let mut w = 1.0;
@@ -69,8 +67,6 @@ fn chain(k: u32) -> Result<Pair> {
     }
     Pair::new(k, m)
 }
-
-// THE CHECKS
 
 fn lattice(pair: Pair) -> f64 {
     3f64.powi(pair.three() as i32) * pair.energy() as f64

@@ -16,8 +16,6 @@ const DOT = 2;
 const THICK = 2.2;
 const KNOT = 5.5;
 
-// THE SEQUENCE
-
 function bruijn(m: number, k: number): number[] {
   const a = new Array<number>(m * k).fill(0);
   const out: number[] = [];
@@ -37,8 +35,6 @@ function bruijn(m: number, k: number): number[] {
   return out;
 }
 
-// THE GAME
-
 function play(digits: Point[], draws: number[], start: Point): Point[] {
   const path: Point[] = [start];
   for (const d of draws) {
@@ -49,8 +45,6 @@ function play(digits: Point[], draws: number[], start: Point): Point[] {
 }
 
 const cellOf = ([x, y]: Point) => `${Math.floor(x * BASE ** LEVEL)},${Math.floor(y * BASE ** LEVEL)}`;
-
-// DRAW
 
 export default function draw(pen: Pen, ink: Ink) {
   const design = math.radix.tile(BASE, CODE);

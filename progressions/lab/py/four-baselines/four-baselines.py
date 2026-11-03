@@ -64,8 +64,6 @@ LIFT_MAXIMISERS = {
 MAXIMISERS = {}
 MASKS = {}
 
-# SEQUENCES
-
 A065825 = [
     1,
     2,
@@ -241,9 +239,6 @@ def r3(n):
     return sum(1 for k in A065825 if k <= n)
 
 
-# BRUTE
-
-
 def first3ap(values):
     s = set(values)
     v = sorted(s)
@@ -285,9 +280,6 @@ def digits(n, m):
         out.append(n % m)
         n //= m
     return out[::-1]
-
-
-# DESIGNS
 
 
 def signed_set(F):
@@ -410,9 +402,6 @@ def best_other(N, skip, designs):
     return best
 
 
-# GREEDY
-
-
 def greedy(N):
     M = N - 1
     t = digits(M, 3)
@@ -423,8 +412,6 @@ def greedy(N):
             return total
     return total + 1
 
-
-# BEHREND
 
 WAYS = {}
 
@@ -479,9 +466,6 @@ def behrend_best(N):
     return best
 
 
-# INDEPENDENT COUNTS
-
-
 def greedy_term(n):
     out, p = 0, 1
     while n:
@@ -528,8 +512,6 @@ def design_count(b, F, N):
             return total
     return total + 1
 
-
-# SALEM-SPENCER
 
 BINOM = np.zeros((BINOM_N + 1, BINOM_N + 1), dtype=np.int64)
 for n in range(BINOM_N + 1):
@@ -600,9 +582,6 @@ def spencer_best(N):
         if got is not None and got[0] > best[0]:
             best = (got[0], d, got[1])
     return best
-
-
-# CONTROLS
 
 
 def enumerate_class(N, d, key):
@@ -684,9 +663,6 @@ def controls(designs):
     print(
         "ok designs: fill equals A304884 at bases 3..40, the maximiser counts equal the census lift column at bases 2..40, criterion and level-3 brute force agree (free) on a sample of each base, truncated counts against enumeration over every maximiser"
     )
-
-
-# TABLE
 
 
 def fmt_set(F):

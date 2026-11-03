@@ -16,8 +16,6 @@ PRIME = 0x100000001B3
 PORTS = ("E", "W", "N", "S")
 OPPOSITE = {"E": "W", "W": "E", "N": "S", "S": "N"}
 
-# RENDER
-
 
 def tile_cells(code, base):
     return [
@@ -83,9 +81,6 @@ def is_tree(n, u, v):
 def corners(side, flat):
     index = {f: i for i, f in enumerate(flat.tolist())}
     return index[0], index[side * (side - 1)], index[side - 1]
-
-
-# EXACT RESISTANCE
 
 
 def schur_resistance(n, u, v, s, t):
@@ -176,9 +171,6 @@ def distances(adj, sources):
     return dijkstra(adj, directed=False, unweighted=True, indices=sources).astype(
         np.int64
     )
-
-
-# VERBS
 
 
 def verb_render():

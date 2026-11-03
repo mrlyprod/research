@@ -3,8 +3,6 @@ use std::env;
 
 mod reach;
 
-// FRACTIONS
-
 #[derive(Clone, Copy, PartialEq, Debug)]
 struct Q {
     n: i128,
@@ -62,8 +60,6 @@ impl Q {
         }
     }
 }
-
-// SEQUENCES
 
 fn digit_count(mut n: u64, b: u64, d: u64) -> u32 {
     let mut c = 0;
@@ -155,8 +151,6 @@ fn sign(bit: bool) -> i8 {
     }
 }
 
-// CORRELATIONS
-
 fn corr_exact(vp: &[i8], b: usize, h_max: usize) -> Vec<Q> {
     let al: Vec<i128> = (0..b)
         .map(|s| (0..b - s).map(|r| (vp[r] * vp[r + s]) as i128).sum())
@@ -223,8 +217,6 @@ fn mean(x: &[i8]) -> f64 {
     x.iter().map(|&v| v as f64).sum::<f64>() / x.len() as f64
 }
 
-// DILATION MATRIX
-
 fn dilation_matrix(v: &[i8], b: usize, big: usize) -> Vec<Vec<i128>> {
     let mut m = vec![vec![0i128; big]; big];
     for r in 0..big {
@@ -272,8 +264,6 @@ fn radius_bound(m: &[Vec<i128>], squarings: u32) -> f64 {
 fn ceil4(x: f64) -> f64 {
     (x * 1e4).ceil() / 1e4
 }
-
-// AUTOMATA
 
 fn rule_word(rule: u8, l: u64, c: u64, r: u64) -> u64 {
     match rule {
@@ -376,8 +366,6 @@ fn lz78(bits: &[u8]) -> usize {
     phrases + usize::from(node != 0)
 }
 
-// CODES
-
 fn class_name(vp: &[i8], b: usize) -> &'static str {
     match (b, vp) {
         (_, v) if v.iter().all(|&x| x == 1) => "constant",
@@ -475,8 +463,6 @@ fn codes() {
     }
 }
 
-// RUDIN-SHAPIRO
-
 fn rudin() {
     let n_max = 1u64 << 20;
     let (mut bad2, mut bad4) = (0u64, 0u64);
@@ -538,8 +524,6 @@ fn rudin() {
     let k = pearson((0..n_max).map(|n| (y(2 * n), y(4 * n)))).unwrap();
     println!("(-1)^n x thue-morse: max |Pearson(y(n), y(2^d n + r))| over d <= 3, r < 2^d, n < 2^20 = {dmax:.6}; Pearson(y(2n), y(4n)) = {k:.6}");
 }
-
-// BATTERY
 
 fn battery() {
     let n = 1usize << 15;
@@ -630,8 +614,6 @@ fn battery() {
         );
     }
 }
-
-// MOIRE
 
 fn moire() {
     let v2 = [1i8, -1];
@@ -916,8 +898,6 @@ fn complexity() {
         last = Some((n, pz));
     }
 }
-
-// ROUNDS
 
 fn rounds() {
     let steps = 1usize << 15;

@@ -1,7 +1,5 @@
 use std::collections::HashSet;
 
-// CATALOG
-
 pub const NEIGHBOURHOODS: [(&str, u32); 3] = [("carpet", 495), ("net", 186), ("void", 341)];
 pub const SOURCES: [(&str, &[u32]); 4] = [
     ("primes", &[2, 3, 5, 7]),
@@ -61,8 +59,6 @@ pub fn ones(mask: u128) -> Vec<usize> {
     (0..128).filter(|&p| mask >> p & 1 == 1).collect()
 }
 
-// SYMMETRIC RULES
-
 pub fn values(rule: u64, m: usize) -> Vec<u8> {
     (0..=m).map(|t| (rule >> t & 1) as u8).collect()
 }
@@ -91,8 +87,6 @@ pub fn selfcomplementary(g: &[u8]) -> bool {
 pub fn good(g: &[u8]) -> bool {
     g.len() >= 3 && !affine(g) && !selfcomplementary(g)
 }
-
-// SPLITS
 
 #[derive(Clone)]
 pub struct Split {
@@ -154,8 +148,6 @@ impl Split {
     }
 }
 
-// MACHINE
-
 pub struct Machine {
     pub bits: usize,
     reads: Vec<(u32, u32)>,
@@ -210,8 +202,6 @@ impl Machine {
         (0..1u32 << self.bits).map(|x| self.apply(x)).collect()
     }
 }
-
-// TORUS
 
 pub fn symmetries(n: usize) -> Vec<Vec<usize>> {
     let mats: [[i64; 4]; 8] = [

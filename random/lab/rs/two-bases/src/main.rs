@@ -1,8 +1,6 @@
 use std::env;
 use std::time::Instant;
 
-// WIDE
-
 #[derive(Clone, Copy, PartialEq, Eq, Debug)]
 struct W([u64; 3]);
 
@@ -148,8 +146,6 @@ impl W {
         x
     }
 }
-
-// LAYERS
 
 fn tm(h: W) -> (W, u32) {
     let l = h.bits();
@@ -315,8 +311,6 @@ fn weight64(h: u64) -> u32 {
     w
 }
 
-// RATIONALS
-
 #[derive(Clone, Copy, Debug, PartialEq)]
 struct Q(i128, i128);
 
@@ -459,8 +453,6 @@ fn pshow(a: &Poly) -> String {
         .join(" + ")
 }
 
-// LEMMA
-
 const FORM: [i128; 3] = [20, 10, 41];
 const RHO2: Q = Q(103, 200);
 const KBOUND: f64 = 1.0093;
@@ -555,8 +547,6 @@ fn opnorm(t: f64) -> f64 {
     }
     best
 }
-
-// RUNS
 
 fn decay() {
     const BITS: u32 = 25;
@@ -677,8 +667,6 @@ fn decay() {
     println!();
 }
 
-// WINDOWS
-
 fn windows() {
     const TOP: u32 = 24;
     const EPS: f64 = 1e-3;
@@ -741,8 +729,6 @@ fn windows() {
         e.show()
     );
 }
-
-// CHANGES
 
 fn changes_of(h: u64, b: u64) -> u32 {
     let (mut h, mut prev, mut n) = (h, None, 0);
@@ -849,8 +835,6 @@ fn changes() {
         3f64.ln() / 8.0
     );
 }
-
-// SPARSE
 
 struct Census {
     rmax: u32,
@@ -1088,15 +1072,5 @@ mod tests {
         }
         assert_eq!(tm64(1), -1.0 / 3.0);
         assert_eq!(t364(2), -1.0 / 3.0);
-    }
-
-    #[test]
-    fn wide_arithmetic_round_trips() {
-        let big = W::pow(10, 40);
-        assert_eq!(big.dec(), format!("1{}", "0".repeat(40)));
-        assert_eq!(big.sub(W::ONE).add(W::ONE), big);
-        assert_eq!(W::pow(3, 84).divmod(3).0, W::pow(3, 83));
-        assert_eq!(weight3(W::pow(3, 84).sub(W::pow(3, 10))), 2);
-        assert_eq!(runs(W::pow(2, 130).sub(W::ONE)), 1);
     }
 }

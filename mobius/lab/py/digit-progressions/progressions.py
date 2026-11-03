@@ -22,8 +22,6 @@ CS = [
     Fraction(1, 10),
 ]
 
-# CLOSED FORMS
-
 
 def x0(N):
     return (N / math.pi) * (
@@ -140,9 +138,6 @@ def bisect(f, lo, hi, step):
     return hi
 
 
-# WALL
-
-
 def mono_from(d, c=1.0, odd=False):
     N = 3
     f = (
@@ -233,9 +228,6 @@ def wall():
         )
     print(f"wall in {time.time() - t0:.1f}s")
     return wo5, we5
-
-
-# CENSUS
 
 
 def gsum(L, N, ts, chunk=3_000_000):
@@ -397,9 +389,6 @@ def census():
     print(f"census in {time.time() - t0:.1f}s")
 
 
-# CHECK
-
-
 def odd_pieces(N, ts):
     n = (N + 1) // 2
     K = (n - 1) // 2
@@ -510,9 +499,6 @@ def check():
     print(f"check in {time.time() - t0:.1f}s")
 
 
-# LOST
-
-
 def lost():
     t0 = time.time()
     print(
@@ -564,9 +550,6 @@ def lost():
             f"  base {N}, step {r}, L = {L}, r_0 = {r0}: pure g | r_0, g > 1: {len(pure)} with m_d = 1 by construction{mx}; off the class: {len(kept)} with m_d <= {gdown(max(kept))}"
         )
     print(f"lost in {time.time() - t0:.1f}s")
-
-
-# METER
 
 
 def sieve(X):
@@ -656,8 +639,6 @@ def meter():
         )
     print(f"meter in {time.time() - t0:.1f}s")
 
-
-# HEADROOM
 
 RHOS = (Fraction(1, 2), Fraction(3, 4), Fraction(19, 20))
 PRIMES = (10007, 100003, 1000003)

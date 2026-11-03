@@ -8,8 +8,6 @@ const SIZE: usize = 135;
 
 const STEPS: usize = 400;
 
-// RING PROFILES
-
 pub fn the_coprime_law_survives_the_spin() -> Result<(), String> {
     let far = reach(SIZE);
     let disc: Vec<f64> = (0..STEPS)

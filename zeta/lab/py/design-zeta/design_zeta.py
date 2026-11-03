@@ -5,8 +5,6 @@ import mpmath as mp
 
 TOL = mp.mpf(10) ** -22
 
-# ENGINE
-
 
 class Design:
     def __init__(self, q, F, P=None, dps=45, tol=TOL):
@@ -133,9 +131,6 @@ class Design:
         return +r, +er
 
 
-# CONTOURS
-
-
 class Cache:
     def __init__(self, d, cof=False):
         self.d = d
@@ -240,9 +235,6 @@ def zero(d, box, cof=False):
         r = z0
     v = abs(f(r))
     return r, v, f.emax
-
-
-# STUDY
 
 
 def line(*a):

@@ -9,8 +9,6 @@ import numpy as np
 from mpmath import iv
 from sympy import isprime, nextprime, prevprime
 
-# DIGITS
-
 
 def digsum(n, p):
     n = np.array(n, dtype=np.int64)
@@ -64,9 +62,6 @@ def primes_upto(n):
         if s[q]:
             s[q * q :: q] = False
     return np.nonzero(s)[0]
-
-
-# KUMMER
 
 
 def kummer():
@@ -150,9 +145,6 @@ def kummer():
     )
     assert bad == 0 and count == 51**5
     print(f"kummer: {time.time() - t0:.1f} s")
-
-
-# FAMILY
 
 
 def limit_design(a, b):
@@ -266,8 +258,6 @@ def family():
     )
     print(f"family: {time.time() - t0:.1f} s")
 
-
-# CONSTANTS
 
 E = lambda x: np.exp(2j * np.pi * x)
 AF = lambda z: np.abs(E(z / 3) - 1 + E(2 * z / 3) - E(z / 2))
@@ -387,9 +377,6 @@ def certify(K):
     print(
         f"nu1 <= {K['nu1']} on [0, 1/2]: closed form, peak (sqrt 6 + sqrt 2)/3 at t = 1/2"
     )
-
-
-# CERTIFICATE
 
 
 def cert_iv(p, K):
@@ -572,9 +559,6 @@ def wall():
     print(f"wall: {time.time() - t0:.1f} s")
 
 
-# TRANSFORMS
-
-
 def dker(lo, hi, u):
     n = hi - lo + 1
     z = E(u)
@@ -699,9 +683,6 @@ def check():
     print(f"check: {time.time() - t0:.1f} s")
 
 
-# RATE
-
-
 def power(p, N=100, it=25):
     tg = np.linspace(0, 1, N + 1)
     r = np.arange(p)
@@ -798,9 +779,6 @@ def rate():
         f"readings carried to the bar 1/5, bounding nothing: (10/(3 pi)) log p + {off_t:.4f} meets p^(1/5) near {meet(off_t):.3e}, + {off_k:.4f} near {meet(off_k):.3e}"
     )
     print(f"rate: {time.time() - t0:.1f} s")
-
-
-# METER
 
 
 def count_k(x, p):

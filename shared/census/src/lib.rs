@@ -1,7 +1,3 @@
-//! The census: every number writer of the figures, one bin each, its json beside it.
-#![deny(missing_docs)]
-
-/// The ledger sweep the two integers writers share.
 pub mod integers;
 
 use mrly_core::error::{value_error, Result};
@@ -35,11 +31,6 @@ fn has_null(value: &Json) -> bool {
     }
 }
 
-/// Saves the value as `<name>.json` beside the one `research/*/figures/<name>.ts`, whatever the cwd: compact, keys in written order, floats in their shortest round-trip form, one trailing newline.
-///
-/// # Errors
-///
-/// Errs on a name outside `a-z`, `0-9` and `-`, on a null anywhere in the value (a NaN or an infinity became one), when no single figure of that name exists, or when the file cannot be written.
 pub fn save(name: &str, value: &Json) -> Result<()> {
     if name.is_empty()
         || !name

@@ -86,8 +86,6 @@ pub trait Gen {
     fn out(&self, s: &Self::State, o: &mut Words);
 }
 
-// MACHINE
-
 #[derive(Clone, Copy)]
 pub enum Load {
     Fill,
@@ -358,8 +356,6 @@ impl Gen for Machine {
     }
 }
 
-// RULE 30
-
 pub struct Rule30 {
     pub cells: usize,
     pub ctr: [u32; CTR],
@@ -444,8 +440,6 @@ impl Gen for Rule30 {
     }
 }
 
-// CHACHA
-
 const SIGMA: [u32; 4] = [0x6170_7865, 0x3320_646e, 0x7962_2d32, 0x6b20_6574];
 
 fn quarter(s: &mut [u32; 16], a: usize, b: usize, c: usize, d: usize) {
@@ -518,8 +512,6 @@ impl Gen for ChaCha {
         *o = *s;
     }
 }
-
-// BASELINES
 
 pub struct Counter {
     pub name: &'static str,

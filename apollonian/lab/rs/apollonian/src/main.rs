@@ -1,8 +1,6 @@
 use std::collections::HashSet;
 use std::env;
 
-// THE OBJECTS
-
 #[derive(Clone, Copy, PartialEq, Eq, Hash, Debug)]
 struct Circle {
     k: i64,
@@ -80,8 +78,6 @@ fn bounded_root() -> Quad {
         Circle { k: 3, x: 0, y: 2 },
     ]
 }
-
-// THE CENSUS
 
 struct Run {
     circles: u64,
@@ -211,8 +207,6 @@ fn gcd(a: i64, b: i64) -> i64 {
     }
 }
 
-// THE FORD IDENTIFICATION
-
 struct Ford {
     nodes: u64,
     broken: u64,
@@ -284,8 +278,6 @@ fn totients(top: usize) -> Vec<u64> {
     }
     phi
 }
-
-// THE VERBS
 
 const DELTA: f64 = 1.3056867280498771846459862068510;
 

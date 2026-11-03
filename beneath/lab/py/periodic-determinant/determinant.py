@@ -91,9 +91,6 @@ def trunc(x, digits):
     return math.floor(x * 10**digits) / 10**digits
 
 
-# GRAPH
-
-
 def closed_walks(edges, period):
     states = sorted({u for u, _, _ in edges} | {v for _, v, _ in edges})
     count = Counter()
@@ -176,9 +173,6 @@ def pieces(q, code, k):
             s, me = minimize(sorted(c), e)
             out.append(("finite", len(c), (s, me)))
     return out
-
-
-# DISC
 
 
 def disc_numbers(edges, c, r, beta):
@@ -438,9 +432,6 @@ def certify_real(cert, guess, width_floor):
     return s - r, s + r, t1
 
 
-# ZERO
-
-
 def zero(period, arcs):
     t0 = time.time()
     mp.dps = iv.dps = 90
@@ -556,9 +547,6 @@ def control(period, arcs):
         )
         assert ok
     print(f"control: {time.time() - t0:.1f} s")
-
-
-# ORPHANS
 
 
 def orphans(period, modes):

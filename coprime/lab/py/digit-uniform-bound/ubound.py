@@ -8,8 +8,6 @@ from mpmath import iv
 
 FAILS = []
 
-# CHECKS
-
 
 def chk(value, want, tol):
     ok = abs(value - want) <= tol
@@ -29,9 +27,6 @@ def close(t0):
     if FAILS:
         raise SystemExit(f"{len(FAILS)} rows off: {FAILS[:4]}")
     print(f"all rows agree  ({time.time() - t0:.1f}s)")
-
-
-# FLOAT TRANSFORM
 
 
 def hat_missing(q, a0, t):
@@ -84,9 +79,6 @@ def domination(bases, m=1, pts=4001):
     close(t0)
 
 
-# THE SUBSET IDENTITY
-
-
 def runs(E, N):
     out = []
     s = None
@@ -133,9 +125,6 @@ def identity(rows, m=1):
             f"base {q} levels {N} at {m} excluded digits: Sigma_N^u against the subset sum over {2**N} runs decompositions weighted {m}^(N - |E|) {chk(0.0, 0.0, 0.0)}, Sigma_N^u(0) = {sigma_u(q, N, 0.0, m):.6f}"
         )
     close(t0)
-
-
-# THE LEBESGUE CONSTANT
 
 
 def lam_at(M, th):
@@ -187,9 +176,6 @@ def least_uniform(lo, hi, nd, m=1):
     close(t0)
 
 
-# THE PEELING BOUND
-
-
 def lam_max(M, grid=20000):
     return lam_scan(M, grid)[0]
 
@@ -234,8 +220,6 @@ def peel(rows, m=1, grid=400):
         )
     close(t0)
 
-
-# THE THRESHOLD
 
 C1 = 2.0 / math.pi
 G0 = 0.9625229
@@ -286,9 +270,6 @@ def threshold(m=1, thr=0.25, name="1/4", g0=G0, hi=100000):
     close(t0)
 
 
-# THE THRESHOLD, CERTIFIED
-
-
 def certify_threshold(qu, hi, m=1, thr=(1, 4), name="1/4", g0=G0):
     t0 = time.time()
     iv.prec = 120
@@ -318,9 +299,6 @@ def certify_threshold(qu, hi, m=1, thr=(1, 4), name="1/4", g0=G0):
         f"  and the chain fails at q = {qu - 1}, margin {float(margin(qu - 1).b):.6e}, so {qu} is the least threshold this chain gives at {m} excluded digits"
     )
     close(t0)
-
-
-# THE UNIFORM WINDOW BOUND
 
 
 def dn(x):
@@ -401,9 +379,6 @@ def compare(rows):
             f"base {q} missing {a0}: uniform {e:.6f} against the per-digit ladder {per:.6f}, uniform weaker by {e - per:.6f} {chk(1.0 if ok else 0.0, 1.0, 0.0)}"
         )
     close(t0)
-
-
-# VERBS
 
 
 def main():

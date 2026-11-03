@@ -4,8 +4,6 @@ use std::sync::Mutex;
 use std::thread;
 use std::time::Instant;
 
-// DESIGNS
-
 const DESIGNS: usize = 57;
 const RS: usize = 57;
 const COIN: usize = 58;
@@ -100,8 +98,6 @@ fn coin(i: u64, salt: u64) -> u64 {
     mix(salt.wrapping_add((i + 1).wrapping_mul(GOLDEN))) >> 63
 }
 
-// READER
-
 const P3: u64 = 1_594_323;
 const P4: u64 = 1 << 20;
 const P5: u64 = 1_953_125;
@@ -163,8 +159,6 @@ impl Reader {
             | rudin(v) << RS
     }
 }
-
-// TALLY
 
 type Grid = Vec<[u64; 256]>;
 const CHUNK: u32 = 16;
@@ -305,8 +299,6 @@ fn null() -> (f64, f64) {
     (mean, var.sqrt())
 }
 
-// PRIMES
-
 fn primes(count: usize) -> Vec<u32> {
     let n = count as f64;
     let limit = (n * (n.ln() + n.ln().ln()) + 1000.0) as u64;
@@ -377,8 +369,6 @@ fn primes(count: usize) -> Vec<u32> {
     all.truncate(count + 7);
     all
 }
-
-// SPECTRUM
 
 #[derive(Clone, Copy, Debug)]
 struct Iv {
@@ -571,8 +561,6 @@ impl Tile {
     }
 }
 
-// ORBITS
-
 #[derive(Clone, Copy, Debug)]
 struct Orbit {
     k: u32,
@@ -691,8 +679,6 @@ fn spectrum(d: Design) -> Spectrum {
     }
 }
 
-// ENERGY
-
 fn energy(d: Design) -> [[i64; 2]; 2] {
     let b = d.b as usize;
     let al: Vec<i64> = (0..=b)
@@ -757,8 +743,6 @@ fn spearman(x: &[f64], y: &[f64]) -> f64 {
     let vy: f64 = ry.iter().map(|b| (b - my).powi(2)).sum();
     cov / (vx * vy).sqrt()
 }
-
-// CERTIFICATE
 
 fn evaluate(b: usize, wt: &[f64], pol: &[usize], eta: &mut [f64], h: &mut [f64]) {
     let n = wt.len();
@@ -948,8 +932,6 @@ fn bracket(d: Design, guess: Orbit) -> Bracket {
     }
 }
 
-// DIAGONAL
-
 struct Corr {
     b: u64,
     m: Vec<[[f64; 2]; 2]>,
@@ -1136,8 +1118,6 @@ fn diagonal(top: u32, ptop: u32) {
         pworst_at
     );
 }
-
-// CENSUS
 
 fn sequences(all: &[Design], len: u64) -> Vec<Vec<u64>> {
     all.iter()
@@ -1670,8 +1650,6 @@ fn law(all: &[Design], sq: &Grid, top: u32, pr: &Grid, ptop: u32, tags: &[String
     println!();
 }
 
-// SPEED
-
 fn decay(grid: &Grid, d: usize, set: usize, ks: &[u32]) -> f64 {
     let pts: Vec<(f64, f64)> = ks
         .iter()
@@ -1783,8 +1761,6 @@ fn speed(top: u32) {
         lmabs
     );
 }
-
-// THUE
 
 fn thue_job(s: u64, e: u64) -> [i64; 3] {
     let mut sq = (s as u128) * (s as u128);
@@ -1922,8 +1898,6 @@ fn thue(top: u32) {
         }
     }
 }
-
-// ETA
 
 fn eta() {
     println!("# ETA");

@@ -2,8 +2,6 @@ use num_bigint::BigUint;
 use std::env;
 use std::time::Instant;
 
-// DIGITS
-
 fn ok_small(mut n: u128, base: u128, top: u128) -> bool {
     while n > 0 {
         if n % base > top {
@@ -21,8 +19,6 @@ fn ok_big(n: &BigUint, base: u32, top: u8) -> bool {
 fn pow_big(base: u32, e: usize) -> BigUint {
     BigUint::from(base).pow(e as u32)
 }
-
-// SEARCH
 
 struct Thin {
     cap: BigUint,
@@ -131,8 +127,6 @@ fn shown(v: &[BigUint]) -> Vec<String> {
     v.iter().map(|x| x.to_string()).collect()
 }
 
-// OEIS CONTROL
-
 const A030979: [u128; 23] = [
     0,
     1,
@@ -162,8 +156,6 @@ const A030979: [u128; 23] = [
 fn a030979() -> Vec<BigUint> {
     A030979.iter().map(|&x| BigUint::from(x)).collect()
 }
-
-// BUDGETS
 
 fn dim(base: f64, alphabet: f64) -> f64 {
     alphabet.ln() / base.ln()
@@ -201,8 +193,6 @@ fn budget() {
     println!("erdos 3 7 wide {:.6}", 1.0 / 2.0 + 3.0 / 6.0);
     println!("erdos 5 7 wide {:.6}", 2.0 / 4.0 + 3.0 / 6.0);
 }
-
-// VERBS
 
 fn control() {
     let cap = BigUint::from(100_000_000u128);

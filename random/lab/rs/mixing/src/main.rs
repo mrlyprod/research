@@ -8,8 +8,6 @@ use kernel::{radius, rate, sigma2, tv, Kernel};
 use std::env;
 use std::time::Instant;
 
-// CHECK
-
 fn check() {
     let spec = Spec {
         n: 4,
@@ -47,8 +45,6 @@ fn check() {
         );
     }
 }
-
-// THREE
 
 struct Curve {
     d: Vec<f64>,
@@ -245,8 +241,6 @@ fn census_three() {
     }
 }
 
-// TRIPLE
-
 fn census_triple(every: usize) {
     let all = cells(3, &three());
     let mut picked = Vec::new();
@@ -321,8 +315,6 @@ fn census_triple(every: usize) {
         );
     }
 }
-
-// STAMPS
 
 fn law_gap(
     rows: &std::collections::BTreeMap<(u32, u32), u64>,
@@ -447,8 +439,6 @@ fn stamps() {
         );
     }
 }
-
-// CONE
 
 fn sched_curve(ks: &[&Kernel], starts: &[usize], eps: f64, most: usize) -> Vec<f64> {
     let m = ks[0].m;
@@ -620,8 +610,6 @@ fn multi(runs: usize) {
         }
     }
 }
-
-// FOUR
 
 fn census_four() {
     let all = cells(4, &four());

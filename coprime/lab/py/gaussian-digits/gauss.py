@@ -9,8 +9,6 @@ G0 = 0.9625229
 C1F = 2 / math.pi
 GATES = ((1, 5), (1, 6), (1, 8))
 
-# FLOAT TRANSFORM
-
 
 def kern(b, t):
     t = np.asarray(t, dtype=float)
@@ -49,9 +47,6 @@ def fdirect(b, a, t1, t2):
                     np.exp(2j * np.pi * x * t1), np.exp(2j * np.pi * y * t2)
                 )
     return np.abs(acc) / (b * b - 1)
-
-
-# CENSUS
 
 
 def sigma1(b, m1, m2, G):
@@ -224,9 +219,6 @@ def census():
     print(f"runtime {time.time() - t0:.1f} s")
 
 
-# THE SQUARE CHAIN
-
-
 def ivc():
     c1 = 2 / iv.pi
     g = iv.mpf(G0)
@@ -385,8 +377,6 @@ def chain():
     print(f"runtime {time.time() - t0:.1f} s")
 
 
-# THE SQUARE UNIFORM WINDOW
-
 MARGIN = 1e-12
 
 
@@ -540,9 +530,6 @@ def morton():
     print(f"runtime {time.time() - t0:.1f} s")
 
 
-# THE COUNT
-
-
 def design(b, a, k):
     F = [(x, y) for x in range(b) for y in range(b) if (x, y) != a]
     fx = np.array([v[0] for v in F], dtype=np.int64)
@@ -628,9 +615,6 @@ def count():
             f"  base {b} missing {a} level {k}: |S_k| = {len(X)}, kappa = {kap:.6f}, ratio {lam / pred:.4f}"
         )
     print(f"runtime {time.time() - t0:.1f} s")
-
-
-# THE MINOR-ARC LEMMA, READ
 
 
 def minor():
@@ -730,9 +714,6 @@ def minor():
         f"  largest |S|/bound over all 1000 samples {worst:.4f} < 1 with no logarithm; the lemma allows (log X)^4 = {L**4:.0f} times more"
     )
     print(f"runtime {time.time() - t0:.1f} s")
-
-
-# THE GATE AT ONE FIFTH, READ
 
 
 def ggcd_int(a, b):
@@ -845,9 +826,6 @@ def gate():
         "  in every band the ratio falls from y = 729 to y = 6561: the reading does not grow with y"
     )
     print(f"runtime {time.time() - t0:.1f} s")
-
-
-# THE COUNT LEMMA AND THE BILINEAR BOUND, CHECKED
 
 
 def tdist(w1, w2):
@@ -1002,9 +980,6 @@ def bilinear():
         )
     assert worst < 2e4 and top < 2e4
     print(f"runtime {time.time() - t0:.1f} s")
-
-
-# THE SEPARATION COST OF A SQUARE, READ
 
 
 def sstep(t):

@@ -1,13 +1,6 @@
-//! The sequence registry: every measure of every design as a sequence, the curated records, and the page they render.
-#![deny(missing_docs)]
-
-/// The markdown page the ledger renders.
 pub mod markdown;
-/// The curated OEIS records and the identification against them.
 pub mod records;
-/// The term generators and the closed forms.
 pub mod terms;
-/// The window census of a plane design.
 pub mod windows;
 
 pub use markdown::markdown;
@@ -23,7 +16,6 @@ use std::sync::{Mutex, OnceLock};
 
 type Walked = BTreeMap<(usize, usize), &'static [u128]>;
 
-/// The dimension and base pairs the ledger walks.
 pub const SPACES: [(usize, usize); 9] = [
     (1, 2),
     (2, 2),
@@ -36,29 +28,20 @@ pub const SPACES: [(usize, usize); 9] = [
     (1, 5),
 ];
 
-/// The cells a catalog row may render for one term.
 pub const BUDGET: u128 = 500_000;
 
-/// The terms a catalog row holds.
 pub const TERMS: usize = 8;
 
-/// A cost tier of the catalog.
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub enum Tier {
-    /// The closed measures on both axes and the face counts on the level axis.
     Closed,
-    /// The profile measures on both axes.
     Convolved,
-    /// The grid measures on the side axis.
     SideGrid,
-    /// The grid measures on the level axis.
     LevelGrid,
-    /// The window census on the window axis.
     WindowGrid,
 }
 
 impl Tier {
-    /// Every tier, cheapest first.
     pub const ALL: [Tier; 5] = [
         Tier::Closed,
         Tier::Convolved,
@@ -66,7 +49,6 @@ impl Tier {
         Tier::LevelGrid,
         Tier::WindowGrid,
     ];
-    /// Returns the tier's one-word name.
     pub fn slug(self) -> &'static str {
         match self {
             Tier::Closed => "closed",
@@ -76,7 +58,6 @@ impl Tier {
             Tier::WindowGrid => "window",
         }
     }
-    /// Parses a one-word name back into its tier, or an error for any other word.
     pub fn parse(slug: &str) -> Result<Tier> {
         Tier::ALL
             .into_iter()
@@ -90,7 +71,6 @@ impl Tier {
             _ => Cost::Grid,
         }
     }
-    /// Returns the axes the tier's rows run along.
     pub fn axes(self) -> &'static [Axis] {
         match self {
             Tier::SideGrid => &[Axis::Side],
@@ -101,12 +81,9 @@ impl Tier {
     }
 }
 
-/// One row of the catalog: a design sequence with the record its terms match.
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct Row {
-    /// The design sequence.
     pub sequence: Sequence,
-    /// The record the terms match, with the record's index less the ledger's.
     pub record: Option<(&'static Record, i32)>,
 }
 
@@ -120,12 +97,6 @@ impl Row {
     }
 }
 
-/// Returns the designs of a dimension and base, the least code of every orbit, walked once and cached, or an error past the walk limit.
-///
-/// ```
-/// assert_eq!(ledger::designs(2, 2).unwrap(), [0, 1, 3, 6, 7, 15]);
-/// assert_eq!(ledger::designs(2, 3).unwrap().len(), 26);
-/// ```
 pub fn designs(dimension: usize, base: usize) -> Result<&'static [u128]> {
     static CACHE: OnceLock<Mutex<Walked>> = OnceLock::new();
     let cache = CACHE.get_or_init(|| Mutex::new(BTreeMap::new()));
@@ -142,7 +113,6 @@ pub fn designs(dimension: usize, base: usize) -> Result<&'static [u128]> {
     Ok(leaked)
 }
 
-/// Lists every key of a tier: the designs of every space, the measures of the tier's cost that apply, on the tier's axes the measure runs along.
 pub fn keys(tier: Tier) -> Vec<Key> {
     let mut out = Vec::new();
     for (dimension, base) in SPACES {
@@ -175,7 +145,6 @@ fn attach(key: &Key, terms: &[i128]) -> Option<(&'static Record, i32)> {
         .map(|&(record, shift)| (record, shift - key.axis.start()))
 }
 
-/// Reads one design sequence: its terms within the budget, its closed form and the record it matches.
 pub fn sequence(key: &Key, count: usize, cells: u128) -> Result<Row> {
     let (terms, capped) = terms(key, count, cells)?;
     let closed = closed(key)?;
@@ -199,7 +168,6 @@ pub fn sequence(key: &Key, count: usize, cells: u128) -> Result<Row> {
     })
 }
 
-/// Reads every sequence of a tier at the count of terms, within the standing cell budget.
 pub fn catalog(tier: Tier, count: usize) -> Vec<Row> {
     keys(tier)
         .iter()
@@ -207,7 +175,6 @@ pub fn catalog(tier: Tier, count: usize) -> Vec<Row> {
         .collect()
 }
 
-/// Parses integers separated by commas or spaces, or none when a token is not one.
 pub fn numbers(text: &str) -> Option<Vec<i128>> {
     let tokens: Vec<&str> = text
         .split(|c: char| c == ',' || c.is_whitespace())
@@ -219,7 +186,6 @@ pub fn numbers(text: &str) -> Option<Vec<i128>> {
     tokens.iter().map(|token| token.parse().ok()).collect()
 }
 
-/// Finds the catalog rows a query names: the rows holding the typed terms as a window, or the rows whose name or record holds the typed fragment.
 pub fn search(catalog: &[Row], query: &str) -> Vec<usize> {
     let query = query.trim();
     if query.is_empty() {

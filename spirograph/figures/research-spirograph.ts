@@ -24,8 +24,6 @@ const DOT = 2.6;
 
 export const units = { math };
 
-// WHEEL
-
 let memo: Wheel | undefined;
 
 function wheel(): Wheel {
@@ -47,8 +45,6 @@ function wheel(): Wheel {
   memo = { bounds: math.spirograph.disc(path, pens), shape, points };
   return memo;
 }
-
-// SHAPE
 
 function wash(pen: Pen, ink: Ink, shape: math.spirograph.Cover, corner: Point, span: number) {
   const n = shape.side;
@@ -76,8 +72,6 @@ function wash(pen: Pen, ink: Ink, shape: math.spirograph.Cover, corner: Point, s
   }
   tint.paint(pen);
 }
-
-// DRAW
 
 export default function draw(pen: Pen, ink: Ink) {
   const { bounds, shape, points } = wheel();

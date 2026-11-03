@@ -17,8 +17,6 @@ const NAME = "research-random-rounds";
 
 let memo: { order: number[]; cycle: number[] } | undefined;
 
-// ROUND
-
 function machine() {
   const reads: [number, number][] = [];
   for (let a = 0; a < CELLS; a++) {
@@ -88,8 +86,6 @@ function census() {
   memo = { order, cycle };
   return memo;
 }
-
-// DRAW
 
 export default function draw(pen: Pen, ink: Ink) {
   const { order, cycle } = census();

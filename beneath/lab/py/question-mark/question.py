@@ -16,8 +16,6 @@ HOLDER = LN2 / (2.0 * math.log(PHI))
 M0 = ((1, 1), (0, 1))
 M1 = ((1, 0), (1, 1))
 
-# STERN
-
 
 def stern(top):
     s = [0, 1]
@@ -132,9 +130,6 @@ def carry(span, depth):
     print(f"carry: {time.time() - t0:.2f} s")
 
 
-# QUESTION MARK
-
-
 def quotients(x):
     out = []
     while x:
@@ -215,9 +210,6 @@ def question(depth, level, alphabets):
             f"question: width {k} code {code} alphabet {name(alpha)}: accepted {len(accepted)}, prefixes of ?(E_A) {len(prefixes)}, missing {len(missing)}, extra {len(extra)} with leading runs {heads}"
         )
     print(f"question: {time.time() - t0:.2f} s")
-
-
-# RULES
 
 
 def words(length):
@@ -357,9 +349,6 @@ def divides(p, q):
         while q and q[-1] == 0:
             q.pop()
     return not q
-
-
-# TRANSFER OPERATOR
 
 
 def nodes(n):
@@ -562,9 +551,6 @@ def obstruction(widths):
             print(
                 f"obstruction: width {k} code {c} allows {allowed if k <= 3 else len(allowed)} forbids {forbid}, rho {trunc(perron(c, k))}"
             )
-
-
-# GRAPH
 
 
 def graph_of(code, k):
@@ -785,9 +771,6 @@ def graph(widths, modes, cut, taylor, level):
             f"| {c} | {rule} | {cf} | {trunc(rho)} | {trunc(dy)} | {trunc(s)} | {trunc(bound)} |"
         )
     print(f"graph: {time.time() - t0:.2f} s")
-
-
-# SUBLEADING
 
 
 def complex_parts(modes, letters):

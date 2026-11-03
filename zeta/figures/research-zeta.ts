@@ -9,8 +9,6 @@ const REACH = 0.7;
 
 export const units = {};
 
-// FACTS
-
 function check(p: Panel, sizes: [number, number, number]) {
   const counts = [p.family.length, p.teeth.length, p.hollow.length];
   if (counts.some((n, i) => n !== sizes[i])) throw new Error(`research-zeta: zeros ${counts}, want ${sizes}`);
@@ -21,8 +19,6 @@ function check(p: Panel, sizes: [number, number, number]) {
       throw new Error(`research-zeta: zero ${re} ${im} off the strip`);
   }
 }
-
-// PANEL
 
 function panel(pen: Pen, ink: Ink, box: Frame, p: Panel) {
   const [alpha, below] = p.columns;
@@ -47,8 +43,6 @@ function panel(pen: Pen, ink: Ink, box: Frame, p: Panel) {
   for (const [re, im] of p.teeth) pen.disc(...at(re, im), 7, ink.yellow);
   for (const [re, im] of p.hollow) pen.disc(...at(re, im), 7, ink.fade(ink.fg, 0.9));
 }
-
-// DRAW
 
 export default function draw(pen: Pen, ink: Ink) {
   const { design, full } = census as { design: Panel; full: Panel };

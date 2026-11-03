@@ -10,8 +10,6 @@ READ_TOP = 13
 MIDS = [(5, 100), (7, 1000), (8, 2000), (8, 5000)]
 SMALL = [(5, 2, 1), (5, 2, 2), (5, 2, 3), (5, 2, 4), (4, 2, 3)]
 
-# ARITHMETIC
-
 
 def mobius(n):
     mu = np.ones(n + 1, dtype=np.int64)
@@ -58,9 +56,6 @@ def residue_vector(mu, x, n):
     return g
 
 
-# FAMILIES
-
-
 def translates(base, digs, level, mu, x):
     n = base**level
     d = level_set(base, digs, level)
@@ -104,9 +99,6 @@ def subsets(base, fill, level, mu, x):
         total += v * v
         count += 1
     return Fraction(total, count)
-
-
-# PAIR FORMS
 
 
 def squarefree(mu, x):
@@ -155,9 +147,6 @@ def pair_subsets(base, fill, level, mu, x):
         p = fill**level * (fill - 1) ** dist * (base - 1) ** (level - dist)
         total += int((ms[i0 : i0 + 128, None] * ms[None, :] * p).sum())
     return Fraction(total, n * (base - 1) ** level)
-
-
-# FOURIER FORMS
 
 
 def omega_mul(a, b, k):
@@ -238,9 +227,6 @@ def twists3(mu, x):
             ca, cb = ca + pa, cb + pb
         s.append(ca * ca - ca * cb + cb * cb)
     return cls, s
-
-
-# VERBS
 
 
 def check():

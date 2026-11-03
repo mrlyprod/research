@@ -3,8 +3,6 @@ use std::collections::BTreeMap;
 
 use crate::{bigpow, pow_checked, ratio_f64};
 
-// MODULAR ARITHMETIC
-
 const MR_LIMIT: u128 = 3_317_044_064_679_887_385_961_981;
 const MR_BASES: [u128; 13] = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41];
 
@@ -56,8 +54,6 @@ fn gcd_u128(mut a: u128, mut b: u128) -> u128 {
     a
 }
 
-// PRIMALITY
-
 fn is_prime(n: u128) -> bool {
     if n < 2 {
         return false;
@@ -88,8 +84,6 @@ fn is_prime(n: u128) -> bool {
     }
     true
 }
-
-// FACTORISATION
 
 fn absdiff(a: u128, b: u128) -> u128 {
     a.abs_diff(b)
@@ -220,8 +214,6 @@ fn fac_string(m: &BTreeMap<u128, u32>) -> String {
         .join(" * ")
 }
 
-// CYCLOTOMIC SPLIT
-
 fn cyclotomic(q: u64, tmax: usize) -> Vec<BigInt> {
     let mut phi: Vec<BigInt> = vec![BigInt::from(1); tmax + 1];
     for d in 1..=tmax {
@@ -241,8 +233,6 @@ fn to_u128(x: &BigInt) -> u128 {
         .parse::<u128>()
         .expect("cyclotomic value overflows u128")
 }
-
-// CARRY DP
 
 fn poly_powers(digits: &[u64], nmax: usize) -> Vec<Vec<u128>> {
     let top = *digits.iter().max().unwrap() as usize;
@@ -309,8 +299,6 @@ fn count_div(q: u64, polys: &[Vec<u128>], l: usize, t: usize, g: u64) -> u128 {
     }
     total
 }
-
-// STUDY
 
 struct Ctx {
     q: u64,
@@ -486,8 +474,6 @@ fn study(c: &Ctx, l: usize) -> Res {
     }
 }
 
-// RENDER
-
 fn depth_row(c: &Ctx, r: &Res) -> String {
     format!(
         "| {} | {} | {} | {:+.3} | {:.1e} | {} | {} | {} |",
@@ -610,8 +596,6 @@ pub fn run() {
         }
     }
 }
-
-// TESTS
 
 #[cfg(test)]
 mod tests {

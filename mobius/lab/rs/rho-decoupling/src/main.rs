@@ -7,8 +7,6 @@ mod riesz;
 mod signed;
 mod vaughan;
 
-// EXACT DP
-
 fn pow_checked(k: u64, l: usize) -> u128 {
     let mut p: u128 = 1;
     for _ in 0..l {
@@ -42,8 +40,6 @@ fn residue_counts(q: u64, digits: &[u64], l: usize, d: u64) -> Vec<u128> {
 fn n_div(q: u64, digits: &[u64], l: usize, d: u64) -> u128 {
     residue_counts(q, digits, l, d)[0]
 }
-
-// ARITHMETIC HELPERS
 
 fn gcd(mut a: u64, mut b: u64) -> u64 {
     while b != 0 {
@@ -100,8 +96,6 @@ fn mult_order(q: u64, d: u64) -> u64 {
     }
     t
 }
-
-// EXACT READOUT
 
 fn bigpow(base: &BigInt, l: usize) -> BigInt {
     let mut p = BigInt::from(1);
@@ -170,8 +164,6 @@ fn assert_lemma_a(errnum: &BigInt, kl: &BigInt, k: u64, d: u64, l: usize) {
     let rhs = BigInt::from(d) * kl * bigpow(&kd2m8, l);
     assert!(lhs <= rhs, "lemma A fails at k={k} d={d} l={l}");
 }
-
-// CENSUS
 
 fn census(q: u64, digits: &[u64], label: &str, ls: &[usize], dmax: u64, mu: &[i8]) {
     let k = digits.len() as u64;
@@ -313,8 +305,6 @@ fn main() {
     signed::run();
     vaughan::run();
 }
-
-// TESTS
 
 #[cfg(test)]
 mod tests {

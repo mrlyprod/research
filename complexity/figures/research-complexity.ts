@@ -8,8 +8,6 @@ const LEVEL = 6;
 
 let memo: { values: Float64Array; ones: number } | undefined;
 
-// FACTS
-
 function spectrum() {
   if (memo) return memo;
   const cell = math.two.create(7, 2, LEVEL, 0, 2);
@@ -21,8 +19,6 @@ function spectrum() {
   memo = { values, ones };
   return memo;
 }
-
-// DRAW
 
 export default function draw(pen: Pen, ink: Ink) {
   const { values, ones } = spectrum();

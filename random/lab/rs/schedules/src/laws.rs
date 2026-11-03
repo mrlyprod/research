@@ -1,7 +1,5 @@
 use crate::machine::{delta, good, image, ones, selfcomplementary, Split};
 
-// GRAPHS
-
 pub fn strongly_connected(edges: &[Vec<usize>]) -> bool {
     let n = edges.len();
     let mut back = vec![Vec::new(); n];
@@ -41,8 +39,6 @@ pub fn depths(edges: &[Vec<usize>], start: usize) -> Vec<usize> {
     }
     depth
 }
-
-// SECOND DIFFERENCES
 
 pub struct Probe {
     pub readers: Vec<usize>,
@@ -105,8 +101,6 @@ pub fn probe(s: &Split, p: usize) -> Probe {
         zero: reduce(&rows, base) == 0,
     }
 }
-
-// CONDITIONS
 
 pub struct Conditions {
     pub live: bool,
@@ -195,8 +189,6 @@ pub fn conditions(schedule: &[Split]) -> Conditions {
         edges: gamma,
     }
 }
-
-// LAWS
 
 fn module(schedule: &[Split]) -> usize {
     let mut rows: Vec<u128> = Vec::new();

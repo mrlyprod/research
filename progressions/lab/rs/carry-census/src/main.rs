@@ -1,7 +1,5 @@
 use std::time::Instant;
 
-// THE CRITERION
-
 fn digits(mask: u64) -> Vec<u32> {
     (0..64).filter(|d| mask >> d & 1 == 1).collect()
 }
@@ -49,8 +47,6 @@ fn free(base: u32, mask: u64) -> bool {
     digit_free(mask) && !closes(base, mask)
 }
 
-// THE DIGIT SETS
-
 fn extend(base: u32, mask: u64, from: u32, out: &mut Vec<u64>) {
     out.push(mask);
     for d in from..base {
@@ -73,8 +69,6 @@ fn show(mask: u64) -> String {
     let words: Vec<String> = digits(mask).iter().map(|d| d.to_string()).collect();
     format!("{{{}}}", words.join(", "))
 }
-
-// BRUTE FORCE
 
 fn level(base: u32, mask: u64, lvl: u32) -> Vec<u64> {
     let ds = digits(mask);
@@ -116,8 +110,6 @@ fn first_level(base: u32, mask: u64, top: u32) -> Option<u32> {
     (1..=top).find(|&lvl| brute(base, mask, lvl).is_some())
 }
 
-// THE CYCLIC GROUP
-
 fn cyclic_extend(n: u32, set: &mut Vec<u32>, from: u32, best: &mut u32) {
     *best = (*best).max(set.len() as u32);
     for d in from..n {
@@ -141,8 +133,6 @@ fn cyclic(n: u32) -> u32 {
     cyclic_extend(n, &mut vec![0], 1, &mut best);
     best
 }
-
-// THE RUNS
 
 fn control(bases: std::ops::RangeInclusive<u32>, top: u32) -> u32 {
     println!("control: brute force to level {top} against the criterion, every progression-free F with 0");

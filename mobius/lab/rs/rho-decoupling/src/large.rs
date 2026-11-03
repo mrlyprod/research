@@ -3,8 +3,6 @@ use num_bigint::BigInt;
 use crate::riesz::{alpha, band, families, moment, theta_band, transform_table, Family};
 use crate::{bigpow, ratio_f64};
 
-// GRID
-
 pub struct Grid {
     pub l: usize,
     pub n: usize,
@@ -65,8 +63,6 @@ impl Grid {
     }
 }
 
-// ROUNDING
-
 fn read(v: f64, digits: usize) -> String {
     band(v - 1e-12, v + 1e-12, digits)
 }
@@ -97,8 +93,6 @@ fn sci(v: f64, upward: bool) -> String {
         format!("{:.5}e{}", r / 1e5, e)
     }
 }
-
-// STRUCTURE
 
 pub struct Shape {
     pub min_gap: usize,
@@ -149,8 +143,6 @@ pub fn shape(set: &[usize], n: usize) -> Shape {
         max_run,
     }
 }
-
-// GRAM
 
 pub struct Gram {
     pub lo: f64,
@@ -225,8 +217,6 @@ pub fn gram_top(g: &Grid, set: &[usize], iterations: usize) -> Gram {
         iterations: used,
     }
 }
-
-// CELL
 
 pub struct Cell {
     pub eta: f64,
@@ -337,8 +327,6 @@ pub fn chain_row(fam: &Family, g: &Grid, c: &Cell, c1: f64) -> String {
     )
 }
 
-// WITNESS
-
 fn member(q: u64, digits: &[u64], l: usize, mut v: u64) -> bool {
     for _ in 0..l {
         if !digits.contains(&(v % q)) {
@@ -416,8 +404,6 @@ pub fn witness_row(fam: &Family, l: usize, w: &Witness) -> String {
         exp(w.bal.abs())
     )
 }
-
-// RUN
 
 pub fn cells() -> Vec<(u64, &'static str, usize)> {
     vec![
@@ -514,8 +500,6 @@ pub fn run() {
         println!("{r}");
     }
 }
-
-// TESTS
 
 #[cfg(test)]
 mod tests {

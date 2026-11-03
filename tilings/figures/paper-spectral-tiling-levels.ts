@@ -25,8 +25,6 @@ const LOW = -1.25;
 const HIGH = 2;
 const GAP = 4;
 
-// FACTS
-
 function check(c: Census, cols: number, side: number) {
   if (c.base !== BASE || c.digits.join() !== DIGITS.join() || c.depth !== DEPTH || c.low !== LOW || c.high !== HIGH)
     throw new Error("paper-spectral-tiling-levels: the census draws another measure");
@@ -59,8 +57,6 @@ function check(c: Census, cols: number, side: number) {
       throw new Error(`paper-spectral-tiling-levels: column ${k} stacks to ${total}, Psi = ${q}`);
   }
 }
-
-// DRAW
 
 export default function draw(pen: Pen, ink: Ink) {
   const data = census as Census;

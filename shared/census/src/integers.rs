@@ -101,7 +101,6 @@ fn tally(
     counts
 }
 
-/// Counts, for each depth, how many of the 18066 ledger sequences write each value from 1 to `window` in their first `depth` terms, reading each sequence until a term passes `ceiling`; returns one tally of `window + 1` slots per depth, slot 0 always empty.
 pub fn census(ceiling: i128, window: usize, depths: &[usize]) -> Vec<Vec<u32>> {
     let rows = registry();
     assert_eq!(rows.len(), ROWS);
@@ -126,14 +125,4 @@ pub fn census(ceiling: i128, window: usize, depths: &[usize]) -> Vec<Vec<u32>> {
         }
     });
     counts
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn the_census_reads_its_registry() {
-        assert_eq!(registry().len(), ROWS);
-    }
 }

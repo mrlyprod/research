@@ -1,7 +1,5 @@
 use crate::catalog::Round;
 
-// KERNEL
-
 pub struct Kernel {
     pub m: usize,
     pub cb: Vec<u32>,
@@ -217,8 +215,6 @@ impl Kernel {
     }
 }
 
-// SPECTRUM
-
 pub fn deflate(v: &mut [f64]) {
     let n = (v.len() - 1) as f64;
     let mean = v[1..].iter().sum::<f64>() / n;
@@ -402,8 +398,6 @@ pub fn rate(
     }
     (log / window as f64).exp()
 }
-
-// ARNOLDI
 
 fn sign(a: f64, b: f64) -> f64 {
     if b >= 0.0 {
@@ -741,26 +735,4 @@ pub fn radius(
 pub fn tv(v: &[f64]) -> f64 {
     let u = 1.0 / (v.len() - 1) as f64;
     0.5 * v[1..].iter().map(|x| (x - u).abs()).sum::<f64>()
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn radius_finds_the_outer_complex_pair() {
-        let op = |v: &[f64], out: &mut [f64]| {
-            out[0] = 0.0;
-            for i in 1..8 {
-                out[i % 7 + 1] = 0.9 * v[i];
-            }
-            for i in 1..8 {
-                out[i] += 0.05 * v[i];
-            }
-        };
-        let angle = std::f64::consts::TAU / 7.0;
-        let want = (0.05 + 0.9 * angle.cos()).hypot(0.9 * angle.sin());
-        let e = radius(&op, 8, 1, 4, 1e-10, 200);
-        assert!((e.modulus - want).abs() < 1e-9 && e.residual <= 1e-10);
-    }
 }

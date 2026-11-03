@@ -6,8 +6,6 @@ type Mask = u128;
 const THREADS: usize = 8;
 const KEEP: usize = 4096;
 
-// THE GRID
-
 struct Grid {
     m: usize,
     n: usize,
@@ -359,8 +357,6 @@ impl Grid {
     }
 }
 
-// THE SEARCH
-
 #[derive(Default, Clone)]
 struct Stats {
     nodes: u64,
@@ -599,8 +595,6 @@ fn gcd(a: usize, b: usize) -> usize {
         gcd(b, a % b)
     }
 }
-
-// THE CLIMB
 
 struct Cube {
     m: usize,
@@ -1171,8 +1165,6 @@ fn control() {
     let found = report(&cube, &[0, 1, 2, 3, 4, 7], 4);
     assert!(found > 0, "the negative control must break");
 }
-
-// THE VERBS
 
 fn optimum(m: usize, k: usize, free: bool, target: Option<usize>, seconds: Option<f64>) {
     let t0 = Instant::now();

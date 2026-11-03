@@ -8,8 +8,6 @@ const STEPS = 400;
 
 export const units = {};
 
-// FIELDS
-
 function check() {
   const { octant, axis, arc, scale } = census;
   const folded = (HALF * (HALF + 1)) / 2;
@@ -49,8 +47,6 @@ function smooth(): Float64Array {
   return values;
 }
 
-// ARCS
-
 function arcs(pen: Pen, ink: Ink, box: Frame, thick: number, chords: boolean) {
   const kappa = census.kappa;
   for (const [sx, sy] of [
@@ -68,8 +64,6 @@ function arcs(pen: Pen, ink: Ink, box: Frame, thick: number, chords: boolean) {
     pen.polyline(line, thick, ink.orange);
   }
 }
-
-// DRAW
 
 export default function draw(pen: Pen, ink: Ink) {
   check();

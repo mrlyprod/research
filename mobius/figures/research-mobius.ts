@@ -12,8 +12,6 @@ const REACH = Math.sqrt(STEPS);
 
 let memo: { low: Float64Array; high: Float64Array } | undefined;
 
-// FACTS
-
 function walk(digits: number[]) {
   const values = math.design.elements(4, digits, LENGTH);
   if (values.length !== STEPS - 1)
@@ -34,8 +32,6 @@ function walks() {
   memo = { low, high };
   return memo;
 }
-
-// DRAW
 
 export default function draw(pen: Pen, ink: Ink) {
   const { low, high } = walks();

@@ -10,8 +10,6 @@ const RULE = [2, 3, 5, 7].reduce((r, v) => r | (1 << v), 0);
 const CYCLES = 12;
 const LONGEST = 40739;
 
-// ROUND
-
 function word(outer: number, inner: number) {
   let mask = 0;
   for (let i = 0; i < SIDE; i++)
@@ -57,8 +55,6 @@ function round() {
   return next;
 }
 
-// CYCLES
-
 function prime(p: number) {
   if (p < 2) return false;
   for (let d = 2; d * d <= p; d++) if (p % d === 0) return false;
@@ -86,8 +82,6 @@ function cycles(next: Uint16Array) {
   if ((STATES - lengths.length) % 2) throw new Error("paper-design-rounds: the round is odd");
   return lengths;
 }
-
-// DRAW
 
 export default function draw(pen: Pen, ink: Ink) {
   const lengths = cycles(round());

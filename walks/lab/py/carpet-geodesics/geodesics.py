@@ -9,8 +9,6 @@ R2 = math.sqrt(2.0)
 R5 = math.sqrt(5.0)
 LEVEL1 = 2 * R5 - 3 * R2
 
-# DESIGN
-
 
 def code(n):
     return sum(
@@ -34,9 +32,6 @@ def voids(n, level):
 
     walk(0, 0, n**level, 0)
     return np.array(out, dtype=float).reshape(-1, 3)
-
-
-# VISIBILITY
 
 
 def blocked(p, Q, H):
@@ -143,9 +138,6 @@ def envelope(n, level):
     return 2 - (2 - R2) * (1 - 1 / n) ** level
 
 
-# VERBS
-
-
 def verb_code():
     print("code of the side-N tile, bit N*i + j, void iff both digits odd")
     for n in (3, 5, 7, 9, 11):
@@ -182,9 +174,6 @@ def verb_level1():
         worst = max(worst, abs(d - f))
         print(f"  N = {n:<2}  D = {d:.12f}  formula {f:.12f}  diff {d - f:+.1e}")
     print(f"  largest difference {worst:.1e}; 2 sqrt5 - 3 sqrt2 = {LEVEL1:.9f}")
-
-
-# MAP
 
 
 def periodic_edges(K=3):

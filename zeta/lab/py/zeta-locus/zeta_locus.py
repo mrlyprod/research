@@ -9,8 +9,6 @@ sys.path.insert(0, os.path.join(HERE, "..", "design-zeta"))
 
 from design_zeta import Design, phase, strip
 
-# COFACTOR
-
 
 def build(q, F, dps=45, tol=None, P=None):
     if tol is None:
@@ -176,9 +174,6 @@ def polish(d, z0, w, span, dp=None):
     return r, abs(cofactor(d, r)[0])
 
 
-# SWEEP
-
-
 def line(*a):
     print(" ".join(str(x) for x in a))
 
@@ -214,8 +209,6 @@ def row(q, F, alpha, per, z, kind, pred):
         pred,
     )
 
-
-# STUDY
 
 Q3 = [(3, (1,)), (3, (0, 1)), (3, (1, 2)), (3, (0, 1, 2))]
 Q4 = [
@@ -539,9 +532,6 @@ def laws(got):
             "worst gap at equal frac",
             "none" if not pairs else mp.nstr(max(pairs), 8),
         )
-
-
-# ROUCHE
 
 
 def explicit(d, s0, M=60):

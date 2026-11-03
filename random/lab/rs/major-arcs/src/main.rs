@@ -7,8 +7,6 @@ use std::sync::Mutex;
 use std::thread;
 use std::time::Instant;
 
-// DESIGNS
-
 const DESIGNS: usize = 57;
 const COIN: usize = 57;
 const STREAMS: usize = 58;
@@ -134,8 +132,6 @@ fn tags() -> Vec<&'static str> {
         .collect()
 }
 
-// COMPLEX
-
 #[derive(Clone, Copy, Debug, PartialEq)]
 struct Cx {
     re: f64,
@@ -207,8 +203,6 @@ impl Cx {
     }
 }
 
-// ARITHMETIC
-
 fn gcd(a: u64, b: u64) -> u64 {
     if b == 0 {
         a
@@ -237,8 +231,6 @@ fn gauss(k: u32, a: u64, q: u64) -> Cx {
         ))
     })
 }
-
-// POINTS
 
 struct Point {
     num: u64,
@@ -292,8 +284,6 @@ impl Point {
         format!("{}/{}", self.num, self.den)
     }
 }
-
-// ADIC
 
 fn units(p: u64, k: u32) -> (u32, Vec<u64>) {
     let c = match p {
@@ -618,8 +608,6 @@ fn all_arcs(k: u32) -> Vec<Vec<Arc>> {
     out
 }
 
-// WEIGHTS
-
 const MOM: usize = 44;
 
 fn moments(d: Design, num: u64, den: u64, levels: usize) -> Vec<[Cx; MOM]> {
@@ -738,8 +726,6 @@ fn model(d: Design, k: u32, arcs: &[Arc], ns: &[u64]) -> Vec<(f64, Vec<f64>)> {
         })
         .collect()
 }
-
-// WALKER
 
 const W: usize = 8;
 const BASES: [u64; 3] = [3, 5, 6];
@@ -869,8 +855,6 @@ impl Walker {
         w
     }
 }
-
-// CENSUS
 
 struct Slices {
     planes: [u64; 16],
@@ -1151,8 +1135,6 @@ fn longer(d: Design) -> Vec<(u32, u64, u64, f64)> {
     }
     out
 }
-
-// VERBS
 
 fn checkpoints(k: u32, top: u32) -> Vec<u32> {
     let lo = if k == 2 { 12 } else { 10 };

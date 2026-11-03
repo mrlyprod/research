@@ -1,5 +1,3 @@
-// DESIGN
-
 #[derive(Clone, Copy, Debug)]
 pub struct Design {
     pub name: &'static str,
